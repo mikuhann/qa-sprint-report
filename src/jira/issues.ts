@@ -104,6 +104,30 @@ export async function getDefectsForPeriod(
   ]);
 }
 
+export async function getDefectsOutsideSprint(
+  sprintId: number,
+  startDate: string,
+  endDate: string,
+): Promise<JiraIssue[]> {
+  const jql =
+    `project = ${env.jiraProjectKey}` +
+    ` AND issuetype = Баг` +
+    ` AND created >= "${startDate}"` +
+    ` AND created < "${endDate}"` +
+    ` AND (Sprint is EMPTY OR Sprint NOT IN (${sprintId}))` +
+    ` AND (labels is EMPTY OR labels NOT IN ("prod_issue", "environment_issue"))`;
+
+  return searchIssues(jql, [
+    "summary",
+    "status",
+    "issuetype",
+    "labels",
+    "created",
+    "assignee",
+    "priority",
+  ]);
+}
+
 export async function getSprintIssues(
   sprintId: number,
   previousSprintIds: number[],

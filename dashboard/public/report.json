@@ -5,6 +5,8 @@
     "startDate": "2026-09-08",
     "endDate": "2026-09-28",
     "sprintDates": "08.09 - 28.09",
+    "queryStartDate": "2026-09-08",
+    "queryEndDate": "2026-09-29",
     "previousSprintIds": [
       1074,
       1041
@@ -33,6 +35,16 @@
     "regression": 0,
     "requirementsIssue": 1,
     "missedIssue": 4
+  },
+  "defectsOutsideSprint": {
+    "total": 1,
+    "issues": [
+      {
+        "key": "ERPBACK-9730",
+        "summary": "ERP|BACK| Не все данные по оплатам постоплатников попали в выгрузку",
+        "priority": "Серьезный"
+      }
+    ]
   },
   "resolutions": {
     "total": 17,

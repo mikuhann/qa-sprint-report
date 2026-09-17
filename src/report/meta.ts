@@ -1,5 +1,6 @@
 import { env } from "../config/env.js";
 import { getActiveSprint, getPreviousSprints } from "../jira/sprints.js";
+
 import type { SprintReportMeta } from "./types.js";
 
 interface DateParts {
@@ -45,6 +46,14 @@ function toShortDate(value: string): string {
   return `${day}.${month}`;
 }
 
+function addDays(date: string, days: number): string {
+  const value = new Date(`${date}T00:00:00Z`);
+
+  value.setUTCDate(value.getUTCDate() + days);
+
+  return value.toISOString().slice(0, 10);
+}
+
 export async function getSprintReportMeta(): Promise<SprintReportMeta> {
   const sprint = await getActiveSprint();
   const previousSprints = await getPreviousSprints(2);
@@ -53,16 +62,22 @@ export async function getSprintReportMeta(): Promise<SprintReportMeta> {
     throw new Error(`Sprint ${sprint.id} has no startDate or endDate`);
   }
 
+  const startDate = toIsoDate(sprint.startDate);
+  const endDate = toIsoDate(sprint.endDate);
+
   return {
     sprintId: sprint.id,
     sprintName: sprint.name,
 
-    startDate: toIsoDate(sprint.startDate),
-    endDate: toIsoDate(sprint.endDate),
+    startDate,
+    endDate,
 
-    sprintDates: `${toShortDate(sprint.startDate)} - ${toShortDate(
-      sprint.endDate,
-    )}`,
+    sprintDates: `${toShortDate(
+      sprint.startDate,
+    )} - ${toShortDate(sprint.endDate)}`,
+
+    queryStartDate: startDate,
+    queryEndDate: addDays(endDate, 1),
 
     previousSprintIds: previousSprints.map((item) => item.id),
   };

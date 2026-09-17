@@ -1,4 +1,8 @@
-import { getDefectsForPeriod, getSprintIssues } from "../jira/issues.js";
+import {
+  getDefectsForPeriod,
+  getDefectsOutsideSprint,
+  getSprintIssues,
+} from "../jira/issues.js";
 
 import { getSprintReportMeta } from "./meta.js";
 import { isSprintDeliveryIssue } from "./rules.js";
@@ -6,13 +10,13 @@ import { isSprintDeliveryIssue } from "./rules.js";
 import {
   calculateDefectStatistics,
   calculateDefectsByDeveloper,
+  calculateIssueTypeStatistics,
   calculateResolutionStatistics,
   calculateSeverityStatistics,
   calculateSprintTaskStatistics,
   validateDefectClassification,
   validateResolutions,
   validateSeverities,
-  calculateIssueTypeStatistics,
   validateSprintStatuses,
 } from "./statistics.js";
 
@@ -29,7 +33,16 @@ export async function buildReport(): Promise<SprintReport> {
     ["Закрыто", "Ожидает выгрузки"].includes(issue.fields.status.name),
   );
 
-  const defects = await getDefectsForPeriod(meta.startDate, meta.endDate);
+  const defects = await getDefectsForPeriod(
+    meta.queryStartDate,
+    meta.queryEndDate,
+  );
+
+  const defectsOutsideSprintIssues = await getDefectsOutsideSprint(
+    meta.sprintId,
+    meta.queryStartDate,
+    meta.queryEndDate,
+  );
 
   const defectValidation = validateDefectClassification(defects);
 
@@ -37,16 +50,26 @@ export async function buildReport(): Promise<SprintReport> {
 
   const severityValidation = validateSeverities(defects);
 
-  const unknownStatuses = validateSprintStatuses(issues);
+  const unknownStatuses = validateSprintStatuses(deliveryIssues);
 
   return {
     meta,
 
     tasks: calculateSprintTaskStatistics(issues),
 
-    issueTypes: calculateIssueTypeStatistics(issues),
+    issueTypes: calculateIssueTypeStatistics(deliveryIssues),
 
     defects: calculateDefectStatistics(defects),
+
+    defectsOutsideSprint: {
+      total: defectsOutsideSprintIssues.length,
+
+      issues: defectsOutsideSprintIssues.map((issue) => ({
+        key: issue.key,
+        summary: issue.fields.summary,
+        priority: issue.fields.priority?.name ?? null,
+      })),
+    },
 
     resolutions: calculateResolutionStatistics(resolutionIssues),
 
@@ -66,7 +89,9 @@ export async function buildReport(): Promise<SprintReport> {
       missingSeverity: severityValidation.missing,
 
       unknownSeverity: severityValidation.unknown,
+
       unknownStatuses,
+
       unassignedDefects: defects
         .filter((issue) => !issue.fields.assignee)
         .map((issue) => issue.key),

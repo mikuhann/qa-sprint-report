@@ -5,6 +5,8 @@ export interface SprintReportMeta {
   endDate: string;
   sprintDates: string;
   previousSprintIds: number[];
+  queryStartDate: string;
+  queryEndDate: string;
 }
 
 export interface SprintTaskStatistics {
@@ -87,10 +89,21 @@ export interface ReportWarnings {
 export interface SprintReport {
   meta: SprintReportMeta;
   tasks: SprintTaskStatistics;
+  issueTypes: IssueTypeStatistics;
   defects: DefectStatistics;
+  defectsOutsideSprint: DefectsOutsideSprint;
   resolutions: ResolutionStatistics;
   severity: SeverityStatistics;
   defectsByDeveloper: DeveloperDefectStatistics[];
   warnings: ReportWarnings;
-  issueTypes: IssueTypeStatistics;
+}
+
+export interface DefectsOutsideSprint {
+  total: number;
+
+  issues: {
+    key: string;
+    summary: string;
+    priority: string | null;
+  }[];
 }
