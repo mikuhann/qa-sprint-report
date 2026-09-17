@@ -1,34 +1,43 @@
-import { getActiveSprint, getPreviousSprints } from "./jira/sprints.js";
+import { getSprintIssues } from "./jira/issues.js";
+import { getSprintReportMeta } from "./report/meta.js";
 
 async function main() {
-  console.log("Loading sprint data...");
+  console.log("Generating report metadata...");
 
-  const activeSprint = await getActiveSprint();
-  const previousSprints = await getPreviousSprints(2);
+  const meta = await getSprintReportMeta();
 
-  console.log("Active sprint:");
+  console.log(meta);
 
-  console.log({
-    id: activeSprint.id,
-    name: activeSprint.name,
-    startDate: activeSprint.startDate,
-    endDate: activeSprint.endDate,
-  });
+  console.log("\nLoading sprint issues...");
 
-  console.log("Previous sprints:");
+  const issues = await getSprintIssues(meta.sprintId, meta.previousSprintIds);
 
-  console.log(
-    previousSprints.map((sprint) => ({
-      id: sprint.id,
-      name: sprint.name,
-      startDate: sprint.startDate,
-      endDate: sprint.endDate,
-    })),
-  );
+  console.log(`Issues: ${issues.length}`);
+
+  const statuses = [
+    ...new Set(issues.map((issue) => issue.fields.status.name)),
+  ].sort();
+
+  const issueTypes = [
+    ...new Set(issues.map((issue) => issue.fields.issuetype.name)),
+  ].sort();
+
+  const labels = [
+    ...new Set(issues.flatMap((issue) => issue.fields.labels)),
+  ].sort();
+
+  console.log("\nStatuses:");
+  console.log(statuses);
+
+  console.log("\nIssue types:");
+  console.log(issueTypes);
+
+  console.log("\nLabels:");
+  console.log(labels);
 }
 
 main().catch((error) => {
-  console.error("Failed to load sprint data");
+  console.error("Failed to generate report");
   console.error(error);
 
   process.exitCode = 1;
