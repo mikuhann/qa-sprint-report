@@ -6,9 +6,10 @@ async function main() {
 
   const report = await buildReport();
 
-  const outputPath = await writeReport(report);
+  const paths = await writeReport(report);
 
-  console.log(`Report generated: ${outputPath}`);
+  console.log(`Report generated: ${paths.outputPath}`);
+  console.log(`Dashboard data: ${paths.dashboardPath}`);
 
   if (report.warnings.unclassifiedDefects.length) {
     console.warn(
