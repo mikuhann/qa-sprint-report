@@ -1,0 +1,100 @@
+interface SprintProgressProps {
+  total: number;
+  unresolved: number;
+  testing: number;
+  waitingRelease: number;
+  closed: number;
+}
+
+export function SprintProgress({
+  total,
+  unresolved,
+  testing,
+  waitingRelease,
+  closed,
+}: SprintProgressProps) {
+  const getPercent = (value: number) => {
+    if (!total) {
+      return 0;
+    }
+
+    return (value / total) * 100;
+  };
+
+  const items = [
+    {
+      label: "Unresolved",
+      value: unresolved,
+      width: getPercent(unresolved),
+      barClass: "bg-slate-500",
+    },
+    {
+      label: "Testing",
+      value: testing,
+      width: getPercent(testing),
+      barClass: "bg-blue-500",
+    },
+    {
+      label: "Waiting release",
+      value: waitingRelease,
+      width: getPercent(waitingRelease),
+      barClass: "bg-amber-500",
+    },
+    {
+      label: "Closed",
+      value: closed,
+      width: getPercent(closed),
+      barClass: "bg-emerald-500",
+    },
+  ];
+
+  return (
+    <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-lg font-semibold text-slate-950">
+            Sprint progress
+          </h2>
+
+          <p className="mt-1 text-sm text-slate-500">
+            Distribution of {total} sprint tasks
+          </p>
+        </div>
+
+        <div className="text-right">
+          <div className="text-2xl font-semibold text-slate-950">{closed}</div>
+
+          <div className="text-sm text-slate-500">closed</div>
+        </div>
+      </div>
+
+      <div className="mt-6 flex h-3 overflow-hidden rounded-full bg-slate-100">
+        {items.map((item) => (
+          <div
+            key={item.label}
+            className={item.barClass}
+            style={{ width: `${item.width}%` }}
+          />
+        ))}
+      </div>
+
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {items.map((item) => (
+          <div key={item.label}>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-slate-500">{item.label}</span>
+
+              <span className="text-sm font-medium text-slate-950">
+                {item.value}
+              </span>
+            </div>
+
+            <div className="mt-1 text-xs text-slate-400">
+              {item.width.toFixed(1)}%
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

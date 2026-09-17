@@ -5,22 +5,19 @@
     "startDate": "2026-09-08",
     "endDate": "2026-09-28",
     "sprintDates": "08.09 - 28.09",
-    "previousSprintIds": [
-      1074,
-      1041
-    ]
+    "previousSprintIds": [1074, 1041]
   },
   "tasks": {
-    "total": 53,
-    "unresolved": 27,
+    "total": 54,
+    "unresolved": 28,
     "testing": 9,
     "waitingRelease": 10,
     "closed": 7
   },
   "defects": {
-    "total": 13,
+    "total": 14,
     "prodIssue": 3,
-    "common": 1,
+    "common": 2,
     "requirementsNotMet": 3,
     "regression": 0,
     "requirementsIssue": 1,
@@ -39,10 +36,10 @@
     "needsRewording": 0
   },
   "severity": {
-    "total": 13,
+    "total": 14,
     "blocker": 0,
     "critical": 2,
-    "major": 9,
+    "major": 10,
     "minor": 2,
     "trivial": 0
   },
@@ -58,14 +55,14 @@
       "defects": 3
     },
     {
-      "accountId": "6149a7b478b7a1006ab0d25d",
-      "name": "Илья Лисицкий",
+      "accountId": null,
+      "name": "Unassigned",
       "defects": 2
     },
     {
-      "accountId": null,
-      "name": "Unassigned",
-      "defects": 1
+      "accountId": "6149a7b478b7a1006ab0d25d",
+      "name": "Илья Лисицкий",
+      "defects": 2
     },
     {
       "accountId": "712020:a078d9b3-d4b9-4e92-88bf-c0f1562aa89b",
@@ -79,16 +76,12 @@
     }
   ],
   "warnings": {
-    "unclassifiedDefects": [
-      "ERPBACK-9730"
-    ],
+    "unclassifiedDefects": ["ERPBACK-9730"],
     "multipleClassifications": [],
     "missingResolutions": [],
     "unknownResolutions": [],
     "missingSeverity": [],
     "unknownSeverity": [],
-    "unassignedDefects": [
-      "ERPBACK-9757"
-    ]
+    "unassignedDefects": ["ERPBACK-9760", "ERPBACK-9757"]
   }
 }
