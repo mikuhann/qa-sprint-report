@@ -3,6 +3,7 @@ import {
   getDefectsOutsideSprint,
   getSprintIssues,
   getCarryOverIssues,
+  getReopenedAfterTestingIssues,
 } from "../jira/issues.js";
 
 import { getSprintReportMeta } from "./meta.js";
@@ -58,6 +59,14 @@ export async function buildReport(): Promise<SprintReport> {
     meta.queryEndDate,
   );
 
+  const reopenedIssues = (
+    await getReopenedAfterTestingIssues(
+      meta.sprintId,
+      meta.queryStartDate,
+      meta.queryEndDate,
+    )
+  ).filter(isSprintDeliveryIssue);
+
   const defectValidation = validateDefectClassification(defects);
 
   const resolutionValidation = validateResolutions(resolutionIssues);
@@ -99,6 +108,17 @@ export async function buildReport(): Promise<SprintReport> {
         summary: issue.fields.summary,
         issueType: issue.fields.issuetype.name,
         status: issue.fields.status.name,
+      })),
+    },
+    reopened: {
+      total: reopenedIssues.length,
+
+      issues: reopenedIssues.map((issue) => ({
+        key: issue.key,
+        summary: issue.fields.summary,
+        issueType: issue.fields.issuetype.name,
+        status: issue.fields.status.name,
+        priority: issue.fields.priority?.name ?? null,
       })),
     },
     warnings: {

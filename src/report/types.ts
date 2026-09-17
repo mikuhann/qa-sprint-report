@@ -95,8 +95,9 @@ export interface SprintReport {
   resolutions: ResolutionStatistics;
   severity: SeverityStatistics;
   defectsByDeveloper: DeveloperDefectStatistics[];
-  warnings: ReportWarnings;
   carryOver: CarryOverStatistics;
+  reopened: ReopenedStatistics;
+  warnings: ReportWarnings;
 }
 
 export interface DefectsOutsideSprint {
@@ -118,5 +119,17 @@ export interface CarryOverStatistics {
     summary: string;
     issueType: string;
     status: string;
+  }[];
+}
+
+export interface ReopenedStatistics {
+  total: number;
+
+  issues: {
+    key: string;
+    summary: string;
+    issueType: string;
+    status: string;
+    priority: string | null;
   }[];
 }

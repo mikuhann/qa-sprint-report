@@ -178,3 +178,29 @@ export async function getCarryOverIssues(
     "parent",
   ]);
 }
+
+export async function getReopenedAfterTestingIssues(
+  sprintId: number,
+  startDate: string,
+  endDate: string,
+): Promise<JiraIssue[]> {
+  const jql =
+    `project = ${env.jiraProjectKey}` +
+    ` AND Sprint = ${sprintId}` +
+    ` AND status CHANGED` +
+    ` FROM "Тестирование в процессе"` +
+    ` TO "В работу"` +
+    ` AFTER "${startDate}"` +
+    ` BEFORE "${endDate}"`;
+
+  return searchIssues(jql, [
+    "summary",
+    "status",
+    "issuetype",
+    "labels",
+    "created",
+    "assignee",
+    "parent",
+    "priority",
+  ]);
+}
