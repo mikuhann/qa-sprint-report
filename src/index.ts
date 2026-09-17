@@ -1,38 +1,49 @@
-import { getSprintIssues } from "./jira/issues.js";
+import { getDefectsForPeriod, getSprintIssues } from "./jira/issues.js";
 import { getSprintReportMeta } from "./report/meta.js";
+import {
+  calculateDefectStatistics,
+  calculateSprintTaskStatistics,
+  validateDefectClassification,
+} from "./report/statistics.js";
 
 async function main() {
-  console.log("Generating report metadata...");
-
   const meta = await getSprintReportMeta();
-
-  console.log(meta);
-
-  console.log("\nLoading sprint issues...");
 
   const issues = await getSprintIssues(meta.sprintId, meta.previousSprintIds);
 
-  console.log(`Issues: ${issues.length}`);
+  const statistics = calculateSprintTaskStatistics(issues);
 
-  const statuses = [
-    ...new Set(issues.map((issue) => issue.fields.status.name)),
-  ].sort();
+  console.log("\nSprint statistics:");
+  console.log(statistics);
 
-  const issueTypes = [
-    ...new Set(issues.map((issue) => issue.fields.issuetype.name)),
-  ].sort();
+  console.log("\nLoading defects...");
+
+  const defects = await getDefectsForPeriod(meta.startDate, meta.endDate);
+
+  console.log(`Defects: ${defects.length}`);
+
+  const defectStatistics = calculateDefectStatistics(defects);
+  const defectValidation = validateDefectClassification(defects);
+
+  console.log("\nDefect statistics:");
+  console.log(defectStatistics);
+
+  if (defectValidation.unclassified.length) {
+    console.warn("⚠️ Unclassified defects:", defectValidation.unclassified);
+  }
+
+  if (defectValidation.multipleClassifications.length) {
+    console.warn(
+      "⚠️ Defects with multiple classifications:",
+      defectValidation.multipleClassifications,
+    );
+  }
 
   const labels = [
-    ...new Set(issues.flatMap((issue) => issue.fields.labels)),
+    ...new Set(defects.flatMap((issue) => issue.fields.labels)),
   ].sort();
 
-  console.log("\nStatuses:");
-  console.log(statuses);
-
-  console.log("\nIssue types:");
-  console.log(issueTypes);
-
-  console.log("\nLabels:");
+  console.log("\nDefect labels:");
   console.log(labels);
 }
 

@@ -39,6 +39,61 @@ interface JiraSearchResponse {
   nextPageToken?: string;
 }
 
+async function searchIssues(
+  jql: string,
+  fields: string[],
+): Promise<JiraIssue[]> {
+  const issues: JiraIssue[] = [];
+
+  let nextPageToken: string | undefined;
+
+  do {
+    const params = new URLSearchParams({
+      jql,
+      maxResults: "100",
+      fields: fields.join(","),
+    });
+
+    if (nextPageToken) {
+      params.set("nextPageToken", nextPageToken);
+    }
+
+    const data = await jiraGet<JiraSearchResponse>(
+      `/rest/api/3/search/jql?${params.toString()}`,
+    );
+
+    issues.push(...data.issues);
+
+    nextPageToken = data.nextPageToken;
+
+    if (data.isLast) {
+      break;
+    }
+  } while (nextPageToken);
+
+  return issues;
+}
+
+export async function getDefectsForPeriod(
+  startDate: string,
+  endDate: string,
+): Promise<JiraIssue[]> {
+  const jql =
+    `project = ${env.jiraProjectKey}` +
+    ` AND issuetype = Баг` +
+    ` AND created >= "${startDate}"` +
+    ` AND created < "${endDate}"`;
+
+  return searchIssues(jql, [
+    "summary",
+    "status",
+    "issuetype",
+    "labels",
+    "created",
+    "assignee",
+  ]);
+}
+
 export async function getSprintIssues(
   sprintId: number,
   previousSprintIds: number[],
