@@ -304,3 +304,36 @@ export function validateSeverities(defects: JiraIssue[]): SeverityValidation {
     unknown,
   };
 }
+
+export interface DeveloperDefectStatistics {
+  accountId: string | null;
+  name: string;
+  defects: number;
+}
+
+export function calculateDefectsByDeveloper(
+  defects: JiraIssue[],
+): DeveloperDefectStatistics[] {
+  const developers = new Map<string, DeveloperDefectStatistics>();
+
+  for (const issue of defects) {
+    const assignee = issue.fields.assignee;
+
+    const key = assignee?.accountId ?? "unassigned";
+
+    const existing = developers.get(key);
+
+    if (existing) {
+      existing.defects += 1;
+      continue;
+    }
+
+    developers.set(key, {
+      accountId: assignee?.accountId ?? null,
+      name: assignee?.displayName ?? "Unassigned",
+      defects: 1,
+    });
+  }
+
+  return [...developers.values()].sort((a, b) => b.defects - a.defects);
+}

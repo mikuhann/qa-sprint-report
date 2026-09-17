@@ -5,6 +5,7 @@ import { getSprintReportMeta } from "./report/meta.js";
 import { isSprintDeliveryIssue } from "./report/rules.js";
 
 import {
+  calculateDefectsByDeveloper,
   calculateDefectStatistics,
   calculateResolutionStatistics,
   calculateSeverityStatistics,
@@ -69,6 +70,19 @@ async function main() {
       "⚠️ Defects with multiple classifications:",
       defectValidation.multipleClassifications,
     );
+  }
+
+  const defectsByDeveloper = calculateDefectsByDeveloper(defects);
+
+  console.log("\nDefects by developer:");
+  console.log(defectsByDeveloper);
+
+  const unassignedDefects = defects
+    .filter((issue) => !issue.fields.assignee)
+    .map((issue) => issue.key);
+
+  if (unassignedDefects.length) {
+    console.warn("⚠️ Unassigned defects:", unassignedDefects);
   }
 
   const severityStatistics = calculateSeverityStatistics(defects);
