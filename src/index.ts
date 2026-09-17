@@ -1,26 +1,24 @@
-import { jiraGet } from "./jira/client.js";
-
-interface JiraUser {
-  accountId: string;
-  displayName: string;
-  emailAddress?: string;
-}
+import { getActiveSprint } from "./jira/sprints.js";
 
 async function main() {
-  console.log("Connecting to Jira...");
+  console.log("Loading active sprint...");
 
-  const user = await jiraGet<JiraUser>("/rest/api/3/myself");
+  const sprint = await getActiveSprint();
 
-  console.log("Connected successfully");
+  console.log("Active sprint found");
+
   console.log({
-    accountId: user.accountId,
-    displayName: user.displayName,
-    email: user.emailAddress,
+    id: sprint.id,
+    name: sprint.name,
+    state: sprint.state,
+    startDate: sprint.startDate,
+    endDate: sprint.endDate,
+    goal: sprint.goal,
   });
 }
 
 main().catch((error) => {
-  console.error("Failed to connect to Jira");
+  console.error("Failed to load active sprint");
   console.error(error);
 
   process.exitCode = 1;
