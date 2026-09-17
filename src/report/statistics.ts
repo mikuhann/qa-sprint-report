@@ -26,12 +26,6 @@ export function calculateSprintTaskStatistics(
 ): SprintTaskStatistics {
   const deliveryIssues = issues.filter(isSprintDeliveryIssue);
 
-  console.log({
-    allSprintIssues: issues.length,
-    deliveryIssues: deliveryIssues.length,
-    excludedDutyIssues: issues.length - deliveryIssues.length,
-  });
-
   const total = deliveryIssues.length;
 
   const unresolved = deliveryIssues.filter((issue) =>
@@ -84,21 +78,6 @@ export function calculateDefectStatistics(
   const hasLabel = (issue: JiraIssue, label: string): boolean => {
     return issue.fields.labels.includes(label);
   };
-
-  const classificationLabels = new Set(Object.values(DEFECT_LABELS));
-
-  const unclassified = defects.filter((issue) => {
-    return !issue.fields.labels.some((label) =>
-      classificationLabels.has(
-        label as (typeof DEFECT_LABELS)[keyof typeof DEFECT_LABELS],
-      ),
-    );
-  });
-
-  console.log(
-    "Unclassified defects:",
-    unclassified.map((issue) => issue.key),
-  );
 
   return {
     total: defects.length,

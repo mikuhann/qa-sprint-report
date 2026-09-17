@@ -98,10 +98,6 @@ export async function getSprintIssues(
   sprintId: number,
   previousSprintIds: number[],
 ): Promise<JiraIssue[]> {
-  const issues: JiraIssue[] = [];
-
-  let nextPageToken: string | undefined;
-
   const previousSprintCondition =
     previousSprintIds.length > 0
       ? ` AND Sprint not in (${previousSprintIds.join(", ")})`
@@ -112,37 +108,13 @@ export async function getSprintIssues(
     ` AND Sprint = ${sprintId}` +
     previousSprintCondition;
 
-  do {
-    const params = new URLSearchParams({
-      jql,
-      maxResults: "100",
-      fields: [
-        "summary",
-        "status",
-        "issuetype",
-        "labels",
-        "created",
-        "assignee",
-        "parent",
-      ].join(","),
-    });
-
-    if (nextPageToken) {
-      params.set("nextPageToken", nextPageToken);
-    }
-
-    const data = await jiraGet<JiraSearchResponse>(
-      `/rest/api/3/search/jql?${params.toString()}`,
-    );
-
-    issues.push(...data.issues);
-
-    nextPageToken = data.nextPageToken;
-
-    if (data.isLast) {
-      break;
-    }
-  } while (nextPageToken);
-
-  return issues;
+  return searchIssues(jql, [
+    "summary",
+    "status",
+    "issuetype",
+    "labels",
+    "created",
+    "assignee",
+    "parent",
+  ]);
 }
