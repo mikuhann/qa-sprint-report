@@ -1,24 +1,34 @@
-import { getActiveSprint } from "./jira/sprints.js";
+import { getActiveSprint, getPreviousSprints } from "./jira/sprints.js";
 
 async function main() {
-  console.log("Loading active sprint...");
+  console.log("Loading sprint data...");
 
-  const sprint = await getActiveSprint();
+  const activeSprint = await getActiveSprint();
+  const previousSprints = await getPreviousSprints(2);
 
-  console.log("Active sprint found");
+  console.log("Active sprint:");
 
   console.log({
-    id: sprint.id,
-    name: sprint.name,
-    state: sprint.state,
-    startDate: sprint.startDate,
-    endDate: sprint.endDate,
-    goal: sprint.goal,
+    id: activeSprint.id,
+    name: activeSprint.name,
+    startDate: activeSprint.startDate,
+    endDate: activeSprint.endDate,
   });
+
+  console.log("Previous sprints:");
+
+  console.log(
+    previousSprints.map((sprint) => ({
+      id: sprint.id,
+      name: sprint.name,
+      startDate: sprint.startDate,
+      endDate: sprint.endDate,
+    })),
+  );
 }
 
 main().catch((error) => {
-  console.error("Failed to load active sprint");
+  console.error("Failed to load sprint data");
   console.error(error);
 
   process.exitCode = 1;
