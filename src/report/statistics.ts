@@ -1,13 +1,10 @@
 import type { JiraIssue } from "../jira/issues.js";
 import { isSprintDeliveryIssue } from "./rules.js";
-
-export interface SprintTaskStatistics {
-  total: number;
-  unresolved: number;
-  testing: number;
-  waitingRelease: number;
-  closed: number;
-}
+import type {
+  IssueTypeStatistics,
+  SprintTaskStatistics,
+  UnknownStatus,
+} from "./types.js";
 
 const UNRESOLVED_STATUSES = new Set([
   "В работу",
@@ -20,6 +17,8 @@ const TESTING_STATUSES = new Set([
   "Отправлено в тестирование",
   "Тестирование в процессе",
 ]);
+
+const BLOCKED_STATUSES = new Set(["Тестирование заблокировано"]);
 
 export function calculateSprintTaskStatistics(
   issues: JiraIssue[],
@@ -44,12 +43,17 @@ export function calculateSprintTaskStatistics(
     (issue) => issue.fields.status.name === "Закрыто",
   ).length;
 
+  const blocked = deliveryIssues.filter((issue) =>
+    BLOCKED_STATUSES.has(issue.fields.status.name),
+  ).length;
+
   return {
     total,
     unresolved,
     testing,
     waitingRelease,
     closed,
+    blocked,
   };
 }
 
@@ -336,4 +340,64 @@ export function calculateDefectsByDeveloper(
   }
 
   return [...developers.values()].sort((a, b) => b.defects - a.defects);
+}
+
+export function calculateIssueTypeStatistics(
+  issues: JiraIssue[],
+): IssueTypeStatistics {
+  const deliveryIssues = issues.filter(isSprintDeliveryIssue);
+
+  let stories = 0;
+  let tasks = 0;
+  let bugs = 0;
+  let other = 0;
+
+  for (const issue of deliveryIssues) {
+    switch (issue.fields.issuetype.name) {
+      case "История":
+        stories += 1;
+        break;
+
+      case "Задача":
+        tasks += 1;
+        break;
+
+      case "Баг":
+        bugs += 1;
+        break;
+
+      default:
+        other += 1;
+    }
+  }
+
+  return {
+    total: deliveryIssues.length,
+    stories,
+    tasks,
+    bugs,
+    other,
+  };
+}
+
+const KNOWN_STATUSES = new Set([
+  "В работу",
+  "В процессе",
+  "Отложена",
+  "CODE REVIEW",
+  "Отправлено в тестирование",
+  "Тестирование в процессе",
+  "Ожидает выгрузки",
+  "Закрыто",
+  "Тестирование заблокировано",
+]);
+
+export function validateSprintStatuses(issues: JiraIssue[]): UnknownStatus[] {
+  return issues
+    .filter(isSprintDeliveryIssue)
+    .filter((issue) => !KNOWN_STATUSES.has(issue.fields.status.name))
+    .map((issue) => ({
+      key: issue.key,
+      status: issue.fields.status.name,
+    }));
 }

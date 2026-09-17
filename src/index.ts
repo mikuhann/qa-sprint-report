@@ -21,6 +21,13 @@ async function main() {
   if (report.warnings.unassignedDefects.length) {
     console.warn("⚠️ Unassigned defects:", report.warnings.unassignedDefects);
   }
+
+  if (report.warnings.unknownStatuses.length) {
+    console.warn(
+      "⚠️ Unknown sprint statuses:",
+      report.warnings.unknownStatuses,
+    );
+  }
 }
 
 main().catch((error) => {

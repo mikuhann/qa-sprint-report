@@ -5,14 +5,25 @@
     "startDate": "2026-09-08",
     "endDate": "2026-09-28",
     "sprintDates": "08.09 - 28.09",
-    "previousSprintIds": [1074, 1041]
+    "previousSprintIds": [
+      1074,
+      1041
+    ]
   },
   "tasks": {
     "total": 54,
     "unresolved": 28,
     "testing": 9,
     "waitingRelease": 10,
-    "closed": 7
+    "closed": 7,
+    "blocked": 0
+  },
+  "issueTypes": {
+    "total": 54,
+    "stories": 10,
+    "tasks": 24,
+    "bugs": 20,
+    "other": 0
   },
   "defects": {
     "total": 14,
@@ -76,12 +87,18 @@
     }
   ],
   "warnings": {
-    "unclassifiedDefects": ["ERPBACK-9730"],
+    "unclassifiedDefects": [
+      "ERPBACK-9730"
+    ],
     "multipleClassifications": [],
     "missingResolutions": [],
     "unknownResolutions": [],
     "missingSeverity": [],
     "unknownSeverity": [],
-    "unassignedDefects": ["ERPBACK-9760", "ERPBACK-9757"]
+    "unknownStatuses": [],
+    "unassignedDefects": [
+      "ERPBACK-9760",
+      "ERPBACK-9757"
+    ]
   }
 }

@@ -12,6 +12,8 @@ import {
   validateDefectClassification,
   validateResolutions,
   validateSeverities,
+  calculateIssueTypeStatistics,
+  validateSprintStatuses,
 } from "./statistics.js";
 
 import type { SprintReport } from "./types.js";
@@ -35,10 +37,14 @@ export async function buildReport(): Promise<SprintReport> {
 
   const severityValidation = validateSeverities(defects);
 
+  const unknownStatuses = validateSprintStatuses(issues);
+
   return {
     meta,
 
     tasks: calculateSprintTaskStatistics(issues),
+
+    issueTypes: calculateIssueTypeStatistics(issues),
 
     defects: calculateDefectStatistics(defects),
 
@@ -60,7 +66,7 @@ export async function buildReport(): Promise<SprintReport> {
       missingSeverity: severityValidation.missing,
 
       unknownSeverity: severityValidation.unknown,
-
+      unknownStatuses,
       unassignedDefects: defects
         .filter((issue) => !issue.fields.assignee)
         .map((issue) => issue.key),

@@ -13,6 +13,20 @@ export interface SprintTaskStatistics {
   testing: number;
   waitingRelease: number;
   closed: number;
+  blocked: number;
+}
+
+export interface IssueTypeStatistics {
+  total: number;
+  stories: number;
+  tasks: number;
+  bugs: number;
+  other: number;
+}
+
+export interface UnknownStatus {
+  key: string;
+  status: string;
 }
 
 export interface DefectStatistics {
@@ -67,6 +81,7 @@ export interface ReportWarnings {
     value: string;
   }>;
   unassignedDefects: string[];
+  unknownStatuses: UnknownStatus[];
 }
 
 export interface SprintReport {
@@ -77,4 +92,5 @@ export interface SprintReport {
   severity: SeverityStatistics;
   defectsByDeveloper: DeveloperDefectStatistics[];
   warnings: ReportWarnings;
+  issueTypes: IssueTypeStatistics;
 }

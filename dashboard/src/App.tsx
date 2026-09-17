@@ -8,6 +8,7 @@ import { SeverityChart } from "./components/charts/SeverityChart";
 import { DefectsByDeveloperChart } from "./components/charts/DefectsByDeveloperChart";
 import { ResolutionsChart } from "./components/charts/ResolutionsChart";
 import { DataQuality } from "./components/DataQuality";
+import { IssueBreakdown } from "./components/IssueBreakdown";
 
 import { loadReport } from "./api/report";
 import type { SprintReport } from "./types/report";
@@ -86,7 +87,10 @@ function App() {
           testing={report.tasks.testing}
           waitingRelease={report.tasks.waitingRelease}
           closed={report.tasks.closed}
+          blocked={report.tasks.blocked}
         />
+
+        <IssueBreakdown issueTypes={report.issueTypes} />
         <section className="mt-6 grid gap-6 lg:grid-cols-2">
           <DefectsByReasonChart defects={report.defects} />
 

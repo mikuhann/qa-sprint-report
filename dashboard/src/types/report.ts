@@ -14,6 +14,15 @@ export interface SprintReport {
     testing: number;
     waitingRelease: number;
     closed: number;
+    blocked: number;
+  };
+
+  issueTypes: {
+    total: number;
+    stories: number;
+    tasks: number;
+    bugs: number;
+    other: number;
   };
 
   defects: {

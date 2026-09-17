@@ -4,6 +4,7 @@ interface SprintProgressProps {
   testing: number;
   waitingRelease: number;
   closed: number;
+  blocked: number;
 }
 
 export function SprintProgress({
@@ -12,6 +13,7 @@ export function SprintProgress({
   testing,
   waitingRelease,
   closed,
+  blocked,
 }: SprintProgressProps) {
   const getPercent = (value: number) => {
     if (!total) {
@@ -27,24 +29,35 @@ export function SprintProgress({
       value: unresolved,
       width: getPercent(unresolved),
       barClass: "bg-slate-500",
+      dotClass: "bg-slate-500",
     },
     {
       label: "Testing",
       value: testing,
       width: getPercent(testing),
       barClass: "bg-blue-500",
+      dotClass: "bg-blue-500",
     },
     {
       label: "Waiting release",
       value: waitingRelease,
       width: getPercent(waitingRelease),
       barClass: "bg-amber-500",
+      dotClass: "bg-amber-500",
     },
     {
       label: "Closed",
       value: closed,
       width: getPercent(closed),
       barClass: "bg-emerald-500",
+      dotClass: "bg-emerald-500",
+    },
+    {
+      label: "Blocked",
+      value: blocked,
+      width: getPercent(blocked),
+      barClass: "bg-red-500",
+      dotClass: "bg-red-500",
     },
   ];
 
@@ -72,24 +85,29 @@ export function SprintProgress({
         {items.map((item) => (
           <div
             key={item.label}
-            className={item.barClass}
+            title={`${item.label}: ${item.value} (${item.width.toFixed(1)}%)`}
+            className={`${item.barClass} transition-opacity hover:opacity-75`}
             style={{ width: `${item.width}%` }}
           />
         ))}
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-6 grid gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
         {items.map((item) => (
           <div key={item.label}>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-500">{item.label}</span>
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span className={`h-2.5 w-2.5 rounded-full ${item.dotClass}`} />
 
-              <span className="text-sm font-medium text-slate-950">
+                <span className="text-sm text-slate-600">{item.label}</span>
+              </div>
+
+              <span className="text-sm font-semibold text-slate-950">
                 {item.value}
               </span>
             </div>
 
-            <div className="mt-1 text-xs text-slate-400">
+            <div className="mt-1 pl-4.5 text-xs text-slate-400">
               {item.width.toFixed(1)}%
             </div>
           </div>
