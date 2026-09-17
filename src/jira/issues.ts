@@ -30,6 +30,15 @@ export interface JiraIssue {
       id: string;
       key: string;
     };
+
+    priority?: {
+      id: string;
+      name: string;
+    } | null;
+
+    customfield_10204?: {
+      value: string;
+    } | null;
   };
 }
 
@@ -91,6 +100,7 @@ export async function getDefectsForPeriod(
     "labels",
     "created",
     "assignee",
+    "priority",
   ]);
 }
 
@@ -116,5 +126,6 @@ export async function getSprintIssues(
     "created",
     "assignee",
     "parent",
+    "customfield_10204",
   ]);
 }

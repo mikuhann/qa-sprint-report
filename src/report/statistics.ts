@@ -141,3 +141,166 @@ export function validateDefectClassification(
     multipleClassifications,
   };
 }
+
+export interface ResolutionStatistics {
+  total: number;
+  ready: number;
+  fixed: number;
+  resolvedInTask: number;
+  notBug: number;
+  cannotReproduce: number;
+  duplicate: number;
+  wontFix: number;
+  notRelevant: number;
+  needsRewording: number;
+}
+
+const RESOLUTIONS = {
+  ready: "Готово",
+  fixed: "Исправлено",
+  resolvedInTask: "Решено в задаче",
+  notBug: "Не является багом",
+  cannotReproduce: "Не воспроизводится",
+  duplicate: "Дубликат",
+  wontFix: "Не будет исправляться",
+  notRelevant: "Не актуально",
+  needsRewording: "Требует переформулировки",
+} as const;
+
+export function calculateResolutionStatistics(
+  issues: JiraIssue[],
+): ResolutionStatistics {
+  const getResolution = (issue: JiraIssue) =>
+    issue.fields.customfield_10204?.value;
+
+  const count = (value: string) =>
+    issues.filter((issue) => getResolution(issue) === value).length;
+
+  return {
+    total: issues.length,
+    ready: count(RESOLUTIONS.ready),
+    fixed: count(RESOLUTIONS.fixed),
+    resolvedInTask: count(RESOLUTIONS.resolvedInTask),
+    notBug: count(RESOLUTIONS.notBug),
+    cannotReproduce: count(RESOLUTIONS.cannotReproduce),
+    duplicate: count(RESOLUTIONS.duplicate),
+    wontFix: count(RESOLUTIONS.wontFix),
+    notRelevant: count(RESOLUTIONS.notRelevant),
+    needsRewording: count(RESOLUTIONS.needsRewording),
+  };
+}
+
+export interface ResolutionValidation {
+  missing: string[];
+  unknown: Array<{
+    key: string;
+    value: string;
+  }>;
+}
+
+export function validateResolutions(issues: JiraIssue[]): ResolutionValidation {
+  const knownValues = new Set(Object.values(RESOLUTIONS));
+
+  const missing: string[] = [];
+  const unknown: Array<{
+    key: string;
+    value: string;
+  }> = [];
+
+  for (const issue of issues) {
+    const value = issue.fields.customfield_10204?.value;
+
+    if (!value) {
+      missing.push(issue.key);
+      continue;
+    }
+
+    if (
+      !knownValues.has(value as (typeof RESOLUTIONS)[keyof typeof RESOLUTIONS])
+    ) {
+      unknown.push({
+        key: issue.key,
+        value,
+      });
+    }
+  }
+
+  return {
+    missing,
+    unknown,
+  };
+}
+
+export interface SeverityStatistics {
+  total: number;
+  blocker: number;
+  critical: number;
+  major: number;
+  minor: number;
+  trivial: number;
+}
+
+const SEVERITIES = {
+  blocker: "Блокер",
+  critical: "Критический",
+  major: "Серьезный",
+  minor: "Незначительный",
+  trivial: "Тривиальный",
+} as const;
+
+export function calculateSeverityStatistics(
+  defects: JiraIssue[],
+): SeverityStatistics {
+  const count = (priority: string) =>
+    defects.filter((issue) => issue.fields.priority?.name === priority).length;
+
+  return {
+    total: defects.length,
+    blocker: count(SEVERITIES.blocker),
+    critical: count(SEVERITIES.critical),
+    major: count(SEVERITIES.major),
+    minor: count(SEVERITIES.minor),
+    trivial: count(SEVERITIES.trivial),
+  };
+}
+
+export interface SeverityValidation {
+  missing: string[];
+  unknown: Array<{
+    key: string;
+    value: string;
+  }>;
+}
+
+export function validateSeverities(defects: JiraIssue[]): SeverityValidation {
+  const knownValues = new Set(Object.values(SEVERITIES));
+
+  const missing: string[] = [];
+  const unknown: Array<{
+    key: string;
+    value: string;
+  }> = [];
+
+  for (const issue of defects) {
+    const priority = issue.fields.priority?.name;
+
+    if (!priority) {
+      missing.push(issue.key);
+      continue;
+    }
+
+    if (
+      !knownValues.has(priority as (typeof SEVERITIES)[keyof typeof SEVERITIES])
+    ) {
+      unknown.push({
+        key: issue.key,
+        value: priority,
+      });
+    }
+  }
+
+  return {
+    missing,
+    unknown,
+  };
+}
