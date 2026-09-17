@@ -2,6 +2,7 @@ import {
   getDefectsForPeriod,
   getDefectsOutsideSprint,
   getSprintIssues,
+  getCarryOverIssues,
 } from "../jira/issues.js";
 
 import { getSprintReportMeta } from "./meta.js";
@@ -26,6 +27,19 @@ export async function buildReport(): Promise<SprintReport> {
   const meta = await getSprintReportMeta();
 
   const issues = await getSprintIssues(meta.sprintId, meta.previousSprintIds);
+
+  const previousSprintId = meta.previousSprintIds[0];
+
+  const carryOverIssues = previousSprintId
+    ? (
+        await getCarryOverIssues(
+          meta.sprintId,
+          previousSprintId,
+          meta.queryStartDate,
+          meta.queryEndDate,
+        )
+      ).filter(isSprintDeliveryIssue)
+    : [];
 
   const deliveryIssues = issues.filter(isSprintDeliveryIssue);
 
@@ -76,7 +90,17 @@ export async function buildReport(): Promise<SprintReport> {
     severity: calculateSeverityStatistics(defects),
 
     defectsByDeveloper: calculateDefectsByDeveloper(defects),
+    carryOver: {
+      fromSprintId: previousSprintId ?? null,
+      total: carryOverIssues.length,
 
+      issues: carryOverIssues.map((issue) => ({
+        key: issue.key,
+        summary: issue.fields.summary,
+        issueType: issue.fields.issuetype.name,
+        status: issue.fields.status.name,
+      })),
+    },
     warnings: {
       unclassifiedDefects: defectValidation.unclassified,
 

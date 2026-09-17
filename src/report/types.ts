@@ -96,6 +96,7 @@ export interface SprintReport {
   severity: SeverityStatistics;
   defectsByDeveloper: DeveloperDefectStatistics[];
   warnings: ReportWarnings;
+  carryOver: CarryOverStatistics;
 }
 
 export interface DefectsOutsideSprint {
@@ -105,5 +106,17 @@ export interface DefectsOutsideSprint {
     key: string;
     summary: string;
     priority: string | null;
+  }[];
+}
+
+export interface CarryOverStatistics {
+  fromSprintId: number | null;
+  total: number;
+
+  issues: {
+    key: string;
+    summary: string;
+    issueType: string;
+    status: string;
   }[];
 }

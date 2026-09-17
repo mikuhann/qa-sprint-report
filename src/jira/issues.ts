@@ -153,3 +153,28 @@ export async function getSprintIssues(
     "customfield_10204",
   ]);
 }
+
+export async function getCarryOverIssues(
+  sprintId: number,
+  previousSprintId: number,
+  startDate: string,
+  endDate: string,
+): Promise<JiraIssue[]> {
+  const jql =
+    `project = ${env.jiraProjectKey}` +
+    ` AND Sprint = ${sprintId}` +
+    ` AND Sprint = ${previousSprintId}` +
+    ` AND issuetype in (История, Задача, Баг)` +
+    ` AND status CHANGED AFTER "${startDate}"` +
+    ` BEFORE "${endDate}"`;
+
+  return searchIssues(jql, [
+    "summary",
+    "status",
+    "issuetype",
+    "labels",
+    "created",
+    "assignee",
+    "parent",
+  ]);
+}
