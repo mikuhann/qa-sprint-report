@@ -97,6 +97,7 @@ export interface SprintReport {
   defectsByDeveloper: DeveloperDefectStatistics[];
   carryOver: CarryOverStatistics;
   reopened: ReopenedStatistics;
+  links: ReportLinks;
   warnings: ReportWarnings;
 }
 
@@ -132,4 +133,65 @@ export interface ReopenedStatistics {
     status: string;
     priority: string | null;
   }[];
+}
+
+export interface ReportLinks {
+  tasks: {
+    total: string | null;
+    unresolved: string | null;
+    testing: string | null;
+    waitingRelease: string | null;
+    closed: string | null;
+    blocked: string | null;
+  };
+
+  issueTypes: {
+    total: string | null;
+    stories: string | null;
+    tasks: string | null;
+    bugs: string | null;
+    other: string | null;
+  };
+
+  defects: {
+    total: string | null;
+    prodIssue: string | null;
+    common: string | null;
+    requirementsNotMet: string | null;
+    regression: string | null;
+    requirementsIssue: string | null;
+    missedIssue: string | null;
+  };
+
+  defectsOutsideSprint: string | null;
+
+  resolutions: {
+    total: string | null;
+    ready: string | null;
+    fixed: string | null;
+    resolvedInTask: string | null;
+    notBug: string | null;
+    cannotReproduce: string | null;
+    duplicate: string | null;
+    wontFix: string | null;
+    notRelevant: string | null;
+    needsRewording: string | null;
+  };
+
+  severity: {
+    total: string | null;
+    blocker: string | null;
+    critical: string | null;
+    major: string | null;
+    minor: string | null;
+    trivial: string | null;
+  };
+
+  defectsByDeveloper: {
+    accountId: string | null;
+    name: string;
+    url: string | null;
+  }[];
+  carryOver: string | null;
+  reopened: string | null;
 }

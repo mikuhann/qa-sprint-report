@@ -5,6 +5,15 @@ interface SprintProgressProps {
   waitingRelease: number;
   closed: number;
   blocked: number;
+
+  links: {
+    total: string | null;
+    unresolved: string | null;
+    testing: string | null;
+    waitingRelease: string | null;
+    closed: string | null;
+    blocked: string | null;
+  };
 }
 
 export function SprintProgress({
@@ -14,6 +23,7 @@ export function SprintProgress({
   waitingRelease,
   closed,
   blocked,
+  links,
 }: SprintProgressProps) {
   const getPercent = (value: number) => {
     if (!total) {
@@ -30,6 +40,7 @@ export function SprintProgress({
       width: getPercent(unresolved),
       barClass: "bg-slate-500",
       dotClass: "bg-slate-500",
+      url: links.unresolved,
     },
     {
       label: "Testing",
@@ -37,6 +48,7 @@ export function SprintProgress({
       width: getPercent(testing),
       barClass: "bg-blue-500",
       dotClass: "bg-blue-500",
+      url: links.testing,
     },
     {
       label: "Waiting release",
@@ -44,6 +56,7 @@ export function SprintProgress({
       width: getPercent(waitingRelease),
       barClass: "bg-amber-500",
       dotClass: "bg-amber-500",
+      url: links.waitingRelease,
     },
     {
       label: "Closed",
@@ -51,6 +64,7 @@ export function SprintProgress({
       width: getPercent(closed),
       barClass: "bg-emerald-500",
       dotClass: "bg-emerald-500",
+      url: links.closed,
     },
     {
       label: "Blocked",
@@ -58,6 +72,7 @@ export function SprintProgress({
       width: getPercent(blocked),
       barClass: "bg-red-500",
       dotClass: "bg-red-500",
+      url: links.blocked,
     },
   ];
 
@@ -93,25 +108,50 @@ export function SprintProgress({
       </div>
 
       <div className="mt-6 grid gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
-        {items.map((item) => (
-          <div key={item.label}>
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <span className={`h-2.5 w-2.5 rounded-full ${item.dotClass}`} />
+        {items.map((item) => {
+          const content = (
+            <>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`h-2.5 w-2.5 rounded-full ${item.dotClass}`}
+                  />
 
-                <span className="text-sm text-slate-600">{item.label}</span>
+                  <span className="text-sm text-slate-600">{item.label}</span>
+                </div>
+
+                <span className="text-sm font-semibold text-slate-950">
+                  {item.value}
+                </span>
               </div>
 
-              <span className="text-sm font-semibold text-slate-950">
-                {item.value}
-              </span>
-            </div>
+              <div className="mt-1 pl-4.5 text-xs text-slate-400">
+                {item.width.toFixed(1)}%
+              </div>
+            </>
+          );
 
-            <div className="mt-1 pl-4.5 text-xs text-slate-400">
-              {item.width.toFixed(1)}%
-            </div>
-          </div>
-        ))}
+          if (!item.url) {
+            return (
+              <div key={item.label} className="rounded-lg px-2 py-2">
+                {content}
+              </div>
+            );
+          }
+
+          return (
+            <a
+              key={item.label}
+              href={item.url}
+              target="_blank"
+              rel="noreferrer"
+              title={`Open ${item.label} issues in Jira`}
+              className="rounded-lg px-2 py-2 transition hover:bg-slate-50"
+            >
+              {content}
+            </a>
+          );
+        })}
       </div>
     </section>
   );

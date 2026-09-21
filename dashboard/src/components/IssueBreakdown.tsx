@@ -4,29 +4,34 @@ import type { SprintReport } from "../types/report";
 
 interface IssueBreakdownProps {
   issueTypes: SprintReport["issueTypes"];
+  links: SprintReport["links"]["issueTypes"];
 }
 
-export function IssueBreakdown({ issueTypes }: IssueBreakdownProps) {
+export function IssueBreakdown({ issueTypes, links }: IssueBreakdownProps) {
   const items = [
     {
       label: "Stories",
       value: issueTypes.stories,
       icon: BookOpen,
+      url: links.stories,
     },
     {
       label: "Tasks",
       value: issueTypes.tasks,
       icon: ClipboardList,
+      url: links.tasks,
     },
     {
       label: "Bugs",
       value: issueTypes.bugs,
       icon: Bug,
+      url: links.bugs,
     },
     {
       label: "Other",
       value: issueTypes.other,
       icon: Layers3,
+      url: links.other,
     },
   ];
 
@@ -50,11 +55,8 @@ export function IssueBreakdown({ issueTypes }: IssueBreakdownProps) {
             ? (item.value / issueTypes.total) * 100
             : 0;
 
-          return (
-            <div
-              key={item.label}
-              className="flex items-center gap-4 rounded-xl bg-slate-50 p-4"
-            >
+          const content = (
+            <>
               <div className="rounded-lg bg-white p-2 text-slate-500 shadow-sm">
                 <Icon size={18} />
               </div>
@@ -72,7 +74,31 @@ export function IssueBreakdown({ issueTypes }: IssueBreakdownProps) {
                   {percent.toFixed(1)}%
                 </div>
               </div>
-            </div>
+            </>
+          );
+
+          if (!item.url) {
+            return (
+              <div
+                key={item.label}
+                className="flex items-center gap-4 rounded-xl bg-slate-50 p-4"
+              >
+                {content}
+              </div>
+            );
+          }
+
+          return (
+            <a
+              key={item.label}
+              href={item.url}
+              target="_blank"
+              rel="noreferrer"
+              title={`Open ${item.label} in Jira`}
+              className="flex items-center gap-4 rounded-xl bg-slate-50 p-4 transition hover:bg-slate-100"
+            >
+              {content}
+            </a>
           );
         })}
       </div>

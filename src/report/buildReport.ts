@@ -8,6 +8,7 @@ import {
 
 import { getSprintReportMeta } from "./meta.js";
 import { isSprintDeliveryIssue } from "./rules.js";
+import { buildIssueSearchLink } from "../jira/links.js";
 
 import {
   calculateDefectStatistics,
@@ -16,10 +17,16 @@ import {
   calculateResolutionStatistics,
   calculateSeverityStatistics,
   calculateSprintTaskStatistics,
+  getSprintTaskGroups,
   validateDefectClassification,
   validateResolutions,
   validateSeverities,
   validateSprintStatuses,
+  getIssueTypeGroups,
+  getDefectGroups,
+  getSeverityGroups,
+  getResolutionGroups,
+  getDefectsByDeveloperGroups,
 } from "./statistics.js";
 
 import type { SprintReport } from "./types.js";
@@ -44,14 +51,22 @@ export async function buildReport(): Promise<SprintReport> {
 
   const deliveryIssues = issues.filter(isSprintDeliveryIssue);
 
+  const taskGroups = getSprintTaskGroups(issues);
+
+  const issueTypeGroups = getIssueTypeGroups(issues);
+
   const resolutionIssues = deliveryIssues.filter((issue) =>
     ["Закрыто", "Ожидает выгрузки"].includes(issue.fields.status.name),
   );
+
+  const resolutionGroups = getResolutionGroups(resolutionIssues);
 
   const defects = await getDefectsForPeriod(
     meta.queryStartDate,
     meta.queryEndDate,
   );
+  const defectGroups = getDefectGroups(defects);
+  const severityGroups = getSeverityGroups(defects);
 
   const defectsOutsideSprintIssues = await getDefectsOutsideSprint(
     meta.sprintId,
@@ -74,6 +89,8 @@ export async function buildReport(): Promise<SprintReport> {
   const severityValidation = validateSeverities(defects);
 
   const unknownStatuses = validateSprintStatuses(deliveryIssues);
+
+  const developerGroups = getDefectsByDeveloperGroups(defects);
 
   return {
     meta,
@@ -120,6 +137,79 @@ export async function buildReport(): Promise<SprintReport> {
         status: issue.fields.status.name,
         priority: issue.fields.priority?.name ?? null,
       })),
+    },
+    links: {
+      tasks: {
+        total: buildIssueSearchLink(taskGroups.total),
+        unresolved: buildIssueSearchLink(taskGroups.unresolved),
+        testing: buildIssueSearchLink(taskGroups.testing),
+        waitingRelease: buildIssueSearchLink(taskGroups.waitingRelease),
+        closed: buildIssueSearchLink(taskGroups.closed),
+        blocked: buildIssueSearchLink(taskGroups.blocked),
+      },
+
+      issueTypes: {
+        total: buildIssueSearchLink(issueTypeGroups.total),
+        stories: buildIssueSearchLink(issueTypeGroups.stories),
+        tasks: buildIssueSearchLink(issueTypeGroups.tasks),
+        bugs: buildIssueSearchLink(issueTypeGroups.bugs),
+        other: buildIssueSearchLink(issueTypeGroups.other),
+      },
+
+      defects: {
+        total: buildIssueSearchLink(defectGroups.total),
+        prodIssue: buildIssueSearchLink(defectGroups.prodIssue),
+        common: buildIssueSearchLink(defectGroups.common),
+        requirementsNotMet: buildIssueSearchLink(
+          defectGroups.requirementsNotMet,
+        ),
+        regression: buildIssueSearchLink(defectGroups.regression),
+        requirementsIssue: buildIssueSearchLink(defectGroups.requirementsIssue),
+        missedIssue: buildIssueSearchLink(defectGroups.missedIssue),
+      },
+
+      defectsOutsideSprint: buildIssueSearchLink(defectsOutsideSprintIssues),
+
+      resolutions: {
+        total: buildIssueSearchLink(resolutionGroups.total),
+
+        ready: buildIssueSearchLink(resolutionGroups.ready),
+
+        fixed: buildIssueSearchLink(resolutionGroups.fixed),
+
+        resolvedInTask: buildIssueSearchLink(resolutionGroups.resolvedInTask),
+
+        notBug: buildIssueSearchLink(resolutionGroups.notBug),
+
+        cannotReproduce: buildIssueSearchLink(resolutionGroups.cannotReproduce),
+
+        duplicate: buildIssueSearchLink(resolutionGroups.duplicate),
+
+        wontFix: buildIssueSearchLink(resolutionGroups.wontFix),
+
+        notRelevant: buildIssueSearchLink(resolutionGroups.notRelevant),
+
+        needsRewording: buildIssueSearchLink(resolutionGroups.needsRewording),
+      },
+
+      severity: {
+        total: buildIssueSearchLink(severityGroups.total),
+        blocker: buildIssueSearchLink(severityGroups.blocker),
+        critical: buildIssueSearchLink(severityGroups.critical),
+        major: buildIssueSearchLink(severityGroups.major),
+        minor: buildIssueSearchLink(severityGroups.minor),
+        trivial: buildIssueSearchLink(severityGroups.trivial),
+      },
+
+      defectsByDeveloper: developerGroups.map((group) => ({
+        accountId: group.accountId,
+        name: group.name,
+        url: buildIssueSearchLink(group.issues),
+      })),
+
+      carryOver: buildIssueSearchLink(carryOverIssues),
+
+      reopened: buildIssueSearchLink(reopenedIssues),
     },
     warnings: {
       unclassifiedDefects: defectValidation.unclassified,

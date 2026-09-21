@@ -1,16 +1,18 @@
 import {
-  Cell,
   Legend,
   Pie,
   PieChart,
   ResponsiveContainer,
+  Sector,
   Tooltip,
+  type PieSectorShapeProps,
 } from "recharts";
 
 import type { SprintReport } from "../../types/report";
 
 interface ResolutionsChartProps {
   resolutions: SprintReport["resolutions"];
+  links: SprintReport["links"]["resolutions"];
 }
 
 const COLORS = [
@@ -25,45 +27,90 @@ const COLORS = [
   "#14b8a6",
 ];
 
-export function ResolutionsChart({ resolutions }: ResolutionsChartProps) {
+export function ResolutionsChart({
+  resolutions,
+  links,
+}: ResolutionsChartProps) {
   const data = [
     {
       name: "Ready",
       value: resolutions.ready,
+      url: links.ready,
     },
     {
       name: "Fixed",
       value: resolutions.fixed,
+      url: links.fixed,
     },
     {
       name: "Resolved in task",
       value: resolutions.resolvedInTask,
+      url: links.resolvedInTask,
     },
     {
       name: "Not a bug",
       value: resolutions.notBug,
+      url: links.notBug,
     },
     {
       name: "Cannot reproduce",
       value: resolutions.cannotReproduce,
+      url: links.cannotReproduce,
     },
     {
       name: "Duplicate",
       value: resolutions.duplicate,
+      url: links.duplicate,
     },
     {
       name: "Won't fix",
       value: resolutions.wontFix,
+      url: links.wontFix,
     },
     {
       name: "Not relevant",
       value: resolutions.notRelevant,
+      url: links.notRelevant,
     },
     {
       name: "Needs rewording",
       value: resolutions.needsRewording,
+      url: links.needsRewording,
     },
-  ].filter((item) => item.value > 0);
+  ]
+    .filter((item) => item.value > 0)
+    .map((item, index) => ({
+      ...item,
+      fill: COLORS[index % COLORS.length],
+    }));
+
+  const renderSector = (props: PieSectorShapeProps) => {
+    const item = data[props.index];
+
+    return (
+      <Sector
+        {...props}
+        fill={item?.fill}
+        stroke="#ffffff"
+        strokeWidth={4}
+        style={{
+          filter: props.isActive ? "brightness(0.82)" : "brightness(1)",
+          transition: "filter 150ms ease",
+          cursor: item?.url ? "pointer" : "default",
+        }}
+        onMouseDown={(event) => {
+          event.preventDefault();
+        }}
+        onClick={() => {
+          if (!item?.url) {
+            return;
+          }
+
+          window.open(item.url, "_blank", "noopener,noreferrer");
+        }}
+      />
+    );
+  };
 
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -82,13 +129,9 @@ export function ResolutionsChart({ resolutions }: ResolutionsChartProps) {
               nameKey="name"
               innerRadius={70}
               outerRadius={105}
-              paddingAngle={2}
-              stroke="none"
-            >
-              {data.map((item, index) => (
-                <Cell key={item.name} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
+              paddingAngle={0}
+              shape={renderSector}
+            />
 
             <Tooltip />
             <Legend />
@@ -96,13 +139,29 @@ export function ResolutionsChart({ resolutions }: ResolutionsChartProps) {
         </ResponsiveContainer>
 
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <div className="text-2xl font-semibold text-slate-950">
-              {resolutions.total}
-            </div>
+          {links.total ? (
+            <a
+              href={links.total}
+              target="_blank"
+              rel="noreferrer"
+              title="Open all resolved issues in Jira"
+              className="pointer-events-auto rounded-lg px-3 py-2 text-center transition hover:bg-slate-50"
+            >
+              <div className="text-2xl font-semibold text-slate-950">
+                {resolutions.total}
+              </div>
 
-            <div className="text-xs text-slate-500">total</div>
-          </div>
+              <div className="text-xs text-slate-500">total</div>
+            </a>
+          ) : (
+            <div className="text-center">
+              <div className="text-2xl font-semibold text-slate-950">
+                {resolutions.total}
+              </div>
+
+              <div className="text-xs text-slate-500">total</div>
+            </div>
+          )}
         </div>
       </div>
     </section>

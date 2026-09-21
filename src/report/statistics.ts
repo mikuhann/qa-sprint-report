@@ -23,37 +23,15 @@ const BLOCKED_STATUSES = new Set(["Тестирование заблокиров
 export function calculateSprintTaskStatistics(
   issues: JiraIssue[],
 ): SprintTaskStatistics {
-  const deliveryIssues = issues.filter(isSprintDeliveryIssue);
-
-  const total = deliveryIssues.length;
-
-  const unresolved = deliveryIssues.filter((issue) =>
-    UNRESOLVED_STATUSES.has(issue.fields.status.name),
-  ).length;
-
-  const testing = deliveryIssues.filter((issue) =>
-    TESTING_STATUSES.has(issue.fields.status.name),
-  ).length;
-
-  const waitingRelease = deliveryIssues.filter(
-    (issue) => issue.fields.status.name === "Ожидает выгрузки",
-  ).length;
-
-  const closed = deliveryIssues.filter(
-    (issue) => issue.fields.status.name === "Закрыто",
-  ).length;
-
-  const blocked = deliveryIssues.filter((issue) =>
-    BLOCKED_STATUSES.has(issue.fields.status.name),
-  ).length;
+  const groups = getSprintTaskGroups(issues);
 
   return {
-    total,
-    unresolved,
-    testing,
-    waitingRelease,
-    closed,
-    blocked,
+    total: groups.total.length,
+    unresolved: groups.unresolved.length,
+    testing: groups.testing.length,
+    waitingRelease: groups.waitingRelease.length,
+    closed: groups.closed.length,
+    blocked: groups.blocked.length,
   };
 }
 
@@ -76,38 +54,60 @@ const DEFECT_LABELS = {
   missedIssue: "missed_issue",
 } as const;
 
-export function calculateDefectStatistics(
-  defects: JiraIssue[],
-): DefectStatistics {
-  const hasLabel = (issue: JiraIssue, label: string): boolean => {
-    return issue.fields.labels.includes(label);
-  };
+export interface DefectGroups {
+  total: JiraIssue[];
+  prodIssue: JiraIssue[];
+  common: JiraIssue[];
+  requirementsNotMet: JiraIssue[];
+  regression: JiraIssue[];
+  requirementsIssue: JiraIssue[];
+  missedIssue: JiraIssue[];
+}
+
+export function getDefectGroups(defects: JiraIssue[]): DefectGroups {
+  const hasLabel = (issue: JiraIssue, label: string) =>
+    issue.fields.labels.includes(label);
 
   return {
-    total: defects.length,
+    total: defects,
 
     prodIssue: defects.filter((issue) =>
       hasLabel(issue, DEFECT_LABELS.prodIssue),
-    ).length,
+    ),
 
-    common: defects.filter((issue) => hasLabel(issue, DEFECT_LABELS.common))
-      .length,
+    common: defects.filter((issue) => hasLabel(issue, DEFECT_LABELS.common)),
 
     requirementsNotMet: defects.filter((issue) =>
       hasLabel(issue, DEFECT_LABELS.requirementsNotMet),
-    ).length,
+    ),
 
     regression: defects.filter((issue) =>
       hasLabel(issue, DEFECT_LABELS.regression),
-    ).length,
+    ),
 
     requirementsIssue: defects.filter((issue) =>
       hasLabel(issue, DEFECT_LABELS.requirementsIssue),
-    ).length,
+    ),
 
     missedIssue: defects.filter((issue) =>
       hasLabel(issue, DEFECT_LABELS.missedIssue),
-    ).length,
+    ),
+  };
+}
+
+export function calculateDefectStatistics(
+  defects: JiraIssue[],
+): DefectStatistics {
+  const groups = getDefectGroups(defects);
+
+  return {
+    total: groups.total.length,
+    prodIssue: groups.prodIssue.length,
+    common: groups.common.length,
+    requirementsNotMet: groups.requirementsNotMet.length,
+    regression: groups.regression.length,
+    requirementsIssue: groups.requirementsIssue.length,
+    missedIssue: groups.missedIssue.length,
   };
 }
 
@@ -171,26 +171,54 @@ const RESOLUTIONS = {
   needsRewording: "Требует переформулировки",
 } as const;
 
+export interface ResolutionGroups {
+  total: JiraIssue[];
+  ready: JiraIssue[];
+  fixed: JiraIssue[];
+  resolvedInTask: JiraIssue[];
+  notBug: JiraIssue[];
+  cannotReproduce: JiraIssue[];
+  duplicate: JiraIssue[];
+  wontFix: JiraIssue[];
+  notRelevant: JiraIssue[];
+  needsRewording: JiraIssue[];
+}
+
+export function getResolutionGroups(issues: JiraIssue[]): ResolutionGroups {
+  const byResolution = (value: string) =>
+    issues.filter((issue) => issue.fields.customfield_10204?.value === value);
+
+  return {
+    total: issues,
+
+    ready: byResolution(RESOLUTIONS.ready),
+    fixed: byResolution(RESOLUTIONS.fixed),
+    resolvedInTask: byResolution(RESOLUTIONS.resolvedInTask),
+    notBug: byResolution(RESOLUTIONS.notBug),
+    cannotReproduce: byResolution(RESOLUTIONS.cannotReproduce),
+    duplicate: byResolution(RESOLUTIONS.duplicate),
+    wontFix: byResolution(RESOLUTIONS.wontFix),
+    notRelevant: byResolution(RESOLUTIONS.notRelevant),
+    needsRewording: byResolution(RESOLUTIONS.needsRewording),
+  };
+}
+
 export function calculateResolutionStatistics(
   issues: JiraIssue[],
 ): ResolutionStatistics {
-  const getResolution = (issue: JiraIssue) =>
-    issue.fields.customfield_10204?.value;
-
-  const count = (value: string) =>
-    issues.filter((issue) => getResolution(issue) === value).length;
+  const groups = getResolutionGroups(issues);
 
   return {
-    total: issues.length,
-    ready: count(RESOLUTIONS.ready),
-    fixed: count(RESOLUTIONS.fixed),
-    resolvedInTask: count(RESOLUTIONS.resolvedInTask),
-    notBug: count(RESOLUTIONS.notBug),
-    cannotReproduce: count(RESOLUTIONS.cannotReproduce),
-    duplicate: count(RESOLUTIONS.duplicate),
-    wontFix: count(RESOLUTIONS.wontFix),
-    notRelevant: count(RESOLUTIONS.notRelevant),
-    needsRewording: count(RESOLUTIONS.needsRewording),
+    total: groups.total.length,
+    ready: groups.ready.length,
+    fixed: groups.fixed.length,
+    resolvedInTask: groups.resolvedInTask.length,
+    notBug: groups.notBug.length,
+    cannotReproduce: groups.cannotReproduce.length,
+    duplicate: groups.duplicate.length,
+    wontFix: groups.wontFix.length,
+    notRelevant: groups.notRelevant.length,
+    needsRewording: groups.needsRewording.length,
   };
 }
 
@@ -252,19 +280,42 @@ const SEVERITIES = {
   trivial: "Тривиальный",
 } as const;
 
+export interface SeverityGroups {
+  total: JiraIssue[];
+  blocker: JiraIssue[];
+  critical: JiraIssue[];
+  major: JiraIssue[];
+  minor: JiraIssue[];
+  trivial: JiraIssue[];
+}
+
+export function getSeverityGroups(defects: JiraIssue[]): SeverityGroups {
+  const byPriority = (priority: string) =>
+    defects.filter((issue) => issue.fields.priority?.name === priority);
+
+  return {
+    total: defects,
+
+    blocker: byPriority(SEVERITIES.blocker),
+    critical: byPriority(SEVERITIES.critical),
+    major: byPriority(SEVERITIES.major),
+    minor: byPriority(SEVERITIES.minor),
+    trivial: byPriority(SEVERITIES.trivial),
+  };
+}
+
 export function calculateSeverityStatistics(
   defects: JiraIssue[],
 ): SeverityStatistics {
-  const count = (priority: string) =>
-    defects.filter((issue) => issue.fields.priority?.name === priority).length;
+  const groups = getSeverityGroups(defects);
 
   return {
-    total: defects.length,
-    blocker: count(SEVERITIES.blocker),
-    critical: count(SEVERITIES.critical),
-    major: count(SEVERITIES.major),
-    minor: count(SEVERITIES.minor),
-    trivial: count(SEVERITIES.trivial),
+    total: groups.total.length,
+    blocker: groups.blocker.length,
+    critical: groups.critical.length,
+    major: groups.major.length,
+    minor: groups.minor.length,
+    trivial: groups.trivial.length,
   };
 }
 
@@ -315,68 +366,97 @@ export interface DeveloperDefectStatistics {
   defects: number;
 }
 
-export function calculateDefectsByDeveloper(
+export interface DeveloperDefectGroup {
+  accountId: string | null;
+  name: string;
+  issues: JiraIssue[];
+}
+
+export function getDefectsByDeveloperGroups(
   defects: JiraIssue[],
-): DeveloperDefectStatistics[] {
-  const developers = new Map<string, DeveloperDefectStatistics>();
+): DeveloperDefectGroup[] {
+  const groups = new Map<string, DeveloperDefectGroup>();
 
   for (const issue of defects) {
     const assignee = issue.fields.assignee;
 
     const key = assignee?.accountId ?? "unassigned";
 
-    const existing = developers.get(key);
+    const existing = groups.get(key);
 
     if (existing) {
-      existing.defects += 1;
+      existing.issues.push(issue);
       continue;
     }
 
-    developers.set(key, {
+    groups.set(key, {
       accountId: assignee?.accountId ?? null,
       name: assignee?.displayName ?? "Unassigned",
-      defects: 1,
+      issues: [issue],
     });
   }
 
-  return [...developers.values()].sort((a, b) => b.defects - a.defects);
+  return [...groups.values()].sort((a, b) => b.issues.length - a.issues.length);
+}
+
+export function calculateDefectsByDeveloper(
+  defects: JiraIssue[],
+): DeveloperDefectStatistics[] {
+  return getDefectsByDeveloperGroups(defects).map((group) => ({
+    accountId: group.accountId,
+    name: group.name,
+    defects: group.issues.length,
+  }));
+}
+
+export interface IssueTypeGroups {
+  total: JiraIssue[];
+  stories: JiraIssue[];
+  tasks: JiraIssue[];
+  bugs: JiraIssue[];
+  other: JiraIssue[];
+}
+
+export function getIssueTypeGroups(issues: JiraIssue[]): IssueTypeGroups {
+  const deliveryIssues = issues.filter(isSprintDeliveryIssue);
+
+  const stories = deliveryIssues.filter(
+    (issue) => issue.fields.issuetype.name === "История",
+  );
+
+  const tasks = deliveryIssues.filter(
+    (issue) => issue.fields.issuetype.name === "Задача",
+  );
+
+  const bugs = deliveryIssues.filter(
+    (issue) => issue.fields.issuetype.name === "Баг",
+  );
+
+  const other = deliveryIssues.filter(
+    (issue) =>
+      !["История", "Задача", "Баг"].includes(issue.fields.issuetype.name),
+  );
+
+  return {
+    total: deliveryIssues,
+    stories,
+    tasks,
+    bugs,
+    other,
+  };
 }
 
 export function calculateIssueTypeStatistics(
   issues: JiraIssue[],
 ): IssueTypeStatistics {
-  const deliveryIssues = issues.filter(isSprintDeliveryIssue);
-
-  let stories = 0;
-  let tasks = 0;
-  let bugs = 0;
-  let other = 0;
-
-  for (const issue of deliveryIssues) {
-    switch (issue.fields.issuetype.name) {
-      case "История":
-        stories += 1;
-        break;
-
-      case "Задача":
-        tasks += 1;
-        break;
-
-      case "Баг":
-        bugs += 1;
-        break;
-
-      default:
-        other += 1;
-    }
-  }
+  const groups = getIssueTypeGroups(issues);
 
   return {
-    total: deliveryIssues.length,
-    stories,
-    tasks,
-    bugs,
-    other,
+    total: groups.total.length,
+    stories: groups.stories.length,
+    tasks: groups.tasks.length,
+    bugs: groups.bugs.length,
+    other: groups.other.length,
   };
 }
 
@@ -400,4 +480,41 @@ export function validateSprintStatuses(issues: JiraIssue[]): UnknownStatus[] {
       key: issue.key,
       status: issue.fields.status.name,
     }));
+}
+
+export interface SprintTaskGroups {
+  total: JiraIssue[];
+  unresolved: JiraIssue[];
+  testing: JiraIssue[];
+  waitingRelease: JiraIssue[];
+  closed: JiraIssue[];
+  blocked: JiraIssue[];
+}
+
+export function getSprintTaskGroups(issues: JiraIssue[]): SprintTaskGroups {
+  const deliveryIssues = issues.filter(isSprintDeliveryIssue);
+
+  return {
+    total: deliveryIssues,
+
+    unresolved: deliveryIssues.filter((issue) =>
+      UNRESOLVED_STATUSES.has(issue.fields.status.name),
+    ),
+
+    testing: deliveryIssues.filter((issue) =>
+      TESTING_STATUSES.has(issue.fields.status.name),
+    ),
+
+    waitingRelease: deliveryIssues.filter(
+      (issue) => issue.fields.status.name === "Ожидает выгрузки",
+    ),
+
+    closed: deliveryIssues.filter(
+      (issue) => issue.fields.status.name === "Закрыто",
+    ),
+
+    blocked: deliveryIssues.filter((issue) =>
+      BLOCKED_STATUSES.has(issue.fields.status.name),
+    ),
+  };
 }

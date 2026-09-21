@@ -9,6 +9,7 @@ import { DefectsByDeveloperChart } from "./components/charts/DefectsByDeveloperC
 import { ResolutionsChart } from "./components/charts/ResolutionsChart";
 import { DataQuality } from "./components/DataQuality";
 import { IssueBreakdown } from "./components/IssueBreakdown";
+import { SprintSignals } from "./components/SprintSignals";
 
 import { loadReport } from "./api/report";
 import type { SprintReport } from "./types/report";
@@ -57,18 +58,21 @@ function App() {
             label="Tasks"
             value={report.tasks.total}
             icon={<ClipboardList size={20} />}
+            href={report.links.tasks.total}
           />
 
           <StatCard
             label="Defects"
             value={report.defects.total}
             icon={<Bug size={20} />}
+            href={report.links.defects.total}
           />
 
           <StatCard
             label="Resolutions"
             value={report.resolutions.total}
             icon={<CheckCircle2 size={20} />}
+            href={report.links.resolutions.total}
           />
 
           <StatCard
@@ -88,18 +92,46 @@ function App() {
           waitingRelease={report.tasks.waitingRelease}
           closed={report.tasks.closed}
           blocked={report.tasks.blocked}
+          links={report.links.tasks}
         />
 
-        <IssueBreakdown issueTypes={report.issueTypes} />
-        <section className="mt-6 grid gap-6 lg:grid-cols-2">
-          <DefectsByReasonChart defects={report.defects} />
+        <IssueBreakdown
+          issueTypes={report.issueTypes}
+          links={report.links.issueTypes}
+        />
 
-          <SeverityChart severity={report.severity} />
+        <SprintSignals
+          defectsOutsideSprint={report.defectsOutsideSprint}
+          carryOver={report.carryOver}
+          reopened={report.reopened}
+          links={{
+            defectsOutsideSprint: report.links.defectsOutsideSprint,
+            carryOver: report.links.carryOver,
+            reopened: report.links.reopened,
+          }}
+        />
+
+        <section className="mt-6 grid gap-6 lg:grid-cols-2">
+          <DefectsByReasonChart
+            defects={report.defects}
+            links={report.links.defects}
+          />
+
+          <SeverityChart
+            severity={report.severity}
+            links={report.links.severity}
+          />
         </section>
         <section className="mt-6 grid gap-6 lg:grid-cols-2">
-          <ResolutionsChart resolutions={report.resolutions} />
+          <ResolutionsChart
+            resolutions={report.resolutions}
+            links={report.links.resolutions}
+          />
 
-          <DefectsByDeveloperChart developers={report.defectsByDeveloper} />
+          <DefectsByDeveloperChart
+            developers={report.defectsByDeveloper}
+            links={report.links.defectsByDeveloper}
+          />
         </section>
         <DataQuality warnings={report.warnings} />
       </div>
