@@ -28,6 +28,7 @@ import {
   getResolutionGroups,
   getDefectsByDeveloperGroups,
 } from "./statistics.js";
+import { getAssigneeHistory } from "../jira/changelog.js";
 
 import type { SprintReport } from "./types.js";
 
@@ -65,6 +66,9 @@ export async function buildReport(): Promise<SprintReport> {
     meta.queryStartDate,
     meta.queryEndDate,
   );
+
+  const assigneeHistory = await getAssigneeHistory(defects);
+
   const defectGroups = getDefectGroups(defects);
   const severityGroups = getSeverityGroups(defects);
 
@@ -90,7 +94,7 @@ export async function buildReport(): Promise<SprintReport> {
 
   const unknownStatuses = validateSprintStatuses(deliveryIssues);
 
-  const developerGroups = getDefectsByDeveloperGroups(defects);
+  const developerGroups = getDefectsByDeveloperGroups(defects, assigneeHistory);
 
   return {
     meta,
@@ -115,7 +119,7 @@ export async function buildReport(): Promise<SprintReport> {
 
     severity: calculateSeverityStatistics(defects),
 
-    defectsByDeveloper: calculateDefectsByDeveloper(defects),
+    defectsByDeveloper: calculateDefectsByDeveloper(defects, assigneeHistory),
     carryOver: {
       fromSprintId: previousSprintId ?? null,
       total: carryOverIssues.length,

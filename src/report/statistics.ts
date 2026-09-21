@@ -1,5 +1,7 @@
 import type { JiraIssue } from "../jira/issues.js";
 import { isSprintDeliveryIssue } from "./rules.js";
+import type { IssueAssigneeHistory } from "../jira/changelog.js";
+import { DEVELOPERS } from "./developers.js";
 import type {
   IssueTypeStatistics,
   SprintTaskStatistics,
@@ -372,37 +374,45 @@ export interface DeveloperDefectGroup {
   issues: JiraIssue[];
 }
 
+function isDeveloperDefect(issue: JiraIssue): boolean {
+  return !issue.fields.labels.some((label) =>
+    ["prod_issue", "requirements_issue"].includes(label),
+  );
+}
+
 export function getDefectsByDeveloperGroups(
   defects: JiraIssue[],
+  assigneeHistory: IssueAssigneeHistory[],
 ): DeveloperDefectGroup[] {
-  const groups = new Map<string, DeveloperDefectGroup>();
+  const historyByIssueId = new Map(
+    assigneeHistory.map((item) => [
+      item.issueId,
+      new Set(item.historicalAssignees.map((assignee) => assignee.accountId)),
+    ]),
+  );
 
-  for (const issue of defects) {
-    const assignee = issue.fields.assignee;
+  const eligibleDefects = defects.filter(isDeveloperDefect);
 
-    const key = assignee?.accountId ?? "unassigned";
+  return DEVELOPERS.map((developer) => {
+    const issues = eligibleDefects.filter((issue) => {
+      const assignees = historyByIssueId.get(issue.id);
 
-    const existing = groups.get(key);
-
-    if (existing) {
-      existing.issues.push(issue);
-      continue;
-    }
-
-    groups.set(key, {
-      accountId: assignee?.accountId ?? null,
-      name: assignee?.displayName ?? "Unassigned",
-      issues: [issue],
+      return assignees?.has(developer.accountId) ?? false;
     });
-  }
 
-  return [...groups.values()].sort((a, b) => b.issues.length - a.issues.length);
+    return {
+      accountId: developer.accountId,
+      name: developer.name,
+      issues,
+    };
+  }).sort((a, b) => b.issues.length - a.issues.length);
 }
 
 export function calculateDefectsByDeveloper(
   defects: JiraIssue[],
+  assigneeHistory: IssueAssigneeHistory[],
 ): DeveloperDefectStatistics[] {
-  return getDefectsByDeveloperGroups(defects).map((group) => ({
+  return getDefectsByDeveloperGroups(defects, assigneeHistory).map((group) => ({
     accountId: group.accountId,
     name: group.name,
     defects: group.issues.length,
