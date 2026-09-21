@@ -189,4 +189,27 @@ export interface SprintReport {
       status: string;
     }[];
   };
+
+  manual: {
+    qaAssessment: "good" | "average" | "poor" | null;
+
+    comment: string | null;
+
+    goals: {
+      backend: {
+        text: string;
+        status: "planned" | "done" | "moved" | "failed";
+      }[];
+
+      frontend: {
+        text: string;
+        status: "planned" | "done" | "moved" | "failed";
+      }[];
+
+      qa: {
+        text: string;
+        status: "planned" | "done" | "moved" | "failed";
+      }[];
+    };
+  };
 }

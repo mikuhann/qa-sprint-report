@@ -100,6 +100,7 @@ export interface SprintReport {
   releasedVersions: ReleasedVersion[];
   links: ReportLinks;
   warnings: ReportWarnings;
+  manual: SprintManualData;
 }
 
 export interface DefectsOutsideSprint {
@@ -202,4 +203,24 @@ export interface ReleasedVersion {
   name: string;
   releaseDate: string;
   url: string;
+}
+
+export type SprintGoalStatus = "planned" | "done" | "moved" | "failed";
+
+export type QaAssessment = "good" | "average" | "poor";
+
+export interface SprintGoal {
+  text: string;
+  status: SprintGoalStatus;
+}
+
+export interface SprintManualData {
+  qaAssessment: QaAssessment | null;
+  comment: string | null;
+
+  goals: {
+    backend: SprintGoal[];
+    frontend: SprintGoal[];
+    qa: SprintGoal[];
+  };
 }

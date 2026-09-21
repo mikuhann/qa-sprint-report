@@ -12,6 +12,7 @@ import { IssueBreakdown } from "./components/IssueBreakdown";
 import { SprintSignals } from "./components/SprintSignals";
 import { ReleasedVersions } from "./components/ReleasedVersions";
 import { getReportWarnings, groupReportWarnings } from "./utils/reportWarnings";
+import { SprintGoals } from "./components/SprintGoals";
 
 import { loadReport } from "./api/report";
 import type { SprintReport } from "./types/report";
@@ -87,6 +88,9 @@ function App() {
             icon={<TriangleAlert size={20} />}
           />
         </div>
+
+        <SprintGoals manual={report.manual} />
+
         <SprintProgress
           total={report.tasks.total}
           unresolved={report.tasks.unresolved}

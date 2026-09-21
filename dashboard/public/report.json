@@ -339,5 +339,14 @@
     "unassignedDefects": [
       "ERPBACK-9757"
     ]
+  },
+  "manual": {
+    "qaAssessment": null,
+    "comment": null,
+    "goals": {
+      "backend": [],
+      "frontend": [],
+      "qa": []
+    }
   }
 }

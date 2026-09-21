@@ -10,6 +10,7 @@ import { getSprintReportMeta } from "./meta.js";
 import { isSprintDeliveryIssue } from "./rules.js";
 import { buildIssueSearchLink, buildVersionIssuesLink } from "../jira/links.js";
 import { getReleasedVersionsForPeriod } from "../jira/versions.js";
+import { loadSprintOverrides } from "./overrides.js";
 
 import {
   calculateDefectStatistics,
@@ -101,6 +102,8 @@ export async function buildReport(): Promise<SprintReport> {
   const unknownStatuses = validateSprintStatuses(deliveryIssues);
 
   const developerGroups = getDefectsByDeveloperGroups(defects, assigneeHistory);
+
+  const manual = await loadSprintOverrides(meta.sprintId);
 
   return {
     meta,
@@ -247,5 +250,6 @@ export async function buildReport(): Promise<SprintReport> {
         .filter((issue) => !issue.fields.assignee)
         .map((issue) => issue.key),
     },
+    manual,
   };
 }
