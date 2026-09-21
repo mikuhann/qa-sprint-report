@@ -11,6 +11,7 @@ import { DataQuality } from "./components/DataQuality";
 import { IssueBreakdown } from "./components/IssueBreakdown";
 import { SprintSignals } from "./components/SprintSignals";
 import { ReleasedVersions } from "./components/ReleasedVersions";
+import { getReportWarnings, groupReportWarnings } from "./utils/reportWarnings";
 
 import { loadReport } from "./api/report";
 import type { SprintReport } from "./types/report";
@@ -36,6 +37,9 @@ function App() {
   if (!report) {
     return <div className="p-8">Loading report...</div>;
   }
+
+  const warningItems = getReportWarnings(report.warnings);
+  const warningGroups = groupReportWarnings(warningItems);
 
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
@@ -77,12 +81,9 @@ function App() {
           />
 
           <StatCard
-            label="Data warnings"
-            value={
-              report.warnings.unclassifiedDefects.length +
-              report.warnings.unassignedDefects.length +
-              report.warnings.multipleClassifications.length
-            }
+            label="Data quality"
+            value={warningGroups.length}
+            description={`${warningItems.length} warnings`}
             icon={<TriangleAlert size={20} />}
           />
         </div>
@@ -136,7 +137,7 @@ function App() {
             links={report.links.defectsByDeveloper}
           />
         </section>
-        <DataQuality warnings={report.warnings} />
+        <DataQuality groups={warningGroups} />
       </div>
     </main>
   );
