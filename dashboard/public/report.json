@@ -12,6 +12,20 @@
       1041
     ]
   },
+  "releasedVersions": [
+    {
+      "id": "13984",
+      "name": "Release v 124.0",
+      "releaseDate": "2026-09-08",
+      "url": "https://icontext-dev.atlassian.net/issues/?jql=project%20%3D%20ERPBACK%20AND%20fixVersion%20%3D%2013984%20ORDER%20BY%20key%20DESC"
+    },
+    {
+      "id": "14083",
+      "name": "Release v 125.0",
+      "releaseDate": "2026-09-15",
+      "url": "https://icontext-dev.atlassian.net/issues/?jql=project%20%3D%20ERPBACK%20AND%20fixVersion%20%3D%2014083%20ORDER%20BY%20key%20DESC"
+    }
+  ],
   "tasks": {
     "total": 55,
     "unresolved": 25,

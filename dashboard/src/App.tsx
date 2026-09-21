@@ -10,6 +10,7 @@ import { ResolutionsChart } from "./components/charts/ResolutionsChart";
 import { DataQuality } from "./components/DataQuality";
 import { IssueBreakdown } from "./components/IssueBreakdown";
 import { SprintSignals } from "./components/SprintSignals";
+import { ReleasedVersions } from "./components/ReleasedVersions";
 
 import { loadReport } from "./api/report";
 import type { SprintReport } from "./types/report";
@@ -110,6 +111,8 @@ function App() {
             reopened: report.links.reopened,
           }}
         />
+
+        <ReleasedVersions versions={report.releasedVersions} />
 
         <section className="mt-6 grid gap-6 lg:grid-cols-2">
           <DefectsByReasonChart

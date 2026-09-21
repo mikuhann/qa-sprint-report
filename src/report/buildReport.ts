@@ -8,7 +8,8 @@ import {
 
 import { getSprintReportMeta } from "./meta.js";
 import { isSprintDeliveryIssue } from "./rules.js";
-import { buildIssueSearchLink } from "../jira/links.js";
+import { buildIssueSearchLink, buildVersionIssuesLink } from "../jira/links.js";
+import { getReleasedVersionsForPeriod } from "../jira/versions.js";
 
 import {
   calculateDefectStatistics,
@@ -34,6 +35,11 @@ import type { SprintReport } from "./types.js";
 
 export async function buildReport(): Promise<SprintReport> {
   const meta = await getSprintReportMeta();
+
+  const releasedVersions = await getReleasedVersionsForPeriod(
+    meta.queryStartDate,
+    meta.queryEndDate,
+  );
 
   const issues = await getSprintIssues(meta.sprintId, meta.previousSprintIds);
 
@@ -98,6 +104,13 @@ export async function buildReport(): Promise<SprintReport> {
 
   return {
     meta,
+
+    releasedVersions: releasedVersions.map((version) => ({
+      id: version.id,
+      name: version.name,
+      releaseDate: version.releaseDate!,
+      url: buildVersionIssuesLink(version.id),
+    })),
 
     tasks: calculateSprintTaskStatistics(issues),
 

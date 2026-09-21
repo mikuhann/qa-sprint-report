@@ -97,6 +97,7 @@ export interface SprintReport {
   defectsByDeveloper: DeveloperDefectStatistics[];
   carryOver: CarryOverStatistics;
   reopened: ReopenedStatistics;
+  releasedVersions: ReleasedVersion[];
   links: ReportLinks;
   warnings: ReportWarnings;
 }
@@ -194,4 +195,11 @@ export interface ReportLinks {
   }[];
   carryOver: string | null;
   reopened: string | null;
+}
+
+export interface ReleasedVersion {
+  id: string;
+  name: string;
+  releaseDate: string;
+  url: string;
 }

@@ -10,6 +10,13 @@ export interface SprintReport {
     queryEndDate: string;
   };
 
+  releasedVersions: {
+    id: string;
+    name: string;
+    releaseDate: string;
+    url: string;
+  }[];
+
   tasks: {
     total: number;
     unresolved: number;

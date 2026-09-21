@@ -3,6 +3,10 @@ import type { JiraIssue } from "./issues.js";
 
 type IssueKeySource = Pick<JiraIssue, "key">;
 
+export function buildJiraSearchLink(jql: string): string {
+  return `https://${env.jiraDomain}/issues/?jql=` + encodeURIComponent(jql);
+}
+
 export function buildIssueSearchLink(issues: IssueKeySource[]): string | null {
   const keys = [...new Set(issues.map((issue) => issue.key))];
 
@@ -10,7 +14,11 @@ export function buildIssueSearchLink(issues: IssueKeySource[]): string | null {
     return null;
   }
 
-  const jql = `key in (${keys.join(", ")}) ` + `ORDER BY key DESC`;
+  return buildJiraSearchLink(`key in (${keys.join(", ")}) ORDER BY key DESC`);
+}
 
-  return `https://${env.jiraDomain}/issues/?jql=` + encodeURIComponent(jql);
+export function buildVersionIssuesLink(versionId: string): string {
+  return buildJiraSearchLink(
+    `project = ${env.jiraProjectKey} AND fixVersion = ${versionId} ORDER BY key DESC`,
+  );
 }
