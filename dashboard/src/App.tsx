@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Bug, CheckCircle2, ClipboardList, TriangleAlert } from "lucide-react";
+import {
+  Bug,
+  CheckCircle2,
+  ClipboardList,
+  TriangleAlert,
+  Settings,
+} from "lucide-react";
 
 import { StatCard } from "./components/StatCard";
 import { SprintProgress } from "./components/SprintProgress";
@@ -13,13 +19,15 @@ import { SprintSignals } from "./components/SprintSignals";
 import { ReleasedVersions } from "./components/ReleasedVersions";
 import { getReportWarnings, groupReportWarnings } from "./utils/reportWarnings";
 import { SprintGoals } from "./components/SprintGoals";
+import { ReportSettingsDrawer } from "./components/ReportSettingsDrawer";
 
-import { loadReport } from "./api/report";
+import { loadReport, saveManualData } from "./api/report";
 import type { SprintReport } from "./types/report";
 
 function App() {
   const [report, setReport] = useState<SprintReport | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
     loadReport()
@@ -42,21 +50,39 @@ function App() {
   const warningItems = getReportWarnings(report.warnings);
   const warningGroups = groupReportWarnings(warningItems);
 
+  const handleSaveManualData = async (data: SprintReport["manual"]) => {
+    const updatedReport = await saveManualData(report.meta.sprintId, data);
+
+    setReport(updatedReport);
+    setSettingsOpen(false);
+  };
+
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
       <div className="mx-auto max-w-7xl">
-        <header>
-          <p className="text-sm font-medium uppercase tracking-wider text-slate-400">
-            QA Sprint Report
-          </p>
+        <header className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium uppercase tracking-wider text-slate-400">
+              QA Sprint Report
+            </p>
 
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-950">
-            {report.meta.sprintName}
-          </h1>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-950">
+              {report.meta.sprintName}
+            </h1>
 
-          <p className="mt-1 text-sm text-slate-500">
-            {report.meta.sprintDates}
-          </p>
+            <p className="mt-1 text-sm text-slate-500">
+              {report.meta.sprintDates}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setSettingsOpen(true)}
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
+          >
+            <Settings size={17} />
+            Report settings
+          </button>
         </header>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -143,6 +169,13 @@ function App() {
         </section>
         <DataQuality groups={warningGroups} />
       </div>
+      {settingsOpen && (
+        <ReportSettingsDrawer
+          manual={report.manual}
+          onClose={() => setSettingsOpen(false)}
+          onSave={handleSaveManualData}
+        />
+      )}
     </main>
   );
 }

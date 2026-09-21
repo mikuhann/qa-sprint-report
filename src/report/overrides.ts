@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import type {
@@ -27,6 +27,10 @@ const GOAL_STATUSES = new Set<SprintGoalStatus>([
 
 const QA_ASSESSMENTS = new Set<QaAssessment>(["good", "average", "poor"]);
 
+function getSprintOverridePath(sprintId: number) {
+  return join(process.cwd(), "config", "sprints", `${sprintId}.json`);
+}
+
 function validateGoal(
   value: unknown,
   path: string,
@@ -51,7 +55,9 @@ function validateGoal(
   }
 }
 
-function validateManualData(value: unknown): asserts value is SprintManualData {
+export function validateManualData(
+  value: unknown,
+): asserts value is SprintManualData {
   if (!value || typeof value !== "object") {
     throw new Error("Sprint override must be an object");
   }
@@ -99,7 +105,7 @@ function validateManualData(value: unknown): asserts value is SprintManualData {
 export async function loadSprintOverrides(
   sprintId: number,
 ): Promise<SprintManualData> {
-  const path = join(process.cwd(), "config", "sprints", `${sprintId}.json`);
+  const path = getSprintOverridePath(sprintId);
 
   try {
     const content = await readFile(path, "utf8");
@@ -119,4 +125,23 @@ export async function loadSprintOverrides(
       }`,
     );
   }
+}
+
+export async function saveSprintOverrides(
+  sprintId: number,
+  data: unknown,
+): Promise<SprintManualData> {
+  validateManualData(data);
+
+  const directory = join(process.cwd(), "config", "sprints");
+
+  const path = getSprintOverridePath(sprintId);
+
+  await mkdir(directory, {
+    recursive: true,
+  });
+
+  await writeFile(path, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+
+  return data;
 }

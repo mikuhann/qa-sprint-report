@@ -341,31 +341,17 @@
     ]
   },
   "manual": {
-    "qaAssessment": "average",
-    "comment": "Основной фокус спринта был на подготовке функционала к релизу.",
+    "qaAssessment": "good",
+    "comment": "REPORT-009 API test",
     "goals": {
-      "backend": [
-        {
-          "text": "Перевод Gate API V3",
-          "status": "done"
-        },
-        {
-          "text": "Таргетинг ТТ",
-          "status": "moved"
-        }
-      ],
+      "backend": [],
       "frontend": [
         {
-          "text": "Новый STools",
-          "status": "done"
-        }
-      ],
-      "qa": [
-        {
-          "text": "Подготовка релиза",
+          "text": "QA report to QA",
           "status": "planned"
         }
-      ]
+      ],
+      "qa": []
     }
   }
 }

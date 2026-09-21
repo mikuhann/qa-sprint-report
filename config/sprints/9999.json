@@ -1,0 +1,9 @@
+{
+  "qaAssessment": "good",
+  "comment": "REPORT-009 test",
+  "goals": {
+    "backend": [],
+    "frontend": [],
+    "qa": []
+  }
+}
