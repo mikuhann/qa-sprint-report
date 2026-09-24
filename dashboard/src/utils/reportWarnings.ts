@@ -23,49 +23,49 @@ export function getReportWarnings(
     ...warnings.unclassifiedDefects.map((key) => ({
       key,
       type: "unclassified-defect" as const,
-      message: "Defect has no classification",
+      message: "Для дефекта не указана классификация",
     })),
 
     ...warnings.multipleClassifications.map((key) => ({
       key,
       type: "multiple-classifications" as const,
-      message: "Defect has multiple classifications",
+      message: "У дефекта указано несколько классификаций",
     })),
 
     ...warnings.unassignedDefects.map((key) => ({
       key,
       type: "unassigned-defect" as const,
-      message: "Defect has no assignee",
+      message: "Для дефекта не назначен исполнитель",
     })),
 
     ...warnings.missingResolutions.map((key) => ({
       key,
       type: "missing-resolution" as const,
-      message: "Resolution is missing",
+      message: "Не указана резолюция",
     })),
 
     ...warnings.unknownResolutions.map(({ key, value }) => ({
       key,
       type: "unknown-resolution" as const,
-      message: `Unknown resolution: ${value}`,
+      message: `Неизвестная резолюция: ${value}`,
     })),
 
     ...warnings.missingSeverity.map((key) => ({
       key,
       type: "missing-severity" as const,
-      message: "Severity is missing",
+      message: "Не указан приоритет дефекта",
     })),
 
     ...warnings.unknownSeverity.map(({ key, value }) => ({
       key,
       type: "unknown-severity" as const,
-      message: `Unknown severity: ${value}`,
+      message: `Неизвестный приоритет: ${value}`,
     })),
 
     ...warnings.unknownStatuses.map(({ key, status }) => ({
       key,
       type: "unknown-status" as const,
-      message: `Unknown status: ${status}`,
+      message: `Неизвестный статус: ${status}`,
     })),
   ];
 }

@@ -33,47 +33,47 @@ export function ResolutionsChart({
 }: ResolutionsChartProps) {
   const data = [
     {
-      name: "Ready",
+      name: "Готово",
       value: resolutions.ready,
       url: links.ready,
     },
     {
-      name: "Fixed",
+      name: "Исправлено",
       value: resolutions.fixed,
       url: links.fixed,
     },
     {
-      name: "Resolved in task",
+      name: "Решено в задаче",
       value: resolutions.resolvedInTask,
       url: links.resolvedInTask,
     },
     {
-      name: "Not a bug",
+      name: "Не является багом",
       value: resolutions.notBug,
       url: links.notBug,
     },
     {
-      name: "Cannot reproduce",
+      name: "Не воспроизводится",
       value: resolutions.cannotReproduce,
       url: links.cannotReproduce,
     },
     {
-      name: "Duplicate",
+      name: "Дубликат",
       value: resolutions.duplicate,
       url: links.duplicate,
     },
     {
-      name: "Won't fix",
+      name: "Не будет исправляться",
       value: resolutions.wontFix,
       url: links.wontFix,
     },
     {
-      name: "Not relevant",
+      name: "Не актуально",
       value: resolutions.notRelevant,
       url: links.notRelevant,
     },
     {
-      name: "Needs rewording",
+      name: "Требует переформулировки",
       value: resolutions.needsRewording,
       url: links.needsRewording,
     },
@@ -94,7 +94,7 @@ export function ResolutionsChart({
         stroke="#ffffff"
         strokeWidth={4}
         style={{
-          filter: props.isActive ? "brightness(0.82)" : "brightness(1)",
+          filter: props.isActive ? "brightness(0.9)" : "brightness(1)",
           transition: "filter 150ms ease",
           cursor: item?.url ? "pointer" : "default",
         }}
@@ -115,9 +115,11 @@ export function ResolutionsChart({
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div>
-        <h2 className="text-lg font-semibold text-slate-950">Resolutions</h2>
+        <h2 className="text-lg font-semibold text-slate-950">Резолюции</h2>
 
-        <p className="mt-1 text-sm text-slate-500">Resolution distribution</p>
+        <p className="mt-1 text-sm text-slate-500">
+          Распределение завершённых тикетов по резолюциям
+        </p>
       </div>
 
       <div className="relative mt-6 h-80">
@@ -133,7 +135,7 @@ export function ResolutionsChart({
               shape={renderSector}
             />
 
-            <Tooltip />
+            <Tooltip formatter={(value) => [value, "Тикетов"]} />
             <Legend />
           </PieChart>
         </ResponsiveContainer>
@@ -144,14 +146,14 @@ export function ResolutionsChart({
               href={links.total}
               target="_blank"
               rel="noreferrer"
-              title="Open all resolved issues in Jira"
+              title="Открыть завершённые тикеты в Jira"
               className="pointer-events-auto rounded-lg px-3 py-2 text-center transition hover:bg-slate-50"
             >
               <div className="text-2xl font-semibold text-slate-950">
                 {resolutions.total}
               </div>
 
-              <div className="text-xs text-slate-500">total</div>
+              <div className="text-xs text-slate-500">всего</div>
             </a>
           ) : (
             <div className="text-center">
@@ -159,7 +161,7 @@ export function ResolutionsChart({
                 {resolutions.total}
               </div>
 
-              <div className="text-xs text-slate-500">total</div>
+              <div className="text-xs text-slate-500">всего</div>
             </div>
           )}
         </div>

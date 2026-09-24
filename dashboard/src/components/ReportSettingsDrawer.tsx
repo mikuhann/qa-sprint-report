@@ -80,10 +80,6 @@ export function ReportSettingsDrawer({
     .some((goal) => !goal.text.trim());
 
   const handleSave = async () => {
-    if (hasEmptyGoals || isSaving) {
-      return;
-    }
-
     if (hasEmptyGoals || hasInvalidCompletionRate || isSaving) {
       return;
     }
@@ -120,7 +116,7 @@ export function ReportSettingsDrawer({
       setSaveError(
         error instanceof Error
           ? error.message
-          : "Failed to save report settings",
+          : "Не удалось сохранить настройки отчёта",
       );
     } finally {
       setIsSaving(false);
@@ -131,7 +127,7 @@ export function ReportSettingsDrawer({
     <div className="fixed inset-0 z-50">
       <button
         type="button"
-        aria-label="Close report settings"
+        aria-label="Закрыть настройки отчёта"
         disabled={isSaving}
         className="absolute inset-0 bg-slate-950/30"
         onClick={onClose}
@@ -141,11 +137,11 @@ export function ReportSettingsDrawer({
         <header className="flex items-start justify-between border-b border-slate-200 px-6 py-5">
           <div>
             <h2 className="text-lg font-semibold text-slate-950">
-              Report settings
+              Настройки отчёта
             </h2>
 
             <p className="mt-1 text-sm text-slate-500">
-              Sprint goals, completion and QA assessment
+              Цели спринта, выполнение плана и оценка QA
             </p>
           </div>
 
@@ -166,11 +162,11 @@ export function ReportSettingsDrawer({
                 htmlFor="qa-assessment"
                 className="text-sm font-medium text-slate-800"
               >
-                QA assessment
+                Оценка QA
               </label>
 
               <p className="mt-1 text-sm text-slate-500">
-                Overall QA assessment for the sprint
+                Общая оценка качества спринта
               </p>
 
               <select
@@ -189,10 +185,10 @@ export function ReportSettingsDrawer({
                 }}
                 className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
               >
-                <option value="">Not set</option>
-                <option value="good">Good</option>
-                <option value="average">Average</option>
-                <option value="poor">Poor</option>
+                <option value="">Не указано</option>
+                <option value="good">Хорошо</option>
+                <option value="average">Средне</option>
+                <option value="poor">Плохо</option>
               </select>
             </div>
 
@@ -201,11 +197,11 @@ export function ReportSettingsDrawer({
                 htmlFor="completion-rate"
                 className="text-sm font-medium text-slate-800"
               >
-                Completion rate
+                Выполнение плана
               </label>
 
               <p className="mt-1 text-sm text-slate-500">
-                Sprint completion percentage provided by QA
+                Процент выполнения целей спринта по оценке QA
               </p>
 
               <div className="relative mt-3">
@@ -239,11 +235,11 @@ export function ReportSettingsDrawer({
                 htmlFor="sprint-comment"
                 className="text-sm font-medium text-slate-800"
               >
-                Comment
+                Комментарий
               </label>
 
               <p className="mt-1 text-sm text-slate-500">
-                Additional QA notes for the sprint
+                Дополнительный комментарий QA по итогам спринта
               </p>
 
               <textarea
@@ -256,7 +252,7 @@ export function ReportSettingsDrawer({
                     comment: event.target.value || null,
                   }));
                 }}
-                placeholder="Add sprint comment..."
+                placeholder="Добавить комментарий..."
                 className="mt-3 w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
               />
             </div>
@@ -264,11 +260,11 @@ export function ReportSettingsDrawer({
             <div className="border-t border-slate-200 pt-6">
               <div>
                 <h3 className="text-sm font-semibold text-slate-900">
-                  Sprint goals
+                  Цели спринта
                 </h3>
 
                 <p className="mt-1 text-sm text-slate-500">
-                  Goals planned for Backend, Frontend and QA
+                  Цели для Backend, Frontend и QA
                 </p>
               </div>
 
@@ -310,7 +306,7 @@ export function ReportSettingsDrawer({
                           className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
                         >
                           <Plus size={15} />
-                          Add goal
+                          Добавить цель
                         </button>
                       </div>
 
@@ -330,7 +326,7 @@ export function ReportSettingsDrawer({
                                       text: event.target.value,
                                     })
                                   }
-                                  placeholder="Goal description..."
+                                  placeholder="Описание цели..."
                                   className="min-w-0 flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
                                 />
 
@@ -338,7 +334,7 @@ export function ReportSettingsDrawer({
                                   type="button"
                                   onClick={() => removeGoal(group.key, index)}
                                   className="rounded-lg p-2 text-slate-400 transition hover:bg-red-50 hover:text-red-600"
-                                  aria-label={`Remove ${group.title} goal`}
+                                  aria-label={`Удалить цель ${group.title}`}
                                 >
                                   <Trash2 size={17} />
                                 </button>
@@ -354,17 +350,17 @@ export function ReportSettingsDrawer({
                                 }
                                 className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none transition focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
                               >
-                                <option value="planned">Planned</option>
-                                <option value="done">Done</option>
-                                <option value="moved">Moved</option>
-                                <option value="failed">Failed</option>
+                                <option value="planned">Запланировано</option>
+                                <option value="done">Выполнено</option>
+                                <option value="moved">Перенесено</option>
+                                <option value="failed">Не выполнено</option>
                               </select>
                             </div>
                           ))}
                         </div>
                       ) : (
                         <div className="mt-3 rounded-xl border border-dashed border-slate-200 px-4 py-5 text-center text-sm text-slate-400">
-                          No {group.title.toLowerCase()} goals
+                          Цели не добавлены
                         </div>
                       )}
                     </div>
@@ -382,13 +378,13 @@ export function ReportSettingsDrawer({
         )}
         {hasEmptyGoals && (
           <p className="px-6 pb-3 text-sm text-amber-600">
-            Goal description cannot be empty.
+            Описание цели не должно быть пустым.
           </p>
         )}
 
         {hasInvalidCompletionRate && (
           <p className="px-6 pb-3 text-sm text-red-600">
-            Completion rate must be between 0 and 100.
+            Процент выполнения должен быть от 0 до 100.
           </p>
         )}
 
@@ -399,7 +395,7 @@ export function ReportSettingsDrawer({
             disabled={isSaving}
             className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Cancel
+            Отмена
           </button>
 
           <button
@@ -408,7 +404,7 @@ export function ReportSettingsDrawer({
             disabled={isSaving || hasEmptyGoals || hasInvalidCompletionRate}
             className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {isSaving ? "Saving..." : "Save"}
+            {isSaving ? "Сохранение..." : "Сохранить"}
           </button>
         </footer>
       </aside>

@@ -15,22 +15,22 @@ interface SprintGoalsProps {
 
 const STATUS_META = {
   planned: {
-    label: "Planned",
+    label: "Запланировано",
     className: "border-slate-200 bg-slate-50 text-slate-600",
     icon: CircleDot,
   },
   done: {
-    label: "Done",
+    label: "Выполнено",
     className: "border-emerald-200 bg-emerald-50 text-emerald-700",
     icon: CheckCircle2,
   },
   moved: {
-    label: "Moved",
+    label: "Перенесено",
     className: "border-amber-200 bg-amber-50 text-amber-700",
     icon: CircleDot,
   },
   failed: {
-    label: "Failed",
+    label: "Не выполнено",
     className: "border-red-200 bg-red-50 text-red-700",
     icon: XCircle,
   },
@@ -68,10 +68,10 @@ export function SprintGoals({ manual }: SprintGoalsProps) {
     <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-lg font-semibold text-slate-950">Sprint goals</h2>
+          <h2 className="text-lg font-semibold text-slate-950">Цели спринта</h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Goals planned for the sprint
+            Цели, запланированные на текущий спринт
           </p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export function SprintGoals({ manual }: SprintGoalsProps) {
                     })}
                   </div>
                 ) : (
-                  <p className="mt-4 text-sm text-slate-400">No goals</p>
+                  <p className="mt-4 text-sm text-slate-400">Цели не указаны</p>
                 )}
               </div>
             );
@@ -128,7 +128,7 @@ export function SprintGoals({ manual }: SprintGoalsProps) {
 
       {manual.comment && (
         <div className="mt-5 border-t border-slate-100 pt-5">
-          <div className="text-sm font-medium text-slate-700">Comment</div>
+          <div className="text-sm font-medium text-slate-700">Комментарий</div>
 
           <p className="mt-1 text-sm leading-6 text-slate-600">
             {manual.comment}

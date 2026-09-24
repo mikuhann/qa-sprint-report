@@ -27,11 +27,11 @@ export function ReleasedVersions({ versions }: ReleasedVersionsProps) {
 
         <div>
           <h2 className="text-lg font-semibold text-slate-950">
-            Released versions
+            Вышедшие релизы
           </h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Releases published during the sprint
+            Релизы, выпущенные в период спринта
           </p>
         </div>
       </div>
@@ -43,6 +43,7 @@ export function ReleasedVersions({ versions }: ReleasedVersionsProps) {
             href={version.url}
             target="_blank"
             rel="noreferrer"
+            title={`Открыть ${version.name} в Jira`}
             className="flex items-center justify-between gap-4 py-3"
           >
             <div>

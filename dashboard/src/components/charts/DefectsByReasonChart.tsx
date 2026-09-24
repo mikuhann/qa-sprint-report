@@ -30,22 +30,22 @@ export function DefectsByReasonChart({
 }: DefectsByReasonChartProps) {
   const data = [
     {
-      name: "Production",
+      name: "prod_issue",
       value: defects.prodIssue,
       url: links.prodIssue,
     },
     {
-      name: "Requirements not met",
+      name: "Requirements_are_not_met",
       value: defects.requirementsNotMet,
       url: links.requirementsNotMet,
     },
     {
-      name: "Requirements issue",
+      name: "Requirements_issue",
       value: defects.requirementsIssue,
       url: links.requirementsIssue,
     },
     {
-      name: "Missed issue",
+      name: "missed_issue",
       value: defects.missedIssue,
       url: links.missedIssue,
     },
@@ -76,7 +76,7 @@ export function DefectsByReasonChart({
         stroke="#ffffff"
         strokeWidth={4}
         style={{
-          filter: props.isActive ? "brightness(0.95)" : "brightness(1)",
+          filter: props.isActive ? "brightness(0.9)" : "brightness(1)",
           transition: "filter 150ms ease",
           cursor: item?.url ? "pointer" : "default",
         }}
@@ -88,11 +88,11 @@ export function DefectsByReasonChart({
     <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div>
         <h2 className="text-lg font-semibold text-slate-950">
-          Defects by reason
+          Причины дефектов
         </h2>
 
         <p className="mt-1 text-sm text-slate-500">
-          Distribution of classified defects
+          Распределение дефектов по классификационным меткам
         </p>
       </div>
 
@@ -117,7 +117,7 @@ export function DefectsByReasonChart({
                 window.open(item.url, "_blank", "noopener,noreferrer");
               }}
             />
-            <Tooltip />
+            <Tooltip formatter={(value) => [value, "Дефектов"]} />
             <Legend />
           </PieChart>
         </ResponsiveContainer>
@@ -129,14 +129,14 @@ export function DefectsByReasonChart({
             href={links.total}
             target="_blank"
             rel="noreferrer"
-            title="Open all defects in Jira"
+            title="Открыть все дефекты в Jira"
             className="inline-block rounded-lg px-3 py-1 transition hover:bg-slate-50"
           >
             <div className="text-2xl font-semibold text-slate-950">
               {defects.total}
             </div>
 
-            <div className="text-sm text-slate-500">total defects</div>
+            <div className="text-sm text-slate-500">всего дефектов</div>
           </a>
         ) : (
           <>
@@ -144,7 +144,7 @@ export function DefectsByReasonChart({
               {defects.total}
             </div>
 
-            <div className="text-sm text-slate-500">total defects</div>
+            <div className="text-sm text-slate-500">всего дефектов</div>
           </>
         )}
       </div>

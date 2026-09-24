@@ -1,4 +1,4 @@
-import { AlertTriangle, ExternalLink } from "lucide-react";
+import { AlertTriangle, CircleCheck, ExternalLink } from "lucide-react";
 
 import type { ReportWarningGroup } from "../utils/reportWarnings";
 
@@ -11,10 +11,20 @@ export function DataQuality({ groups }: DataQualityProps) {
 
   if (!groups.length) {
     return (
-      <section className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
-        <h2 className="font-semibold text-emerald-900">Data quality</h2>
+      <section className="mt-6 flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3">
+        <div className="rounded-lg bg-emerald-100 p-2 text-emerald-700">
+          <CircleCheck size={18} />
+        </div>
 
-        <p className="mt-1 text-sm text-emerald-700">No data issues found</p>
+        <div>
+          <div className="text-sm font-medium text-emerald-900">
+            Качество данных
+          </div>
+
+          <div className="text-sm text-emerald-700">
+            Проблем с данными не найдено
+          </div>
+        </div>
       </section>
     );
   }
@@ -32,14 +42,14 @@ export function DataQuality({ groups }: DataQualityProps) {
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold text-slate-950">Data quality</h2>
+          <h2 className="text-lg font-semibold text-slate-950">
+            Качество данных
+          </h2>
 
           <p className="mt-1 text-sm text-slate-600">
-            {groups.length} issue
-            {groups.length === 1 ? "" : "s"} require attention
+            Тикетов с проблемами: {groups.length}
             {" · "}
-            {warningsCount} warning
-            {warningsCount === 1 ? "" : "s"}
+            Предупреждений: {warningsCount}
           </p>
         </div>
       </div>
@@ -68,7 +78,7 @@ export function DataQuality({ groups }: DataQualityProps) {
               rel="noreferrer"
               className="flex shrink-0 items-center gap-1 text-sm font-medium text-amber-800 hover:text-amber-950"
             >
-              Jira
+              Открыть в Jira
               <ExternalLink size={14} />
             </a>
           </div>

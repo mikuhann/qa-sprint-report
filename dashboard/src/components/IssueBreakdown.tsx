@@ -10,25 +10,25 @@ interface IssueBreakdownProps {
 export function IssueBreakdown({ issueTypes, links }: IssueBreakdownProps) {
   const items = [
     {
-      label: "Stories",
+      label: "Истории",
       value: issueTypes.stories,
       icon: BookOpen,
       url: links.stories,
     },
     {
-      label: "Tasks",
+      label: "Задачи",
       value: issueTypes.tasks,
       icon: ClipboardList,
       url: links.tasks,
     },
     {
-      label: "Bugs",
+      label: "Баги",
       value: issueTypes.bugs,
       icon: Bug,
       url: links.bugs,
     },
     {
-      label: "Other",
+      label: "Другое",
       value: issueTypes.other,
       icon: Layers3,
       url: links.other,
@@ -38,12 +38,10 @@ export function IssueBreakdown({ issueTypes, links }: IssueBreakdownProps) {
   return (
     <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div>
-        <h2 className="text-lg font-semibold text-slate-950">
-          Issue breakdown
-        </h2>
+        <h2 className="text-lg font-semibold text-slate-950">Состав спринта</h2>
 
         <p className="mt-1 text-sm text-slate-500">
-          Distribution of {issueTypes.total} sprint issues by type
+          Распределение {issueTypes.total} тикетов по типам
         </p>
       </div>
 
@@ -94,7 +92,7 @@ export function IssueBreakdown({ issueTypes, links }: IssueBreakdownProps) {
               href={item.url}
               target="_blank"
               rel="noreferrer"
-              title={`Open ${item.label} in Jira`}
+              title={`Открыть «${item.label}» в Jira`}
               className="flex items-center gap-4 rounded-xl bg-slate-50 p-4 transition hover:bg-slate-100"
             >
               {content}

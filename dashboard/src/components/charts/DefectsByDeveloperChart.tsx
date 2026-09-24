@@ -46,6 +46,7 @@ export function DefectsByDeveloperChart({
       name: isLeader ? `👑 ${developer.name}` : developer.name,
       defects: developer.defects,
       url: link?.url ?? null,
+      isLeader,
     };
   });
 
@@ -55,7 +56,7 @@ export function DefectsByDeveloperChart({
     return (
       <Rectangle
         {...props}
-        fill="#6366f1"
+        fill={item?.isLeader ? "#f59e0b" : "#6366f1"}
         radius={[0, 6, 6, 0]}
         cursor={item?.url ? "pointer" : "default"}
         style={{
@@ -63,7 +64,7 @@ export function DefectsByDeveloperChart({
         }}
         onMouseEnter={(event) => {
           if (item?.url) {
-            event.currentTarget.style.filter = "brightness(0.82)";
+            event.currentTarget.style.filter = "brightness(0.9)";
           }
         }}
         onMouseLeave={(event) => {
@@ -87,11 +88,11 @@ export function DefectsByDeveloperChart({
     <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
       <div>
         <h2 className="text-lg font-semibold text-slate-950">
-          Defects by developer
+          Дефекты по разработчикам
         </h2>
 
         <p className="mt-1 text-sm text-slate-500">
-          Assigned defects during the sprint
+          Количество дефектов по разработчикам за период спринта
         </p>
       </div>
 
@@ -119,12 +120,16 @@ export function DefectsByDeveloperChart({
             <YAxis
               type="category"
               dataKey="name"
-              width={145}
+              width={175}
               tickLine={false}
               axisLine={false}
+              tick={{ fontSize: 12 }}
             />
 
-            <Tooltip cursor={false} />
+            <Tooltip
+              cursor={false}
+              formatter={(value) => [value, "Дефектов"]}
+            />
 
             <Bar dataKey="defects" shape={renderBar} />
           </BarChart>

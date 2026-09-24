@@ -35,7 +35,7 @@ export function SprintProgress({
 
   const items = [
     {
-      label: "Unresolved",
+      label: "Не завершено",
       value: unresolved,
       width: getPercent(unresolved),
       barClass: "bg-slate-500",
@@ -43,7 +43,7 @@ export function SprintProgress({
       url: links.unresolved,
     },
     {
-      label: "Testing",
+      label: "На тестировании",
       value: testing,
       width: getPercent(testing),
       barClass: "bg-blue-500",
@@ -51,7 +51,7 @@ export function SprintProgress({
       url: links.testing,
     },
     {
-      label: "Waiting release",
+      label: "Ожидает выгрузки",
       value: waitingRelease,
       width: getPercent(waitingRelease),
       barClass: "bg-amber-500",
@@ -59,7 +59,7 @@ export function SprintProgress({
       url: links.waitingRelease,
     },
     {
-      label: "Closed",
+      label: "Закрыто",
       value: closed,
       width: getPercent(closed),
       barClass: "bg-emerald-500",
@@ -67,7 +67,7 @@ export function SprintProgress({
       url: links.closed,
     },
     {
-      label: "Blocked",
+      label: "Заблокировано",
       value: blocked,
       width: getPercent(blocked),
       barClass: "bg-red-500",
@@ -81,18 +81,18 @@ export function SprintProgress({
       <div className="flex items-start justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold text-slate-950">
-            Sprint progress
+            Прогресс спринта
           </h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Distribution of {total} sprint tasks
+            Распределение {total} тикетов по текущему состоянию
           </p>
         </div>
 
         <div className="text-right">
           <div className="text-2xl font-semibold text-slate-950">{closed}</div>
 
-          <div className="text-sm text-slate-500">closed</div>
+          <div className="text-sm text-slate-500">закрыто</div>
         </div>
       </div>
 
@@ -145,7 +145,7 @@ export function SprintProgress({
               href={item.url}
               target="_blank"
               rel="noreferrer"
-              title={`Open ${item.label} issues in Jira`}
+              title={`Открыть «${item.label}» в Jira`}
               className="rounded-lg px-2 py-2 transition hover:bg-slate-50"
             >
               {content}

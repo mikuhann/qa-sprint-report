@@ -23,34 +23,36 @@ export function SprintSignals({
   return (
     <section className="mt-6">
       <div>
-        <h2 className="text-lg font-semibold text-slate-950">Sprint signals</h2>
+        <h2 className="text-lg font-semibold text-slate-950">
+          Дополнительные показатели
+        </h2>
 
         <p className="mt-1 text-sm text-slate-500">
-          Additional indicators affecting sprint quality
+          Дополнительные сигналы о ходе и качестве спринта
         </p>
       </div>
 
       <div className="mt-4 grid gap-4 md:grid-cols-3">
         <StatCard
-          label="Defects outside sprint"
+          label="Дефекты вне спринта"
           value={defectsOutsideSprint.total}
-          description="Defects created during the sprint but not included in it"
+          description="Дефекты созданы во время спринта, но не добавлены в него"
           icon={<Bug size={20} />}
           href={links.defectsOutsideSprint}
         />
 
         <StatCard
-          label="Carry over"
+          label="Перенесено из прошлого спринта"
           value={carryOver.total}
-          description="Issues carried over from the previous sprint"
+          description="Тикеты, перешедшие из предыдущего спринта"
           icon={<History size={20} />}
           href={links.carryOver}
         />
 
         <StatCard
-          label="Reopened after testing"
+          label="Переоткрыто после тестирования"
           value={reopened.total}
-          description="Issues returned to work after testing"
+          description="Тикеты, возвращённые в работу после тестирования"
           icon={<RotateCcw size={20} />}
           href={links.reopened}
         />
