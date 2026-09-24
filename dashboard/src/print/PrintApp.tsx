@@ -5,34 +5,6 @@ import { PrintDocument } from "./PrintDocument";
 import { loadReport } from "../api/report";
 import type { SprintReport } from "../types/report";
 
-async function waitForCharts(root: HTMLElement, timeout = 3000): Promise<void> {
-  const startedAt = Date.now();
-
-  while (Date.now() - startedAt < timeout) {
-    const containers = root.querySelectorAll(".recharts-responsive-container");
-
-    const ready =
-      containers.length > 0 &&
-      Array.from(containers).every((container) =>
-        container.querySelector("svg"),
-      );
-
-    if (ready) {
-      await new Promise<void>((resolve) => {
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => resolve());
-        });
-      });
-
-      return;
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, 50));
-  }
-
-  console.warn("Recharts did not finish rendering before PDF preview");
-}
-
 export function PrintApp() {
   const [report, setReport] = useState<SprintReport | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -56,6 +28,8 @@ export function PrintApp() {
     }
 
     const render = async () => {
+      document.documentElement.dataset.pdfReady = "false";
+
       await document.fonts.ready;
 
       await new Promise<void>((resolve) => {
@@ -63,8 +37,6 @@ export function PrintApp() {
           requestAnimationFrame(() => resolve());
         });
       });
-
-      await waitForCharts(sourceRef.current!);
 
       const previewer = new Previewer();
 
@@ -75,6 +47,10 @@ export function PrintApp() {
     @page {
       size: A4 landscape;
       margin: 8mm;
+    }
+    .pdf-document,
+    .pdf-document * {
+      box-shadow: none !important;
     }
 
     .pdf-page-break {
@@ -125,6 +101,15 @@ export function PrintApp() {
       break-inside: avoid;
       page-break-inside: avoid;
     }
+
+    .pdf-data-quality-section {
+      break-before: page;
+    }
+
+    .pdf-warning-item {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
   `,
       };
 
@@ -133,6 +118,8 @@ export function PrintApp() {
         [pagedStyles],
         previewRef.current!,
       );
+
+      document.documentElement.dataset.pdfReady = "true";
 
       console.log(`PDF preview: ${flow.total} pages`);
     };

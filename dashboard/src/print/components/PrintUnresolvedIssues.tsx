@@ -1,12 +1,17 @@
 import { getPriorityConfig } from "../../constants/priorities";
+import { ExternalLink } from "lucide-react";
 
 import type { SprintReport } from "../../types/report";
 
 interface PrintUnresolvedIssuesProps {
   issues: SprintReport["unresolvedIssues"];
+  href: string | null;
 }
 
-export function PrintUnresolvedIssues({ issues }: PrintUnresolvedIssuesProps) {
+export function PrintUnresolvedIssues({
+  issues,
+  href,
+}: PrintUnresolvedIssuesProps) {
   const jiraBaseUrl = import.meta.env.VITE_JIRA_BASE_URL;
 
   const sortedIssues = [...issues].sort((a, b) => {
@@ -32,20 +37,34 @@ export function PrintUnresolvedIssues({ issues }: PrintUnresolvedIssuesProps) {
 
   return (
     <section className="mt-5">
-      <div className="pdf-avoid-break">
-        <div className="flex items-center gap-2">
-          <h2 className="text-lg font-semibold text-slate-950">
-            Незавершённые задачи
-          </h2>
+      <div className="pdf-avoid-break flex items-start justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-slate-950">
+              Незавершённые задачи
+            </h2>
 
-          <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-600">
-            {sortedIssues.length}
-          </span>
+            <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-600">
+              {sortedIssues.length}
+            </span>
+          </div>
+
+          <p className="mt-1 text-sm text-slate-500">
+            Тикеты, по которым ещё требуется работа
+          </p>
         </div>
 
-        <p className="mt-1 text-sm text-slate-500">
-          Тикеты, по которым ещё требуется работа
-        </p>
+        {href && (
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="flex shrink-0 items-center gap-1.5 text-sm font-medium text-blue-600"
+          >
+            Открыть все в Jira
+            <ExternalLink size={14} />
+          </a>
+        )}
       </div>
 
       <table className="pdf-unresolved-table mt-4 w-full border-collapse">

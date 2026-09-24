@@ -2,9 +2,13 @@ import type { SprintReport } from "../../types/report";
 
 interface PrintSprintProgressProps {
   tasks: SprintReport["tasks"];
+  links: SprintReport["links"]["tasks"];
 }
 
-export function PrintSprintProgress({ tasks }: PrintSprintProgressProps) {
+export function PrintSprintProgress({
+  tasks,
+  links,
+}: PrintSprintProgressProps) {
   const getPercent = (value: number) =>
     tasks.total ? (value / tasks.total) * 100 : 0;
 
@@ -13,26 +17,31 @@ export function PrintSprintProgress({ tasks }: PrintSprintProgressProps) {
       label: "Не завершено",
       value: tasks.unresolved,
       className: "bg-slate-500",
+      href: links.unresolved,
     },
     {
       label: "На тестировании",
       value: tasks.testing,
       className: "bg-blue-500",
+      href: links.testing,
     },
     {
       label: "Ожидает выгрузки",
       value: tasks.waitingRelease,
       className: "bg-amber-500",
+      href: links.waitingRelease,
     },
     {
       label: "Закрыто",
       value: tasks.closed,
       className: "bg-emerald-500",
+      href: links.closed,
     },
     {
       label: "Заблокировано",
       value: tasks.blocked,
       className: "bg-red-500",
+      href: links.blocked,
     },
   ].map((item) => ({
     ...item,
@@ -72,27 +81,42 @@ export function PrintSprintProgress({ tasks }: PrintSprintProgressProps) {
       </div>
 
       <div className="mt-4 grid grid-cols-5 gap-3">
-        {items.map((item) => (
-          <div key={item.label}>
-            <div className="flex items-center gap-2">
-              <span
-                className={`h-2.5 w-2.5 shrink-0 rounded-full ${item.className}`}
-              />
+        {items.map((item) => {
+          const content = (
+            <>
+              <div className="flex items-center gap-2">
+                <span
+                  className={`h-2.5 w-2.5 shrink-0 rounded-full ${item.className}`}
+                />
 
-              <span className="text-xs text-slate-600">{item.label}</span>
-            </div>
+                <span className="text-xs text-slate-600">{item.label}</span>
+              </div>
 
-            <div className="mt-1 pl-4.5">
-              <span className="text-sm font-semibold text-slate-950">
-                {item.value}
-              </span>
+              <div className="mt-1 pl-4.5">
+                <span className="text-sm font-semibold text-slate-950">
+                  {item.value}
+                </span>
 
-              <span className="ml-2 text-xs text-slate-400">
-                {item.percent.toFixed(1)}%
-              </span>
-            </div>
-          </div>
-        ))}
+                <span className="ml-2 text-xs text-slate-400">
+                  {item.percent.toFixed(1)}%
+                </span>
+              </div>
+            </>
+          );
+
+          return item.href ? (
+            <a
+              key={item.label}
+              href={item.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {content}
+            </a>
+          ) : (
+            <div key={item.label}>{content}</div>
+          );
+        })}
       </div>
     </section>
   );

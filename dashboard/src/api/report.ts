@@ -34,3 +34,26 @@ export async function saveManualData(
 
   return response.json();
 }
+
+export async function downloadReportPdf(sprintId: number): Promise<void> {
+  const response = await fetch("/api/export/pdf");
+
+  if (!response.ok) {
+    throw new Error(`Failed to export PDF: ${response.status}`);
+  }
+
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = `qa-sprint-${sprintId}.pdf`;
+
+  document.body.appendChild(link);
+
+  link.click();
+  link.remove();
+
+  URL.revokeObjectURL(url);
+}

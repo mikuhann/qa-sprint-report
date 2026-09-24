@@ -6,6 +6,8 @@ import {
   ListTodo,
   TriangleAlert,
   Settings,
+  Download,
+  LoaderCircle,
 } from "lucide-react";
 
 import { StatCard } from "./components/StatCard";
@@ -23,7 +25,7 @@ import { SprintGoals } from "./components/SprintGoals";
 import { ReportSettingsDrawer } from "./components/ReportSettingsDrawer";
 import { SprintSummary } from "./components/SprintSummary";
 
-import { loadReport, saveManualData } from "./api/report";
+import { downloadReportPdf, loadReport, saveManualData } from "./api/report";
 import type { SprintReport } from "./types/report";
 import { UnresolvedIssues } from "./components/UnresolvedIssues";
 
@@ -31,6 +33,7 @@ function App() {
   const [report, setReport] = useState<SprintReport | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [pdfExporting, setPdfExporting] = useState(false);
 
   useEffect(() => {
     loadReport()
@@ -59,6 +62,17 @@ function App() {
     setReport(updatedReport);
     setSettingsOpen(false);
   };
+  const handleExportPdf = async () => {
+    try {
+      setPdfExporting(true);
+
+      await downloadReportPdf(report.meta.sprintId);
+    } catch (error) {
+      console.error("Failed to export PDF", error);
+    } finally {
+      setPdfExporting(false);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
@@ -85,6 +99,21 @@ function App() {
                 Проблем с данными: {warningGroups.length}
               </div>
             )}
+
+            <button
+              type="button"
+              onClick={handleExportPdf}
+              disabled={pdfExporting}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 disabled:cursor-wait disabled:opacity-60"
+            >
+              {pdfExporting ? (
+                <LoaderCircle size={17} className="animate-spin" />
+              ) : (
+                <Download size={17} />
+              )}
+
+              {pdfExporting ? "Формируем PDF..." : "Экспорт PDF"}
+            </button>
 
             <button
               type="button"

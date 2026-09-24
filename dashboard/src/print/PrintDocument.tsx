@@ -20,7 +20,7 @@ interface PrintDocumentProps {
 
 export function PrintDocument({ report }: PrintDocumentProps) {
   return (
-    <main className="bg-white text-slate-950">
+    <main className="pdf-document bg-white text-slate-950">
       <section className="pdf-page pdf-page-break px-8 py-7">
         <header>
           <p className="text-sm font-medium uppercase tracking-wider text-slate-400">
@@ -120,12 +120,17 @@ export function PrintDocument({ report }: PrintDocumentProps) {
             </p>
           </section>
         )}
-        <PrintSprintProgress tasks={report.tasks} />
+        <PrintSprintProgress tasks={report.tasks} links={report.links.tasks} />
 
         <PrintSprintSignals
           defectsOutsideSprint={report.defectsOutsideSprint}
           carryOver={report.carryOver}
           reopened={report.reopened}
+          links={{
+            defectsOutsideSprint: report.links.defectsOutsideSprint,
+            carryOver: report.links.carryOver,
+            reopened: report.links.reopened,
+          }}
         />
       </section>
       <section className="pdf-details-section px-8 py-7">
@@ -139,7 +144,10 @@ export function PrintDocument({ report }: PrintDocumentProps) {
           </p>
         </div>
         <PrintReleasedVersions versions={report.releasedVersions} />
-        <PrintUnresolvedIssues issues={report.unresolvedIssues} />
+        <PrintUnresolvedIssues
+          issues={report.unresolvedIssues}
+          href={report.links.tasks.unresolved}
+        />
       </section>
       <section className="pdf-page pdf-page-break px-8 py-7">
         <div>

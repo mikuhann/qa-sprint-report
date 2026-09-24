@@ -3,6 +3,7 @@ import { createServer } from "node:http";
 import { buildReport } from "./report/buildReport.js";
 import { saveSprintOverrides } from "./report/overrides.js";
 import { writeReport } from "./report/writeReport.js";
+import { exportReportPdf } from "./pdf/exportReportPdf.js";
 
 const PORT = 3001;
 
@@ -61,6 +62,20 @@ const server = createServer(async (request, response) => {
       });
 
       response.end(JSON.stringify(report));
+
+      return;
+    }
+
+    if (request.method === "GET" && url.pathname === "/api/export/pdf") {
+      const pdf = await exportReportPdf();
+
+      response.writeHead(200, {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": 'attachment; filename="qa-sprint-report.pdf"',
+        "Content-Length": pdf.length,
+      });
+
+      response.end(pdf);
 
       return;
     }
