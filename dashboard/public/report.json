@@ -7,10 +7,7 @@
     "sprintDates": "08.09 - 28.09",
     "queryStartDate": "2026-09-08",
     "queryEndDate": "2026-09-29",
-    "previousSprintIds": [
-      1074,
-      1041
-    ]
+    "previousSprintIds": [1074, 1041]
   },
   "releasedVersions": [
     {
@@ -33,14 +30,35 @@
     }
   ],
   "tasks": {
-    "total": 57,
-    "unresolved": 26,
+    "total": 60,
+    "unresolved": 29,
     "testing": 6,
     "waitingRelease": 3,
     "closed": 22,
     "blocked": 0
   },
   "unresolvedIssues": [
+    {
+      "key": "ERPBACK-9775",
+      "summary": "ERP|CP|BACK| Обновить публичный договор iContext (09/2026)",
+      "issueType": "Задача",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9774",
+      "summary": "CP [FRONT] Ошибки Яндекс и Google аналитики",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9773",
+      "summary": "ERP [BACK] php yii cron/context-cy-money-notify: Джоба не содержит сообщений для отправки КЛ об остатке рекламного бюджета",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
     {
       "key": "ERPBACK-9770",
       "summary": "ERP |FRONT| CRM -> Клиент -> История сотрудничества: История -> Сотрудничества: добавить фильтр по нескольким параметрам <5>",
@@ -225,17 +243,17 @@
     }
   ],
   "issueTypes": {
-    "total": 57,
+    "total": 60,
     "stories": 10,
-    "tasks": 26,
-    "bugs": 21,
+    "tasks": 27,
+    "bugs": 23,
     "other": 0
   },
   "defects": {
-    "total": 15,
-    "prodIssue": 4,
+    "total": 17,
+    "prodIssue": 5,
     "common": 2,
-    "requirementsNotMet": 3,
+    "requirementsNotMet": 4,
     "regression": 0,
     "requirementsIssue": 1,
     "missedIssue": 4
@@ -263,23 +281,23 @@
     "needsRewording": 0
   },
   "severity": {
-    "total": 15,
+    "total": 17,
     "blocker": 0,
-    "critical": 2,
-    "major": 10,
+    "critical": 3,
+    "major": 11,
     "minor": 3,
     "trivial": 0
   },
   "defectsByDeveloper": [
     {
-      "accountId": "712020:6e480809-e739-495c-8a19-72dfefe10a87",
-      "name": "Людмила Хоровец",
+      "accountId": "6149a7b478b7a1006ab0d25d",
+      "name": "Илья Лисицкий",
       "defects": 4
     },
     {
-      "accountId": "6149a7b478b7a1006ab0d25d",
-      "name": "Илья Лисицкий",
-      "defects": 3
+      "accountId": "712020:6e480809-e739-495c-8a19-72dfefe10a87",
+      "name": "Людмила Хоровец",
+      "defects": 4
     },
     {
       "accountId": "639ad3c561aba8a6a32d1e13",
@@ -398,9 +416,9 @@
       },
       {
         "key": "ERPBACK-9630",
-        "summary": "PCP [BACK] php artisan app:partners-sync-all: Записался provider_id = 1 для всех аккаунтов",
+        "summary": "PCP / tERPi [BACK] php artisan app:partners-sync-all: Записался provider_id = 1 для всех аккаунтов",
         "issueType": "Баг",
-        "status": "Отправлено в тестирование"
+        "status": "Ожидает выгрузки"
       },
       {
         "key": "ERPBACK-9621",
@@ -436,7 +454,7 @@
         "key": "ERPBACK-9583",
         "summary": "ERP |BACK| Email клиенту-> Остаток рекламного бюджета: брать остаток бюджета на дату, соответствую дате расчета количества дней до окончания бюджета ",
         "issueType": "Задача",
-        "status": "Тестирование в процессе"
+        "status": "Тестирование заблокировано"
       },
       {
         "key": "ERPBACK-9554",
@@ -454,7 +472,7 @@
         "key": "ERPBACK-9511",
         "summary": "PCP |BACK| Согласовать данные с эндпоинта меню между Back-ом и Front-ом",
         "issueType": "Задача",
-        "status": "В процессе"
+        "status": "CODE REVIEW"
       },
       {
         "key": "ERPBACK-9494",
@@ -599,25 +617,25 @@
   },
   "links": {
     "tasks": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
-      "unresolved": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9738%2C%20ERPBACK-9693%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9563%2C%20ERPBACK-9446%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
+      "unresolved": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9738%2C%20ERPBACK-9693%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9563%2C%20ERPBACK-9446%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
       "testing": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9447%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9439)%20ORDER%20BY%20key%20DESC",
       "waitingRelease": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9639%2C%20ERPBACK-9445%2C%20ERPBACK-9442)%20ORDER%20BY%20key%20DESC",
       "closed": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9712%2C%20ERPBACK-9672%2C%20ERPBACK-9622%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
       "blocked": null
     },
     "issueTypes": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
       "stories": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9446%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
-      "tasks": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9770%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9447%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917)%20ORDER%20BY%20key%20DESC",
-      "bugs": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9348%2C%20ERPBACK-9308)%20ORDER%20BY%20key%20DESC",
+      "tasks": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9770%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9447%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917)%20ORDER%20BY%20key%20DESC",
+      "bugs": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9348%2C%20ERPBACK-9308)%20ORDER%20BY%20key%20DESC",
       "other": null
     },
     "defects": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9730%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
-      "prodIssue": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9718)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9730%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
+      "prodIssue": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9774%2C%20ERPBACK-9768%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9718)%20ORDER%20BY%20key%20DESC",
       "common": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759)%20ORDER%20BY%20key%20DESC",
-      "requirementsNotMet": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719)%20ORDER%20BY%20key%20DESC",
+      "requirementsNotMet": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9773%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719)%20ORDER%20BY%20key%20DESC",
       "regression": null,
       "requirementsIssue": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
       "missedIssue": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9724)%20ORDER%20BY%20key%20DESC"
@@ -636,23 +654,23 @@
       "needsRewording": null
     },
     "severity": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9730%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9730%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
       "blocker": null,
-      "critical": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9732%2C%20ERPBACK-9724)%20ORDER%20BY%20key%20DESC",
-      "major": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9730%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
+      "critical": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9773%2C%20ERPBACK-9732%2C%20ERPBACK-9724)%20ORDER%20BY%20key%20DESC",
+      "major": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9774%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9730%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
       "minor": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9754%2C%20ERPBACK-9719)%20ORDER%20BY%20key%20DESC",
       "trivial": null
     },
     "defectsByDeveloper": [
       {
+        "accountId": "6149a7b478b7a1006ab0d25d",
+        "name": "Илья Лисицкий",
+        "url": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9773%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9730)%20ORDER%20BY%20key%20DESC"
+      },
+      {
         "accountId": "712020:6e480809-e739-495c-8a19-72dfefe10a87",
         "name": "Людмила Хоровец",
         "url": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9732%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719)%20ORDER%20BY%20key%20DESC"
-      },
-      {
-        "accountId": "6149a7b478b7a1006ab0d25d",
-        "name": "Илья Лисицкий",
-        "url": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9730)%20ORDER%20BY%20key%20DESC"
       },
       {
         "accountId": "639ad3c561aba8a6a32d1e13",
@@ -681,19 +699,24 @@
   "insights": {
     "dominantTaskStatus": {
       "key": "unresolved",
-      "count": 26,
-      "percent": 45.6
+      "count": 29,
+      "percent": 48.3
     },
     "dominantDefectReason": {
       "key": "prodIssue",
-      "count": 4,
-      "percent": 26.7
+      "count": 5,
+      "percent": 29.4
     },
     "severity": {
       "blocker": 0,
-      "critical": 2
+      "critical": 3
     },
     "topDevelopers": [
+      {
+        "accountId": "6149a7b478b7a1006ab0d25d",
+        "name": "Илья Лисицкий",
+        "defects": 4
+      },
       {
         "accountId": "712020:6e480809-e739-495c-8a19-72dfefe10a87",
         "name": "Людмила Хоровец",
@@ -702,31 +725,169 @@
     ]
   },
   "warnings": {
-    "unclassifiedDefects": [
-      "ERPBACK-9730"
-    ],
+    "unclassifiedDefects": ["ERPBACK-9730"],
     "multipleClassifications": [],
     "missingResolutions": [],
     "unknownResolutions": [],
     "missingSeverity": [],
     "unknownSeverity": [],
     "unknownStatuses": [],
-    "unassignedDefects": [
-      "ERPBACK-9757"
-    ]
+    "unassignedDefects": ["ERPBACK-9757"]
   },
   "manual": {
     "qaAssessment": "poor",
     "comment": "REPORT-009 API test",
     "goals": {
-      "backend": [],
-      "frontend": [
+      "backend": [
         {
-          "text": "QA report to QA",
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
           "status": "planned"
         }
       ],
-      "qa": []
+      "frontend": [
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        }
+      ],
+      "qa": [
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        },
+        {
+          "text": "Тест принта",
+          "status": "planned"
+        }
+      ]
     },
     "completionRate": 100
   }

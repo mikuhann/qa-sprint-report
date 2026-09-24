@@ -2,14 +2,24 @@
   "qaAssessment": "poor",
   "comment": "REPORT-009 API test",
   "goals": {
-    "backend": [],
+    "backend": [
+      {
+        "text": "Тест принта",
+        "status": "planned"
+      }
+    ],
     "frontend": [
       {
         "text": "QA report to QA",
         "status": "planned"
       }
     ],
-    "qa": []
+    "qa": [
+      {
+        "text": "Тест принта",
+        "status": "planned"
+      }
+    ]
   },
   "completionRate": 100
 }

@@ -1,13 +1,13 @@
 import { Bug, CheckCircle2, ClipboardList, ListTodo } from "lucide-react";
 
 import { IssueBreakdown } from "../components/IssueBreakdown";
-import { SprintGoals } from "../components/SprintGoals";
 import { SprintSummary } from "../components/SprintSummary";
 import { StatCard } from "../components/StatCard";
 
 import type { SprintReport } from "../types/report";
 import { PrintSprintProgress } from "./components/PrintSprintProgress";
 import { PrintSprintSignals } from "./components/PrintSprintSignals";
+import { PrintSprintGoals } from "./components/PrintSprintGoals";
 
 interface PrintDocumentProps {
   report: SprintReport;
@@ -16,7 +16,7 @@ interface PrintDocumentProps {
 export function PrintDocument({ report }: PrintDocumentProps) {
   return (
     <main className="bg-white text-slate-950">
-      <section className="pdf-page px-8 py-7">
+      <section className="pdf-page pdf-page-break px-8 py-7">
         <header>
           <p className="text-sm font-medium uppercase tracking-wider text-slate-400">
             QA-отчёт по спринту
@@ -81,19 +81,40 @@ export function PrintDocument({ report }: PrintDocumentProps) {
         </div>
       </section>
 
-      <section className="pdf-page px-8 py-7">
+      <section className="pdf-goals-section px-8 py-7">
         <div>
           <h2 className="text-2xl font-semibold text-slate-950">
-            План и ход спринта
+            Цели спринта
           </h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Цели спринта и текущее состояние задач
+            Цели Backend, Frontend и QA
           </p>
         </div>
 
-        <SprintGoals manual={report.manual} />
+        <PrintSprintGoals manual={report.manual} />
+      </section>
 
+      <section className="pdf-page px-8 py-7">
+        <div>
+          <h2 className="text-2xl font-semibold text-slate-950">Ход спринта</h2>
+
+          <p className="mt-1 text-sm text-slate-500">
+            Текущее состояние задач и дополнительные показатели
+          </p>
+        </div>
+
+        {report.manual.comment && (
+          <section className="pdf-avoid-break mt-5 rounded-xl border border-slate-200 bg-white p-4">
+            <div className="text-sm font-semibold text-slate-800">
+              Комментарий QA
+            </div>
+
+            <p className="mt-1 text-sm leading-5 text-slate-600">
+              {report.manual.comment}
+            </p>
+          </section>
+        )}
         <PrintSprintProgress tasks={report.tasks} />
 
         <PrintSprintSignals

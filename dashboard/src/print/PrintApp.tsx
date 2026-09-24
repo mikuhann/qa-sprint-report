@@ -51,6 +51,22 @@ export function PrintApp() {
       break-after: page;
     }
 
+    .pdf-goals-section {
+      break-after: page;
+    }
+
+    .pdf-goal-group-start {
+      break-inside: avoid;
+    }
+
+    .pdf-goal-item {
+      break-inside: avoid;
+    }
+
+    .pdf-goal-item {
+      break-inside: avoid;
+    }
+
     .pdf-avoid-break {
       break-inside: avoid;
     }
