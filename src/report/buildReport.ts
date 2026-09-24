@@ -11,6 +11,7 @@ import { isSprintDeliveryIssue } from "./rules.js";
 import { buildIssueSearchLink, buildVersionIssuesLink } from "../jira/links.js";
 import { getReleasedVersionsForPeriod } from "../jira/versions.js";
 import { loadSprintOverrides } from "./overrides.js";
+import { calculateSprintInsights } from "./insights.js";
 
 import {
   calculateDefectStatistics,
@@ -104,6 +105,19 @@ export async function buildReport(): Promise<SprintReport> {
   const developerGroups = getDefectsByDeveloperGroups(defects, assigneeHistory);
 
   const manual = await loadSprintOverrides(meta.sprintId);
+
+  const tasksStatistics = calculateSprintTaskStatistics(issues);
+
+  const defectStatistics = calculateDefectStatistics(defects);
+
+  const resolutionStatistics = calculateResolutionStatistics(resolutionIssues);
+
+  const severityStatistics = calculateSeverityStatistics(defects);
+
+  const developerStatistics = calculateDefectsByDeveloper(
+    defects,
+    assigneeHistory,
+  );
 
   return {
     meta,
@@ -231,6 +245,12 @@ export async function buildReport(): Promise<SprintReport> {
 
       reopened: buildIssueSearchLink(reopenedIssues),
     },
+    insights: calculateSprintInsights(
+      tasksStatistics,
+      defectStatistics,
+      severityStatistics,
+      developerStatistics,
+    ),
     warnings: {
       unclassifiedDefects: defectValidation.unclassified,
 

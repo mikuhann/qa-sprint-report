@@ -24,26 +24,32 @@
       "name": "Release v 125.0",
       "releaseDate": "2026-09-15",
       "url": "https://icontext-dev.atlassian.net/issues/?jql=project%20%3D%20ERPBACK%20AND%20fixVersion%20%3D%2014083%20ORDER%20BY%20key%20DESC"
+    },
+    {
+      "id": "14116",
+      "name": "Release v 126.0",
+      "releaseDate": "2026-09-22",
+      "url": "https://icontext-dev.atlassian.net/issues/?jql=project%20%3D%20ERPBACK%20AND%20fixVersion%20%3D%2014116%20ORDER%20BY%20key%20DESC"
     }
   ],
   "tasks": {
-    "total": 55,
-    "unresolved": 25,
-    "testing": 7,
-    "waitingRelease": 16,
-    "closed": 7,
+    "total": 57,
+    "unresolved": 26,
+    "testing": 6,
+    "waitingRelease": 3,
+    "closed": 22,
     "blocked": 0
   },
   "issueTypes": {
-    "total": 55,
+    "total": 57,
     "stories": 10,
-    "tasks": 25,
-    "bugs": 20,
+    "tasks": 26,
+    "bugs": 21,
     "other": 0
   },
   "defects": {
-    "total": 14,
-    "prodIssue": 3,
+    "total": 15,
+    "prodIssue": 4,
     "common": 2,
     "requirementsNotMet": 3,
     "regression": 0,
@@ -61,23 +67,23 @@
     ]
   },
   "resolutions": {
-    "total": 23,
-    "ready": 11,
+    "total": 25,
+    "ready": 12,
     "fixed": 10,
     "resolvedInTask": 0,
     "notBug": 0,
     "cannotReproduce": 0,
     "duplicate": 0,
     "wontFix": 1,
-    "notRelevant": 1,
+    "notRelevant": 2,
     "needsRewording": 0
   },
   "severity": {
-    "total": 14,
+    "total": 15,
     "blocker": 0,
     "critical": 2,
     "major": 10,
-    "minor": 2,
+    "minor": 3,
     "trivial": 0
   },
   "defectsByDeveloper": [
@@ -114,31 +120,127 @@
   ],
   "carryOver": {
     "fromSprintId": 1074,
-    "total": 18,
+    "total": 45,
     "issues": [
+      {
+        "key": "ERPBACK-9711",
+        "summary": "ERP [BACK] Шаблоны двухсторонних договор Webcom: Электронная почта Icontext указана в реквизитах компании",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
       {
         "key": "ERPBACK-9692",
         "summary": "PCP|FRONT| Создание дизайн-системы",
         "issueType": "Задача",
-        "status": "Отложена"
+        "status": "В процессе"
+      },
+      {
+        "key": "ERPBACK-9685",
+        "summary": "ERP [FRONT] Коммуникации - Обработка УСЗ: Не подтягиваются стили в модальное окно обработки усз, после открытия \"Оценки усз\"",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9684",
+        "summary": "PCP |FRONT| Финансы клиента: добавить кнопку Обновить данные",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9675",
+        "summary": "CP|FRONT| Отобразить кнопку установки связи gADS с Google аналитикой в личном кабинете",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9669",
+        "summary": "TERPI |BACK| Обработка УСЗ: записывать в БД id первого определившегося клиента, если при звонке определилось несколько клиентов",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9668",
+        "summary": "ERP [BACK] Обработка УСЗ: Значение в поле \"Контактное лицо клиента\" очищается при переключении на другой тип контрагента",
+        "issueType": "Баг",
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-9667",
         "summary": "CP|FRONT| Скорректировать работу скриптов по сбору аналитики  в локалке",
         "issueType": "Задача",
-        "status": "Ожидает выгрузки"
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-9666",
         "summary": "PCP|FRONT| Внедрить общий компонент на странице история переводов",
         "issueType": "Задача",
-        "status": "Ожидает выгрузки"
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9664",
+        "summary": "ERP [FRON] Управление системой - Управление справочниками - Настройка бонусных комиссий: На страницу не отрабатывает js",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9663",
+        "summary": "ERP [FRONT] Обработка УСЗ: Значение \"Клиент #0\" отображается в поле \"Клиент\", когда у созданного звонка asteriks != 'BY' или asterisk ! = 'IC'",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9662",
+        "summary": "ERP [BACK] Обработка УСЗ - office_calls_data: Значение в колонке call_dest_name не меняется на выбранное при обработке усз ",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9661",
+        "summary": "ERP [BACK] Управление доступами к аккаунту - Удаление приглашение: Происходит запрос на удаление доступа вместо отмены приглашения",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9657",
+        "summary": "ERP [FRONT] Обработка УСЗ: Значение в поле \"Контактное лицо клиента\" очищается при переключении на другой тип контрагента",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9656",
+        "summary": "ERP [BACK] Обработка УСЗ: Поле \"Оцените настроение специалиста\" обязательное при активном переключателе \"Не дозвонился\"",
+        "issueType": "Баг",
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-9630",
         "summary": "PCP [BACK] php artisan app:partners-sync-all: Записался provider_id = 1 для всех аккаунтов",
         "issueType": "Баг",
         "status": "Отправлено в тестирование"
+      },
+      {
+        "key": "ERPBACK-9621",
+        "summary": "ERP [BACK] Штатное расписание - Управление ТВ - Бонусы: Кнопка называтеся \"Опубливать\"",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9619",
+        "summary": "ERP [BACK] Штатное расписание - Управление ТВ - Бонусы: Невозможно изменить значение enabled, чтобы она отображадась ",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9617",
+        "summary": "ERP [BACK] Штатное расписание - Управление ТВ - Бонусы: Отсутствует валидация на кол-во символов в полях",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9599",
+        "summary": "GATE|CP|BACK| Скорректировать схему изменения роли юзера при установке связи gAds с Google analytics",
+        "issueType": "Задача",
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-9591",
@@ -153,28 +255,64 @@
         "status": "Тестирование в процессе"
       },
       {
+        "key": "ERPBACK-9554",
+        "summary": "CP |FRONT| Финансы и документы -> История переводов: Выводить логин для аккаунтов",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9553",
+        "summary": "CP |BACK| Финансы и документы -> История переводов: Выводить логин для аккаунтов",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9511",
+        "summary": "PCP |BACK| Согласовать данные с эндпоинта меню между Back-ом и Front-ом",
+        "issueType": "Задача",
+        "status": "В процессе"
+      },
+      {
+        "key": "ERPBACK-9494",
+        "summary": "tERPi |BACK| Добавить ссылку на ЛК Партнера в письмо, которое приходит партнерам с получением акта",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9438",
+        "summary": "PCP|FRONT| Рефакторинг: Закрытие технического долга по фронтенд-части проекта",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
         "key": "ERPBACK-9372",
         "summary": "ERP |BACK| Переделать выгрузку клиентов и контактов под новые требования о сезонности",
         "issueType": "Задача",
-        "status": "Ожидает выгрузки"
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-9362",
         "summary": "ERP |BACK| КАК сотрудник ОП или ФСРК, я хочу указывать сезонность работы по месяцам в модуле Клиенты, а не только просматривать информацию о сезонности",
         "issueType": "История",
-        "status": "Ожидает выгрузки"
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-9358",
-        "summary": "ERP |BACK| КАК сотрудник ОРК, я хочу указывать сезонность работы клиента по месяцам в модуле CRM, а не порам года, так как сезонность может быть выражена в определенные месяцы любой поры года",
+        "summary": "TERPI |BACK| КАК сотрудник ОРК, я хочу указывать сезонность работы клиента по месяцам в модуле CRM, а не порам года, так как сезонность может быть выражена в определенные месяцы любой поры года",
         "issueType": "История",
-        "status": "Ожидает выгрузки"
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9033",
+        "summary": "PCP [FRONT] Управление аккаунтами: Сортировка по Кол-ву дней до окончания бюджета не работает",
+        "issueType": "Баг",
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-9025",
         "summary": "ERP|BACK| Скорректировать проверку по наличию деб.задолженности у постоплатника",
         "issueType": "Задача",
-        "status": "CODE REVIEW"
+        "status": "Тестирование в процессе"
       },
       {
         "key": "ERPBACK-9024",
@@ -201,6 +339,36 @@
         "status": "CODE REVIEW"
       },
       {
+        "key": "ERPBACK-8375",
+        "summary": "ERP |BACK| Переход модалки УСЗ на React: дописать логику, позволяющую искать совпадение по контактным лицам при смене типа клиента пользователем",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-8370",
+        "summary": "TERPI |BACK| Переход модалки УСЗ на React: подбрасывать на фронт инициализационные данные",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-8369",
+        "summary": "TERPI |BACK| Переход модалки УСЗ на React: Сохранять id Контактного лица в запросе сохранения модалки УСЗ",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-8283",
+        "summary": "TERPI |FRONT| Обработка УСЗ: Перевести модальное окно на REACT",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-8281",
+        "summary": "ERP |FRONT| Обработка УСЗ: Доработать поведение при переключении на тип Клиент Партнера или Клиент - запрашивать контактных лиц после выбора выбора Клиента Партнера/Клиента",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
         "key": "ERPBACK-7906",
         "summary": "ERP |BACK| Почистить дубли КЛ",
         "issueType": "Задача",
@@ -210,19 +378,19 @@
         "key": "ERPBACK-7379",
         "summary": "TV |BACK| Добавить страницы для специальных предложений от партнеров на TV",
         "issueType": "Задача",
-        "status": "Ожидает выгрузки"
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-6714",
         "summary": "ERP |BACK| Добавить новый раздел в ERP для добавления Специальных предложений от партнеров",
         "issueType": "Задача",
-        "status": "Ожидает выгрузки"
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-6703",
         "summary": "TV |FRONT| КАК сотрудник я должен видеть специальные предложения от партнеров на TV",
         "issueType": "Задача",
-        "status": "Ожидает выгрузки"
+        "status": "Закрыто"
       }
     ]
   },
@@ -247,23 +415,23 @@
   },
   "links": {
     "tasks": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
-      "unresolved": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9738%2C%20ERPBACK-9693%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9563%2C%20ERPBACK-9446%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9369%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
-      "testing": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9447%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9439%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
-      "waitingRelease": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9732%2C%20ERPBACK-9723%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9712%2C%20ERPBACK-9672%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9445%2C%20ERPBACK-9442%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348)%20ORDER%20BY%20key%20DESC",
-      "closed": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9721%2C%20ERPBACK-9373)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
+      "unresolved": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9738%2C%20ERPBACK-9693%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9563%2C%20ERPBACK-9446%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
+      "testing": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9447%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9439)%20ORDER%20BY%20key%20DESC",
+      "waitingRelease": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9639%2C%20ERPBACK-9445%2C%20ERPBACK-9442)%20ORDER%20BY%20key%20DESC",
+      "closed": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9712%2C%20ERPBACK-9672%2C%20ERPBACK-9622%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
       "blocked": null
     },
     "issueTypes": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
       "stories": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9446%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
-      "tasks": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9447%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917)%20ORDER%20BY%20key%20DESC",
-      "bugs": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9348%2C%20ERPBACK-9308)%20ORDER%20BY%20key%20DESC",
+      "tasks": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9770%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9447%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917)%20ORDER%20BY%20key%20DESC",
+      "bugs": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9348%2C%20ERPBACK-9308)%20ORDER%20BY%20key%20DESC",
       "other": null
     },
     "defects": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9730%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
-      "prodIssue": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9718)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9730%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
+      "prodIssue": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9718)%20ORDER%20BY%20key%20DESC",
       "common": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759)%20ORDER%20BY%20key%20DESC",
       "requirementsNotMet": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719)%20ORDER%20BY%20key%20DESC",
       "regression": null,
@@ -272,23 +440,23 @@
     },
     "defectsOutsideSprint": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9730)%20ORDER%20BY%20key%20DESC",
     "resolutions": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9712%2C%20ERPBACK-9672%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9445%2C%20ERPBACK-9442%2C%20ERPBACK-9373%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348)%20ORDER%20BY%20key%20DESC",
-      "ready": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9712%2C%20ERPBACK-9445%2C%20ERPBACK-9442%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9712%2C%20ERPBACK-9672%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9445%2C%20ERPBACK-9442%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
+      "ready": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9712%2C%20ERPBACK-9445%2C%20ERPBACK-9442%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
       "fixed": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9672%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9348)%20ORDER%20BY%20key%20DESC",
       "resolvedInTask": null,
       "notBug": null,
       "cannotReproduce": null,
       "duplicate": null,
       "wontFix": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9721)%20ORDER%20BY%20key%20DESC",
-      "notRelevant": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9373)%20ORDER%20BY%20key%20DESC",
+      "notRelevant": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9373%2C%20ERPBACK-9369)%20ORDER%20BY%20key%20DESC",
       "needsRewording": null
     },
     "severity": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9730%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9754%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9730%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
       "blocker": null,
       "critical": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9732%2C%20ERPBACK-9724)%20ORDER%20BY%20key%20DESC",
       "major": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9757%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9730%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9718%2C%20ERPBACK-9714)%20ORDER%20BY%20key%20DESC",
-      "minor": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9754%2C%20ERPBACK-9719)%20ORDER%20BY%20key%20DESC",
+      "minor": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9768%2C%20ERPBACK-9754%2C%20ERPBACK-9719)%20ORDER%20BY%20key%20DESC",
       "trivial": null
     },
     "defectsByDeveloper": [
@@ -323,8 +491,31 @@
         "url": null
       }
     ],
-    "carryOver": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9692%2C%20ERPBACK-9667%2C%20ERPBACK-9666%2C%20ERPBACK-9630%2C%20ERPBACK-9591%2C%20ERPBACK-9583%2C%20ERPBACK-9372%2C%20ERPBACK-9362%2C%20ERPBACK-9358%2C%20ERPBACK-9025%2C%20ERPBACK-9024%2C%20ERPBACK-8955%2C%20ERPBACK-8951%2C%20ERPBACK-8485%2C%20ERPBACK-7906%2C%20ERPBACK-7379%2C%20ERPBACK-6714%2C%20ERPBACK-6703)%20ORDER%20BY%20key%20DESC",
+    "carryOver": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9711%2C%20ERPBACK-9692%2C%20ERPBACK-9685%2C%20ERPBACK-9684%2C%20ERPBACK-9675%2C%20ERPBACK-9669%2C%20ERPBACK-9668%2C%20ERPBACK-9667%2C%20ERPBACK-9666%2C%20ERPBACK-9664%2C%20ERPBACK-9663%2C%20ERPBACK-9662%2C%20ERPBACK-9661%2C%20ERPBACK-9657%2C%20ERPBACK-9656%2C%20ERPBACK-9630%2C%20ERPBACK-9621%2C%20ERPBACK-9619%2C%20ERPBACK-9617%2C%20ERPBACK-9599%2C%20ERPBACK-9591%2C%20ERPBACK-9583%2C%20ERPBACK-9554%2C%20ERPBACK-9553%2C%20ERPBACK-9511%2C%20ERPBACK-9494%2C%20ERPBACK-9438%2C%20ERPBACK-9372%2C%20ERPBACK-9362%2C%20ERPBACK-9358%2C%20ERPBACK-9033%2C%20ERPBACK-9025%2C%20ERPBACK-9024%2C%20ERPBACK-8955%2C%20ERPBACK-8951%2C%20ERPBACK-8485%2C%20ERPBACK-8375%2C%20ERPBACK-8370%2C%20ERPBACK-8369%2C%20ERPBACK-8283%2C%20ERPBACK-8281%2C%20ERPBACK-7906%2C%20ERPBACK-7379%2C%20ERPBACK-6714%2C%20ERPBACK-6703)%20ORDER%20BY%20key%20DESC",
     "reopened": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9639%2C%20ERPBACK-9445)%20ORDER%20BY%20key%20DESC"
+  },
+  "insights": {
+    "dominantTaskStatus": {
+      "key": "unresolved",
+      "count": 26,
+      "percent": 45.6
+    },
+    "dominantDefectReason": {
+      "key": "prodIssue",
+      "count": 4,
+      "percent": 26.7
+    },
+    "severity": {
+      "blocker": 0,
+      "critical": 2
+    },
+    "topDevelopers": [
+      {
+        "accountId": "712020:6e480809-e739-495c-8a19-72dfefe10a87",
+        "name": "Людмила Хоровец",
+        "defects": 4
+      }
+    ]
   },
   "warnings": {
     "unclassifiedDefects": [

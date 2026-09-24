@@ -165,6 +165,37 @@ export interface SprintReport {
     reopened: string | null;
   };
 
+  insights: {
+    dominantTaskStatus: {
+      key: "unresolved" | "testing" | "waitingRelease" | "closed";
+      count: number;
+      percent: number;
+    };
+
+    dominantDefectReason: {
+      key:
+        | "prodIssue"
+        | "common"
+        | "requirementsNotMet"
+        | "regression"
+        | "requirementsIssue"
+        | "missedIssue";
+      count: number;
+      percent: number;
+    } | null;
+
+    severity: {
+      blocker: number;
+      critical: number;
+    };
+
+    topDevelopers: {
+      accountId: string;
+      name: string;
+      defects: number;
+    }[];
+  };
+
   warnings: {
     unclassifiedDefects: string[];
     multipleClassifications: string[];

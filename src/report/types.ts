@@ -99,6 +99,7 @@ export interface SprintReport {
   reopened: ReopenedStatistics;
   releasedVersions: ReleasedVersion[];
   links: ReportLinks;
+  insights: SprintInsights;
   warnings: ReportWarnings;
   manual: SprintManualData;
 }
@@ -224,4 +225,43 @@ export interface SprintManualData {
     frontend: SprintGoal[];
     qa: SprintGoal[];
   };
+}
+
+export type TaskStatusInsightKey =
+  | "unresolved"
+  | "testing"
+  | "waitingRelease"
+  | "closed";
+
+export type DefectReasonInsightKey =
+  | "prodIssue"
+  | "common"
+  | "requirementsNotMet"
+  | "regression"
+  | "requirementsIssue"
+  | "missedIssue";
+
+export interface SprintInsights {
+  dominantTaskStatus: {
+    key: TaskStatusInsightKey;
+    count: number;
+    percent: number;
+  };
+
+  dominantDefectReason: {
+    key: DefectReasonInsightKey;
+    count: number;
+    percent: number;
+  } | null;
+
+  severity: {
+    blocker: number;
+    critical: number;
+  };
+
+  topDevelopers: {
+    accountId: string;
+    name: string;
+    defects: number;
+  }[];
 }

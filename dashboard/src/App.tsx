@@ -24,6 +24,7 @@ import { SprintSummary } from "./components/SprintSummary";
 
 import { loadReport, saveManualData } from "./api/report";
 import type { SprintReport } from "./types/report";
+import { SprintHighlights } from "./components/SprintHighlights";
 
 function App() {
   const [report, setReport] = useState<SprintReport | null>(null);
@@ -129,6 +130,8 @@ function App() {
           blocked={report.tasks.blocked}
           links={report.links.tasks}
         />
+
+        <SprintHighlights report={report} />
 
         <IssueBreakdown
           issueTypes={report.issueTypes}
