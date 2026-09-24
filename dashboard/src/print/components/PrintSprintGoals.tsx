@@ -67,6 +67,7 @@ export function PrintSprintGoals({ manual }: PrintSprintGoalsProps) {
         const renderGoal = (
           goal: (typeof group.goals)[number],
           index: number,
+          withBreakClass = true,
         ) => {
           const status = STATUS_META[goal.status];
           const StatusIcon = status.icon;
@@ -74,7 +75,9 @@ export function PrintSprintGoals({ manual }: PrintSprintGoalsProps) {
           return (
             <div
               key={`${group.key}-${index}`}
-              className="pdf-goal-item flex items-center justify-between gap-5 border-b border-slate-100 px-2 py-2.5 last:border-b-0"
+              className={`flex items-center justify-between gap-5 border-b border-slate-100 px-2 py-2.5 last:border-b-0 ${
+                withBreakClass ? "pdf-goal-item" : ""
+              }`}
             >
               <div className="text-sm leading-5 text-slate-800">
                 {goal.text}
@@ -92,31 +95,43 @@ export function PrintSprintGoals({ manual }: PrintSprintGoalsProps) {
 
         return (
           <section key={group.key} className="pdf-goal-group">
-            <div className="pdf-goal-group-start">
-              <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
-                <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
-                  <Icon size={17} />
+            {firstGoal ? (
+              <>
+                <div className="pdf-goal-item">
+                  <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
+                    <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
+                      <Icon size={17} />
+                    </div>
+
+                    <h3 className="text-base font-semibold text-slate-900">
+                      {group.title}
+                    </h3>
+
+                    <span className="text-sm text-slate-400">
+                      {group.goals.length}
+                    </span>
+                  </div>
+
+                  <div className="mt-2">{renderGoal(firstGoal, 0, false)}</div>
                 </div>
 
-                <h3 className="text-base font-semibold text-slate-900">
-                  {group.title}
-                </h3>
-
-                <span className="text-sm text-slate-400">
-                  {group.goals.length}
-                </span>
-              </div>
-
-              {firstGoal ? (
-                <div className="mt-2">{renderGoal(firstGoal, 0)}</div>
-              ) : (
-                <p className="mt-3 text-sm text-slate-400">Цели не указаны</p>
-              )}
-            </div>
-
-            {restGoals.length > 0 && (
-              <div>
                 {restGoals.map((goal, index) => renderGoal(goal, index + 1))}
+              </>
+            ) : (
+              <div className="pdf-goal-item">
+                <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
+                  <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
+                    <Icon size={17} />
+                  </div>
+
+                  <h3 className="text-base font-semibold text-slate-900">
+                    {group.title}
+                  </h3>
+
+                  <span className="text-sm text-slate-400">0</span>
+                </div>
+
+                <p className="mt-3 text-sm text-slate-400">Цели не указаны</p>
               </div>
             )}
           </section>
