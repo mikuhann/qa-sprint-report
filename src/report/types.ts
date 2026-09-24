@@ -216,6 +216,7 @@ export interface SprintGoal {
 
 export interface SprintManualData {
   qaAssessment: QaAssessment | null;
+  completionRate: number | null;
   comment: string | null;
 
   goals: {

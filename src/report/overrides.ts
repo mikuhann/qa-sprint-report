@@ -10,6 +10,7 @@ import type {
 
 const EMPTY_MANUAL_DATA: SprintManualData = {
   qaAssessment: null,
+  completionRate: null,
   comment: null,
   goals: {
     backend: [],
@@ -76,6 +77,17 @@ export function validateManualData(
   }
 
   if (
+    data.completionRate !== null &&
+    data.completionRate !== undefined &&
+    (typeof data.completionRate !== "number" ||
+      !Number.isFinite(data.completionRate) ||
+      data.completionRate < 0 ||
+      data.completionRate > 100)
+  ) {
+    throw new Error("completionRate must be a number between 0 and 100");
+  }
+
+  if (
     data.comment !== null &&
     data.comment !== undefined &&
     typeof data.comment !== "string"
@@ -113,7 +125,10 @@ export async function loadSprintOverrides(
 
     validateManualData(data);
 
-    return data;
+    return {
+      ...data,
+      completionRate: data.completionRate ?? null,
+    };
   } catch (error) {
     if (error instanceof Error && "code" in error && error.code === "ENOENT") {
       return EMPTY_MANUAL_DATA;
@@ -133,6 +148,11 @@ export async function saveSprintOverrides(
 ): Promise<SprintManualData> {
   validateManualData(data);
 
+  const normalized: SprintManualData = {
+    ...data,
+    completionRate: data.completionRate ?? null,
+  };
+
   const directory = join(process.cwd(), "config", "sprints");
 
   const path = getSprintOverridePath(sprintId);
@@ -141,7 +161,7 @@ export async function saveSprintOverrides(
     recursive: true,
   });
 
-  await writeFile(path, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+  await writeFile(path, `${JSON.stringify(normalized, null, 2)}\n`, "utf8");
 
-  return data;
+  return normalized;
 }
