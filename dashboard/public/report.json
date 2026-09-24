@@ -120,7 +120,7 @@
         "key": "ERPBACK-9692",
         "summary": "PCP|FRONT| Создание дизайн-системы",
         "issueType": "Задача",
-        "status": "В процессе"
+        "status": "Отложена"
       },
       {
         "key": "ERPBACK-9667",
@@ -352,6 +352,7 @@
         }
       ],
       "qa": []
-    }
+    },
+    "completionRate": 100
   }
 }

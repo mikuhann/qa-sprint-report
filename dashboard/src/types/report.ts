@@ -193,6 +193,8 @@ export interface SprintReport {
   manual: {
     qaAssessment: "good" | "average" | "poor" | null;
 
+    completionRate: number | null;
+
     comment: string | null;
 
     goals: {

@@ -36,21 +36,6 @@ const STATUS_META = {
   },
 } as const;
 
-const ASSESSMENT_META = {
-  good: {
-    label: "Good",
-    className: "bg-emerald-100 text-emerald-700",
-  },
-  average: {
-    label: "Average",
-    className: "bg-amber-100 text-amber-700",
-  },
-  poor: {
-    label: "Poor",
-    className: "bg-red-100 text-red-700",
-  },
-} as const;
-
 export function SprintGoals({ manual }: SprintGoalsProps) {
   const groups = [
     {
@@ -75,11 +60,7 @@ export function SprintGoals({ manual }: SprintGoalsProps) {
 
   const hasGoals = groups.some((group) => group.goals.length > 0);
 
-  const assessment = manual.qaAssessment
-    ? ASSESSMENT_META[manual.qaAssessment]
-    : null;
-
-  if (!hasGoals && !assessment && !manual.comment) {
+  if (!hasGoals && !manual.comment) {
     return null;
   }
 
@@ -90,17 +71,9 @@ export function SprintGoals({ manual }: SprintGoalsProps) {
           <h2 className="text-lg font-semibold text-slate-950">Sprint goals</h2>
 
           <p className="mt-1 text-sm text-slate-500">
-            Goals and QA assessment for the sprint
+            Goals planned for the sprint
           </p>
         </div>
-
-        {assessment && (
-          <div
-            className={`rounded-full px-3 py-1 text-sm font-medium ${assessment.className}`}
-          >
-            QA assessment: {assessment.label}
-          </div>
-        )}
       </div>
 
       {hasGoals && (

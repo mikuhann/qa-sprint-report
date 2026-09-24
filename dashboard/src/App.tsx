@@ -20,6 +20,7 @@ import { ReleasedVersions } from "./components/ReleasedVersions";
 import { getReportWarnings, groupReportWarnings } from "./utils/reportWarnings";
 import { SprintGoals } from "./components/SprintGoals";
 import { ReportSettingsDrawer } from "./components/ReportSettingsDrawer";
+import { SprintSummary } from "./components/SprintSummary";
 
 import { loadReport, saveManualData } from "./api/report";
 import type { SprintReport } from "./types/report";
@@ -114,6 +115,8 @@ function App() {
             icon={<TriangleAlert size={20} />}
           />
         </div>
+
+        <SprintSummary manual={report.manual} />
 
         <SprintGoals manual={report.manual} />
 

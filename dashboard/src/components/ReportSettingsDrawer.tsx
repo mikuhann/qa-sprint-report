@@ -69,12 +69,22 @@ export function ReportSettingsDrawer({
     }));
   };
 
+  const hasInvalidCompletionRate =
+    draft.completionRate !== null &&
+    (!Number.isFinite(draft.completionRate) ||
+      draft.completionRate < 0 ||
+      draft.completionRate > 100);
+
   const hasEmptyGoals = Object.values(draft.goals)
     .flat()
     .some((goal) => !goal.text.trim());
 
   const handleSave = async () => {
     if (hasEmptyGoals || isSaving) {
+      return;
+    }
+
+    if (hasEmptyGoals || hasInvalidCompletionRate || isSaving) {
       return;
     }
 
@@ -135,7 +145,7 @@ export function ReportSettingsDrawer({
             </h2>
 
             <p className="mt-1 text-sm text-slate-500">
-              Sprint goals and QA assessment
+              Sprint goals, completion and QA assessment
             </p>
           </div>
 
@@ -184,6 +194,44 @@ export function ReportSettingsDrawer({
                 <option value="average">Average</option>
                 <option value="poor">Poor</option>
               </select>
+            </div>
+
+            <div>
+              <label
+                htmlFor="completion-rate"
+                className="text-sm font-medium text-slate-800"
+              >
+                Completion rate
+              </label>
+
+              <p className="mt-1 text-sm text-slate-500">
+                Sprint completion percentage provided by QA
+              </p>
+
+              <div className="relative mt-3">
+                <input
+                  id="completion-rate"
+                  type="number"
+                  min={0}
+                  max={100}
+                  step={0.01}
+                  value={draft.completionRate ?? ""}
+                  onChange={(event) => {
+                    const value = event.target.value;
+
+                    setDraft((current) => ({
+                      ...current,
+                      completionRate: value === "" ? null : Number(value),
+                    }));
+                  }}
+                  placeholder="46.94"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 pr-10 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-200"
+                />
+
+                <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-slate-400">
+                  %
+                </span>
+              </div>
             </div>
 
             <div>
@@ -338,6 +386,12 @@ export function ReportSettingsDrawer({
           </p>
         )}
 
+        {hasInvalidCompletionRate && (
+          <p className="px-6 pb-3 text-sm text-red-600">
+            Completion rate must be between 0 and 100.
+          </p>
+        )}
+
         <footer className="flex justify-end gap-3 border-t border-slate-200 px-6 py-4">
           <button
             type="button"
@@ -351,7 +405,7 @@ export function ReportSettingsDrawer({
           <button
             type="button"
             onClick={handleSave}
-            disabled={isSaving || hasEmptyGoals}
+            disabled={isSaving || hasEmptyGoals || hasInvalidCompletionRate}
             className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {isSaving ? "Saving..." : "Save"}
