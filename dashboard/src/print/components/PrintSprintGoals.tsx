@@ -62,43 +62,19 @@ export function PrintSprintGoals({ manual }: PrintSprintGoalsProps) {
     <div className="mt-5 space-y-5">
       {groups.map((group) => {
         const Icon = group.icon;
-        const [firstGoal, ...restGoals] = group.goals;
-
-        const renderGoal = (
-          goal: (typeof group.goals)[number],
-          index: number,
-          withBreakClass = true,
-        ) => {
-          const status = STATUS_META[goal.status];
-          const StatusIcon = status.icon;
-
-          return (
-            <div
-              key={`${group.key}-${index}`}
-              className={`flex items-center justify-between gap-5 border-b border-slate-100 px-2 py-2.5 last:border-b-0 ${
-                withBreakClass ? "pdf-goal-item" : ""
-              }`}
-            >
-              <div className="text-sm leading-5 text-slate-800">
-                {goal.text}
-              </div>
-
-              <div
-                className={`flex shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${status.className}`}
-              >
-                <StatusIcon size={12} />
-                {status.label}
-              </div>
-            </div>
-          );
-        };
 
         return (
-          <section key={group.key} className="pdf-goal-group">
-            {firstGoal ? (
-              <>
-                <div className="pdf-goal-item">
-                  <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
+          <table
+            key={group.key}
+            className="pdf-goal-table w-full border-collapse"
+          >
+            <thead>
+              <tr>
+                <th
+                  colSpan={2}
+                  className="border-b border-slate-200 pb-2 text-left font-normal"
+                >
+                  <div className="flex items-center gap-2">
                     <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
                       <Icon size={17} />
                     </div>
@@ -111,30 +87,45 @@ export function PrintSprintGoals({ manual }: PrintSprintGoalsProps) {
                       {group.goals.length}
                     </span>
                   </div>
+                </th>
+              </tr>
+            </thead>
 
-                  <div className="mt-2">{renderGoal(firstGoal, 0, false)}</div>
-                </div>
+            <tbody>
+              {group.goals.length ? (
+                group.goals.map((goal, index) => {
+                  const status = STATUS_META[goal.status];
+                  const StatusIcon = status.icon;
 
-                {restGoals.map((goal, index) => renderGoal(goal, index + 1))}
-              </>
-            ) : (
-              <div className="pdf-goal-item">
-                <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
-                  <div className="rounded-lg bg-slate-100 p-2 text-slate-600">
-                    <Icon size={17} />
-                  </div>
+                  return (
+                    <tr
+                      key={`${group.key}-${index}`}
+                      className="pdf-goal-row border-b border-slate-100 last:border-b-0"
+                    >
+                      <td className="py-2.5 pl-2 pr-5 text-sm leading-5 text-slate-800">
+                        {goal.text}
+                      </td>
 
-                  <h3 className="text-base font-semibold text-slate-900">
-                    {group.title}
-                  </h3>
-
-                  <span className="text-sm text-slate-400">0</span>
-                </div>
-
-                <p className="mt-3 text-sm text-slate-400">Цели не указаны</p>
-              </div>
-            )}
-          </section>
+                      <td className="w-1 whitespace-nowrap py-2.5 pr-2 text-right">
+                        <span
+                          className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${status.className}`}
+                        >
+                          <StatusIcon size={12} />
+                          {status.label}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr className="pdf-goal-row">
+                  <td colSpan={2} className="py-3 pl-2 text-sm text-slate-400">
+                    Цели не указаны
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         );
       })}
     </div>

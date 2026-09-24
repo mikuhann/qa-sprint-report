@@ -8,6 +8,11 @@ import type { SprintReport } from "../types/report";
 import { PrintSprintProgress } from "./components/PrintSprintProgress";
 import { PrintSprintSignals } from "./components/PrintSprintSignals";
 import { PrintSprintGoals } from "./components/PrintSprintGoals";
+import { PrintUnresolvedIssues } from "./components/PrintUnresolvedIssues";
+import { PrintReleasedVersions } from "./components/PrintReleasedVersions";
+import { PrintQualityOverview } from "./components/PrintQualityOverview";
+import { PrintQualityDetails } from "./components/PrintQualityDetails";
+import { PrintDataQuality } from "./components/PrintDataQuality";
 
 interface PrintDocumentProps {
   report: SprintReport;
@@ -95,7 +100,7 @@ export function PrintDocument({ report }: PrintDocumentProps) {
         <PrintSprintGoals manual={report.manual} />
       </section>
 
-      <section className="pdf-page px-8 py-7">
+      <section className="pdf-page pdf-page-break px-8 py-7">
         <div>
           <h2 className="text-2xl font-semibold text-slate-950">Ход спринта</h2>
 
@@ -122,6 +127,58 @@ export function PrintDocument({ report }: PrintDocumentProps) {
           carryOver={report.carryOver}
           reopened={report.reopened}
         />
+      </section>
+      <section className="pdf-details-section px-8 py-7">
+        <div>
+          <h2 className="text-2xl font-semibold text-slate-950">
+            Детали спринта
+          </h2>
+
+          <p className="mt-1 text-sm text-slate-500">
+            Незавершённые задачи и выпущенные релизы
+          </p>
+        </div>
+        <PrintReleasedVersions versions={report.releasedVersions} />
+        <PrintUnresolvedIssues issues={report.unresolvedIssues} />
+      </section>
+      <section className="pdf-page pdf-page-break px-8 py-7">
+        <div>
+          <h2 className="text-2xl font-semibold text-slate-950">
+            Качество спринта
+          </h2>
+
+          <p className="mt-1 text-sm text-slate-500">
+            Анализ дефектов и их критичности
+          </p>
+        </div>
+
+        <PrintQualityOverview report={report} />
+      </section>
+      <section className="pdf-page pdf-page-break px-8 py-7">
+        <div>
+          <h2 className="text-2xl font-semibold text-slate-950">
+            Результаты качества
+          </h2>
+
+          <p className="mt-1 text-sm text-slate-500">
+            Резолюции и распределение дефектов по разработчикам
+          </p>
+        </div>
+
+        <PrintQualityDetails report={report} />
+      </section>
+      <section className="pdf-data-quality-section px-8 py-7">
+        <div>
+          <h2 className="text-2xl font-semibold text-slate-950">
+            Качество данных
+          </h2>
+
+          <p className="mt-1 text-sm text-slate-500">
+            Проверка корректности данных, используемых в отчёте
+          </p>
+        </div>
+
+        <PrintDataQuality warnings={report.warnings} />
       </section>
     </main>
   );

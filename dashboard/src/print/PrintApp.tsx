@@ -5,6 +5,34 @@ import { PrintDocument } from "./PrintDocument";
 import { loadReport } from "../api/report";
 import type { SprintReport } from "../types/report";
 
+async function waitForCharts(root: HTMLElement, timeout = 3000): Promise<void> {
+  const startedAt = Date.now();
+
+  while (Date.now() - startedAt < timeout) {
+    const containers = root.querySelectorAll(".recharts-responsive-container");
+
+    const ready =
+      containers.length > 0 &&
+      Array.from(containers).every((container) =>
+        container.querySelector("svg"),
+      );
+
+    if (ready) {
+      await new Promise<void>((resolve) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => resolve());
+        });
+      });
+
+      return;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+
+  console.warn("Recharts did not finish rendering before PDF preview");
+}
+
 export function PrintApp() {
   const [report, setReport] = useState<SprintReport | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -36,6 +64,8 @@ export function PrintApp() {
         });
       });
 
+      await waitForCharts(sourceRef.current!);
+
       const previewer = new Previewer();
 
       previewRef.current!.innerHTML = "";
@@ -55,7 +85,16 @@ export function PrintApp() {
       break-after: page;
     }
 
-    .pdf-goal-item {
+    .pdf-goal-table {
+      break-inside: auto;
+    }
+
+    .pdf-goal-row {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .pdf-goal-table thead {
       break-inside: avoid;
     }
 
@@ -72,6 +111,19 @@ export function PrintApp() {
     a:focus,
     a:focus-visible {
       outline: none;
+    }
+
+    .pdf-details-section {
+      break-after: page;
+    }
+
+    .pdf-unresolved-table {
+      break-inside: auto;
+    }
+
+    .pdf-unresolved-row {
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
   `,
       };
