@@ -101,6 +101,7 @@ export interface SprintReport {
   links: ReportLinks;
   insights: SprintInsights;
   warnings: ReportWarnings;
+  unresolvedIssues: UnresolvedIssue[];
   manual: SprintManualData;
 }
 
@@ -264,4 +265,12 @@ export interface SprintInsights {
     name: string;
     defects: number;
   }[];
+}
+
+export interface UnresolvedIssue {
+  key: string;
+  summary: string;
+  issueType: string;
+  status: string;
+  priority: string | null;
 }

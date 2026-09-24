@@ -1,5 +1,5 @@
 {
-  "qaAssessment": "good",
+  "qaAssessment": "poor",
   "comment": "REPORT-009 API test",
   "goals": {
     "backend": [],

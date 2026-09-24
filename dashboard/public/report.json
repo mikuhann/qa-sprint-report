@@ -40,6 +40,190 @@
     "closed": 22,
     "blocked": 0
   },
+  "unresolvedIssues": [
+    {
+      "key": "ERPBACK-9770",
+      "summary": "ERP |FRONT| CRM -> Клиент -> История сотрудничества: История -> Сотрудничества: добавить фильтр по нескольким параметрам <5>",
+      "issueType": "Задача",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9768",
+      "summary": "ERP [FRONT] CRM - Клиенты - фильтры: При применении фильтра отправляется дополнительный запрос, который возвращает статус (canceled)",
+      "issueType": "Баг",
+      "status": "CODE REVIEW",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9760",
+      "summary": "tERPi [BACK] Транзакции - Экспорт: У аккаунтов, по которым было обнуление лимитов, не определяется рекламный сервис",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9759",
+      "summary": "tERPi [BACK] Транзакции - Списание: Аккаунт, на котором обнулялись лимиты, отображается в колонке \"Аккаунт на\"",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9756",
+      "summary": "CLONE - ERP [FRONT] CRM - История - Сотрудничества: Рефакторинг - Вынести все инлайн стили из разметки и привести к единому формату",
+      "issueType": "Задача",
+      "status": "CODE REVIEW",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9738",
+      "summary": "ERP [BACK] Коммуникации: Не определяется сотрудник, ответивший на звонок, при поступлении входящего звонка",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9693",
+      "summary": "ERP [BACK] SMS уведомления - уведомление об окончании средств: Не пришло уведомление клиенту Голд оптик",
+      "issueType": "Баг",
+      "status": "CODE REVIEW",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9671",
+      "summary": "ERP|BACK| Настроить \"мягкое\" удаление причин расторжения и приостановки",
+      "issueType": "Задача",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9665",
+      "summary": "ERP|BACK| Скорректировать запрос на получение PDF акта нерезидента (убрать в запросе англ. версию)",
+      "issueType": "Задача",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9653",
+      "summary": "tERPi|BACK| Скорректировать логику заполнения статуса транзакции",
+      "issueType": "Задача",
+      "status": "CODE REVIEW",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9652",
+      "summary": "tERPi|BACK| Скорректировать логику заполнения таблицы transaction_log",
+      "issueType": "Задача",
+      "status": "CODE REVIEW",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9651",
+      "summary": "ERP |FRONT| CRM - Проекты - Настройки - Добавление аккаунта [ЯБ]: сделать поле \"Название клиента\" НЕуникальным",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9650",
+      "summary": "ERP |BACK| CRM - Проекты - Настройки - Добавление аккаунта [ЯБ]: сделать поле \"Название клиента\" НЕуникальным",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9563",
+      "summary": "ERP [BACK] CRM - Проекты - Настройки - Настройка доступов а аккаунту: Нет возможности удалить ранее предоставленный доступ к аккаунту",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9446",
+      "summary": "ERP |FRONT| <2.1> КАК пользователь ERP, я должен иметь возможность добавить и отредактировать аккаунт Ozon в настройках проекта",
+      "issueType": "История",
+      "status": "Отложена",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9424",
+      "summary": "CP |BACK| <4> Вывод на дашборд Управления аккаунтами, а также в модальные окна: Перевод средств и  Запрос на формирования счета аккаунтов нового сервиса Ozon",
+      "issueType": "Задача",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9423",
+      "summary": "TERPI |BACK| <3> КАК пользователь TERPI, я должен иметь возможность выбрать новый тип договора Ozon для Партнеров",
+      "issueType": "История",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9422",
+      "summary": "ERP |BACK| <2> КАК пользователь ERP, я должен иметь возможность добавить и отредактировать аккаунт Ozon в настройках проекта",
+      "issueType": "История",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9416",
+      "summary": "ERP |BACK| <1> КАК пользователь ERP, я должен иметь возможность выбрать новый тип договора Ozon вместо Snapchat",
+      "issueType": "История",
+      "status": "В процессе",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9314",
+      "summary": "ERP |BACK| Уведомление о завершении начисления бонусов клиентам: разделить по компаниям",
+      "issueType": "Задача",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-9308",
+      "summary": "tERPi [BACK] Боковое меню: Запрос /api/user-context возвращает неверное число сообщений",
+      "issueType": "Баг",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-8957",
+      "summary": "ERP |BACK| CRM -> Экспорт контактов и клиентов: добавить новые параметры в фильтры для выгрузки <6>",
+      "issueType": "Задача",
+      "status": "CODE REVIEW",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-8956",
+      "summary": "ERP |BACK| CRM -> Клиент -> История сотрудничества: История -> Сотрудничества: добавить фильтр по нескольким параметрам <5>",
+      "issueType": "Задача",
+      "status": "В процессе",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-8917",
+      "summary": "ERP|BACK| Документирование модуля \"Настройки услуг\"",
+      "issueType": "Задача",
+      "status": "В работу",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-8521",
+      "summary": "ERP|tERPi|FRONT| Как пользователь я хочу иметь возможность подтвердить синхронизацию при необходимости обновление данных клиента и Партнера после подтверждения и видеть результат обновления",
+      "issueType": "История",
+      "status": "В процессе",
+      "priority": null
+    },
+    {
+      "key": "ERPBACK-8423",
+      "summary": "ERP|tERPI|BACK| Как пользователь я хочу синхронизировать при необходимости обновление данных Партнера и Клиента после подтверждения, чтобы сократить время на обновление данных в разных приложениях и избежать некорректности данных",
+      "issueType": "История",
+      "status": "CODE REVIEW",
+      "priority": null
+    }
+  ],
   "issueTypes": {
     "total": 57,
     "stories": 10,
@@ -532,7 +716,7 @@
     ]
   },
   "manual": {
-    "qaAssessment": "good",
+    "qaAssessment": "poor",
     "comment": "REPORT-009 API test",
     "goals": {
       "backend": [],

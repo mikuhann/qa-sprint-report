@@ -26,6 +26,14 @@ export interface SprintReport {
     blocked: number;
   };
 
+  unresolvedIssues: {
+    key: string;
+    summary: string;
+    issueType: string;
+    status: string;
+    priority: string | null;
+  }[];
+
   issueTypes: {
     total: number;
     stories: number;

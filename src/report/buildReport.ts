@@ -129,7 +129,15 @@ export async function buildReport(): Promise<SprintReport> {
       url: buildVersionIssuesLink(version.id),
     })),
 
-    tasks: calculateSprintTaskStatistics(issues),
+    tasks: tasksStatistics,
+
+    unresolvedIssues: taskGroups.unresolved.map((issue) => ({
+      key: issue.key,
+      summary: issue.fields.summary,
+      issueType: issue.fields.issuetype.name,
+      status: issue.fields.status.name,
+      priority: issue.fields.priority?.name ?? null,
+    })),
 
     issueTypes: calculateIssueTypeStatistics(deliveryIssues),
 

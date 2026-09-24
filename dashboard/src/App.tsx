@@ -25,6 +25,7 @@ import { SprintSummary } from "./components/SprintSummary";
 import { loadReport, saveManualData } from "./api/report";
 import type { SprintReport } from "./types/report";
 import { SprintHighlights } from "./components/SprintHighlights";
+import { UnresolvedIssues } from "./components/UnresolvedIssues";
 
 function App() {
   const [report, setReport] = useState<SprintReport | null>(null);
@@ -136,6 +137,11 @@ function App() {
         <IssueBreakdown
           issueTypes={report.issueTypes}
           links={report.links.issueTypes}
+        />
+
+        <UnresolvedIssues
+          issues={report.unresolvedIssues}
+          href={report.links.tasks.unresolved}
         />
 
         <SprintSignals
