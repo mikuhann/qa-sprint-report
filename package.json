@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx src/index.ts",
-    "build": "tsc",
-    "server": "tsx watch src/server.ts"
+    "report": "tsx src/index.ts",
+    "server": "tsx watch src/server.ts",
+    "dashboard": "npm --prefix dashboard run dev",
+    "dev": "npm run report && concurrently -k -n API,DASHBOARD -c cyan,magenta \"npm run server\" \"npm run dashboard\"",
+    "build:generator": "tsc",
+    "build:dashboard": "npm --prefix dashboard run build",
+    "build": "npm run build:generator && npm run build:dashboard",
+    "lint": "npm --prefix dashboard run lint"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.20.3",
+    "concurrently": "^10.0.5",
     "playwright": "^1.63.0",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"

@@ -35,8 +35,8 @@ import { getAssigneeHistory } from "../jira/changelog.js";
 
 import type { SprintReport } from "./types.js";
 
-export async function buildReport(): Promise<SprintReport> {
-  const meta = await getSprintReportMeta();
+export async function buildReport(sprintId?: number): Promise<SprintReport> {
+  const meta = await getSprintReportMeta(sprintId);
 
   const releasedVersions = await getReleasedVersionsForPeriod(
     meta.queryStartDate,

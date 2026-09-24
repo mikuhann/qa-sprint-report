@@ -1,10 +1,32 @@
 import { buildReport } from "./report/buildReport.js";
 import { writeReport } from "./report/writeReport.js";
 
-async function main() {
-  console.log("Generating sprint report...");
+function getSprintIdFromArgs(): number | undefined {
+  const index = process.argv.indexOf("--sprint");
 
-  const report = await buildReport();
+  if (index === -1) {
+    return undefined;
+  }
+
+  const value = process.argv[index + 1];
+  const sprintId = Number(value);
+
+  if (!value || !Number.isInteger(sprintId)) {
+    throw new Error("Sprint ID must be an integer. Example: --sprint 1041");
+  }
+
+  return sprintId;
+}
+
+async function main() {
+  const sprintId = getSprintIdFromArgs();
+  console.log(
+    sprintId
+      ? `Generating report for sprint ${sprintId}...`
+      : "Generating report for active sprint...",
+  );
+
+  const report = await buildReport(sprintId);
 
   const paths = await writeReport(report);
 

@@ -13,7 +13,13 @@ export function PrintApp() {
   const previewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    loadReport()
+    const params = new URLSearchParams(window.location.search);
+
+    const sprintParam = params.get("sprint");
+
+    const sprintId = sprintParam ? Number(sprintParam) : undefined;
+
+    loadReport(sprintId)
       .then(setReport)
       .catch((error: unknown) => {
         setError(

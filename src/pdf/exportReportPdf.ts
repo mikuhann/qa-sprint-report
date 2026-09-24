@@ -2,7 +2,7 @@ import { chromium } from "playwright";
 
 const DASHBOARD_URL = process.env.DASHBOARD_URL ?? "http://localhost:5173";
 
-export async function exportReportPdf(): Promise<Buffer> {
+export async function exportReportPdf(sprintId?: number): Promise<Buffer> {
   const browser = await chromium.launch({
     headless: true,
   });
@@ -10,7 +10,15 @@ export async function exportReportPdf(): Promise<Buffer> {
   try {
     const page = await browser.newPage();
 
-    await page.goto(`${DASHBOARD_URL}/?print=1`, {
+    const params = new URLSearchParams({
+      print: "1",
+    });
+
+    if (sprintId) {
+      params.set("sprint", String(sprintId));
+    }
+
+    await page.goto(`${DASHBOARD_URL}/?${params.toString()}`, {
       waitUntil: "networkidle",
     });
 

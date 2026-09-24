@@ -25,7 +25,14 @@ import { SprintGoals } from "./components/SprintGoals";
 import { ReportSettingsDrawer } from "./components/ReportSettingsDrawer";
 import { SprintSummary } from "./components/SprintSummary";
 
-import { downloadReportPdf, loadReport, saveManualData } from "./api/report";
+import {
+  downloadReportPdf,
+  loadReport,
+  loadSprints,
+  saveManualData,
+} from "./api/report";
+
+import type { SprintListItem } from "./api/report";
 import type { SprintReport } from "./types/report";
 import { UnresolvedIssues } from "./components/UnresolvedIssues";
 
@@ -34,16 +41,70 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [pdfExporting, setPdfExporting] = useState(false);
+  const [sprints, setSprints] = useState<SprintListItem[]>([]);
+  const [selectedSprintId, setSelectedSprintId] = useState<number | null>(null);
+  const [reportLoading, setReportLoading] = useState(false);
 
   useEffect(() => {
-    loadReport()
-      .then(setReport)
-      .catch((error: unknown) => {
+    const load = async () => {
+      try {
+        const sprintList = await loadSprints();
+
+        setSprints(sprintList);
+
+        const params = new URLSearchParams(window.location.search);
+        const sprintFromUrl = Number(params.get("sprint"));
+
+        const sprintFromQuery = sprintList.find(
+          (sprint) => sprint.id === sprintFromUrl,
+        );
+
+        const defaultSprint =
+          sprintFromQuery ??
+          sprintList.find((sprint) => sprint.state === "active") ??
+          sprintList[0];
+
+        if (!defaultSprint) {
+          throw new Error("Спринты не найдены");
+        }
+
+        setSelectedSprintId(defaultSprint.id);
+      } catch (error) {
+        setError(
+          error instanceof Error
+            ? error.message
+            : "Не удалось загрузить список спринтов",
+        );
+      }
+    };
+
+    void load();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedSprintId) {
+      return;
+    }
+
+    const load = async () => {
+      try {
+        setReportLoading(true);
+        setError(null);
+
+        const nextReport = await loadReport(selectedSprintId);
+
+        setReport(nextReport);
+      } catch (error) {
         setError(
           error instanceof Error ? error.message : "Не удалось загрузить отчёт",
         );
-      });
-  }, []);
+      } finally {
+        setReportLoading(false);
+      }
+    };
+
+    void load();
+  }, [selectedSprintId]);
 
   if (error) {
     return <div className="p-8">{error}</div>;
@@ -74,18 +135,61 @@ function App() {
     }
   };
 
+  const handleSprintChange = (sprintId: number) => {
+    const params = new URLSearchParams(window.location.search);
+
+    params.set("sprint", String(sprintId));
+
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}?${params.toString()}`,
+    );
+
+    setSelectedSprintId(sprintId);
+  };
+
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-8">
-      <div className="mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-7xl">
+        {reportLoading && (
+          <div className="absolute inset-0 z-50 flex items-start justify-center bg-slate-50/70 pt-32 backdrop-blur-[1px]">
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-5 py-3 shadow-sm">
+              <LoaderCircle size={20} className="animate-spin text-slate-500" />
+
+              <span className="text-sm font-medium text-slate-700">
+                Загружаем спринт...
+              </span>
+            </div>
+          </div>
+        )}
         <header className="flex flex-wrap items-start justify-between gap-6">
           <div>
             <p className="text-sm font-medium uppercase tracking-wider text-slate-400">
               QA-отчёт по спринту
             </p>
 
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-950">
-              {report.meta.sprintName}
-            </h1>
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              <h1 className="text-3xl font-semibold tracking-tight text-slate-950">
+                {report.meta.sprintName}
+              </h1>
+
+              <select
+                value={selectedSprintId ?? ""}
+                onChange={(event) =>
+                  handleSprintChange(Number(event.target.value))
+                }
+                disabled={reportLoading}
+                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm outline-none transition hover:bg-slate-50 disabled:opacity-60"
+              >
+                {sprints.map((sprint) => (
+                  <option key={sprint.id} value={sprint.id}>
+                    {sprint.name}
+                    {sprint.state === "active" ? " · текущий" : ""}
+                  </option>
+                ))}
+              </select>
+            </div>
 
             <p className="mt-1 text-sm text-slate-500">
               {report.meta.sprintDates}

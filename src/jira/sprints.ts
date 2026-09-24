@@ -34,7 +34,30 @@ export async function getActiveSprint(): Promise<JiraSprint> {
   return sprint;
 }
 
-export async function getPreviousSprints(count = 2): Promise<JiraSprint[]> {
+export async function getPreviousSprintsFor(
+  sprint: JiraSprint,
+  count = 2,
+): Promise<JiraSprint[]> {
+  const closedSprints = await getClosedSprints();
+
+  if (sprint.state === "active") {
+    return closedSprints.slice(0, count);
+  }
+
+  const sprintIndex = closedSprints.findIndex((item) => item.id === sprint.id);
+
+  if (sprintIndex === -1) {
+    throw new Error(`Sprint ${sprint.id} not found in closed sprints`);
+  }
+
+  return closedSprints.slice(sprintIndex + 1, sprintIndex + 1 + count);
+}
+
+export async function getSprintById(sprintId: number): Promise<JiraSprint> {
+  return jiraGet<JiraSprint>(`/rest/agile/1.0/sprint/${sprintId}`);
+}
+
+async function getClosedSprints(): Promise<JiraSprint[]> {
   const allSprints: JiraSprint[] = [];
 
   let startAt = 0;
@@ -49,7 +72,6 @@ export async function getPreviousSprints(count = 2): Promise<JiraSprint[]> {
     allSprints.push(...data.values);
 
     isLast = data.isLast;
-
     startAt += data.values.length;
 
     if (data.values.length === 0) {
@@ -61,6 +83,14 @@ export async function getPreviousSprints(count = 2): Promise<JiraSprint[]> {
     .filter((sprint) => sprint.endDate)
     .sort(
       (a, b) => new Date(b.endDate!).getTime() - new Date(a.endDate!).getTime(),
-    )
-    .slice(0, count);
+    );
+}
+
+export async function getAvailableSprints(): Promise<JiraSprint[]> {
+  const [activeSprint, closedSprints] = await Promise.all([
+    getActiveSprint(),
+    getClosedSprints(),
+  ]);
+
+  return [activeSprint, ...closedSprints];
 }

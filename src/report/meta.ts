@@ -1,5 +1,9 @@
 import { env } from "../config/env.js";
-import { getActiveSprint, getPreviousSprints } from "../jira/sprints.js";
+import {
+  getActiveSprint,
+  getPreviousSprintsFor,
+  getSprintById,
+} from "../jira/sprints.js";
 
 import type { SprintReportMeta } from "./types.js";
 
@@ -54,9 +58,14 @@ function addDays(date: string, days: number): string {
   return value.toISOString().slice(0, 10);
 }
 
-export async function getSprintReportMeta(): Promise<SprintReportMeta> {
-  const sprint = await getActiveSprint();
-  const previousSprints = await getPreviousSprints(2);
+export async function getSprintReportMeta(
+  sprintId?: number,
+): Promise<SprintReportMeta> {
+  const sprint = sprintId
+    ? await getSprintById(sprintId)
+    : await getActiveSprint();
+
+  const previousSprints = await getPreviousSprintsFor(sprint, 2);
 
   if (!sprint.startDate || !sprint.endDate) {
     throw new Error(`Sprint ${sprint.id} has no startDate or endDate`);
