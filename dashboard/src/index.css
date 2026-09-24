@@ -9,3 +9,29 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+@page {
+  size: A4 landscape;
+  margin: 10mm;
+}
+
+@media screen {
+  .pagedjs_pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+
+    padding: 24px;
+
+    background: #e2e8f0;
+  }
+
+  .pagedjs_page {
+    background: white;
+
+    box-shadow:
+      0 10px 15px -3px rgb(15 23 42 / 0.1),
+      0 4px 6px -4px rgb(15 23 42 / 0.1);
+  }
+}
