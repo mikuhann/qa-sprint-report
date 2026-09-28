@@ -34,32 +34,25 @@
   ],
   "tasks": {
     "total": 60,
-    "unresolved": 28,
-    "testing": 7,
-    "waitingRelease": 3,
+    "unresolved": 21,
+    "testing": 9,
+    "waitingRelease": 6,
     "closed": 22,
-    "blocked": 0
+    "blocked": 2
   },
   "unresolvedIssues": [
     {
       "key": "ERPBACK-9774",
       "summary": "CP [FRONT] Ошибки Яндекс и Google аналитики",
       "issueType": "Баг",
-      "status": "В работу",
-      "priority": null
-    },
-    {
-      "key": "ERPBACK-9773",
-      "summary": "ERP [BACK] php yii cron/context-cy-money-notify: Джоба не содержит сообщений для отправки КЛ об остатке рекламного бюджета",
-      "issueType": "Баг",
-      "status": "В работу",
+      "status": "В процессе",
       "priority": null
     },
     {
       "key": "ERPBACK-9770",
       "summary": "ERP |FRONT| CRM -> Клиент -> История сотрудничества: История -> Сотрудничества: добавить фильтр по нескольким параметрам <5>",
       "issueType": "Задача",
-      "status": "В работу",
+      "status": "В процессе",
       "priority": null
     },
     {
@@ -67,20 +60,6 @@
       "summary": "ERP [FRONT] CRM - Клиенты - фильтры: При применении фильтра отправляется дополнительный запрос, который возвращает статус (canceled)",
       "issueType": "Баг",
       "status": "CODE REVIEW",
-      "priority": null
-    },
-    {
-      "key": "ERPBACK-9760",
-      "summary": "tERPi [BACK] Транзакции - Экспорт: У аккаунтов, по которым было обнуление лимитов, не определяется рекламный сервис",
-      "issueType": "Баг",
-      "status": "В работу",
-      "priority": null
-    },
-    {
-      "key": "ERPBACK-9759",
-      "summary": "tERPi [BACK] Транзакции - Списание: Аккаунт, на котором обнулялись лимиты, отображается в колонке \"Аккаунт на\"",
-      "issueType": "Баг",
-      "status": "В работу",
       "priority": null
     },
     {
@@ -98,13 +77,6 @@
       "priority": null
     },
     {
-      "key": "ERPBACK-9693",
-      "summary": "ERP [BACK] SMS уведомления - уведомление об окончании средств: Не пришло уведомление клиенту Голд оптик",
-      "issueType": "Баг",
-      "status": "CODE REVIEW",
-      "priority": null
-    },
-    {
       "key": "ERPBACK-9671",
       "summary": "ERP|BACK| Настроить \"мягкое\" удаление причин расторжения и приостановки",
       "issueType": "Задача",
@@ -119,31 +91,17 @@
       "priority": null
     },
     {
-      "key": "ERPBACK-9653",
-      "summary": "tERPi|BACK| Скорректировать логику заполнения статуса транзакции",
-      "issueType": "Задача",
-      "status": "CODE REVIEW",
-      "priority": null
-    },
-    {
-      "key": "ERPBACK-9652",
-      "summary": "tERPi|BACK| Скорректировать логику заполнения таблицы transaction_log",
-      "issueType": "Задача",
-      "status": "CODE REVIEW",
-      "priority": null
-    },
-    {
       "key": "ERPBACK-9651",
       "summary": "ERP |FRONT| CRM - Проекты - Настройки - Добавление аккаунта [ЯБ]: сделать поле \"Название клиента\" НЕуникальным",
       "issueType": "Баг",
-      "status": "В работу",
+      "status": "Отложена",
       "priority": null
     },
     {
       "key": "ERPBACK-9650",
       "summary": "ERP |BACK| CRM - Проекты - Настройки - Добавление аккаунта [ЯБ]: сделать поле \"Название клиента\" НЕуникальным",
       "issueType": "Баг",
-      "status": "В работу",
+      "status": "В процессе",
       "priority": null
     },
     {
@@ -203,17 +161,10 @@
       "priority": null
     },
     {
-      "key": "ERPBACK-8957",
-      "summary": "ERP |BACK| CRM -> Экспорт контактов и клиентов: добавить новые параметры в фильтры для выгрузки <6>",
-      "issueType": "Задача",
-      "status": "CODE REVIEW",
-      "priority": null
-    },
-    {
       "key": "ERPBACK-8956",
       "summary": "ERP |BACK| CRM -> Клиент -> История сотрудничества: История -> Сотрудничества: добавить фильтр по нескольким параметрам <5>",
       "issueType": "Задача",
-      "status": "В процессе",
+      "status": "CODE REVIEW",
       "priority": null
     },
     {
@@ -227,7 +178,7 @@
       "key": "ERPBACK-8521",
       "summary": "ERP|tERPi|FRONT| Как пользователь я хочу иметь возможность подтвердить синхронизацию при необходимости обновление данных клиента и Партнера после подтверждения и видеть результат обновления",
       "issueType": "История",
-      "status": "В процессе",
+      "status": "CODE REVIEW",
       "priority": null
     },
     {
@@ -265,10 +216,10 @@
     ]
   },
   "resolutions": {
-    "total": 25,
-    "ready": 12,
+    "total": 28,
+    "ready": 13,
     "fixed": 10,
-    "resolvedInTask": 0,
+    "resolvedInTask": 2,
     "notBug": 0,
     "cannotReproduce": 0,
     "duplicate": 0,
@@ -318,8 +269,134 @@
   ],
   "carryOver": {
     "fromSprintId": 1074,
-    "total": 45,
+    "total": 97,
     "issues": [
+      {
+        "key": "ERPBACK-9775",
+        "summary": "ERP|CP|BACK| Обновить публичный договор iContext (09/2026)",
+        "issueType": "Задача",
+        "status": "Ожидает выгрузки"
+      },
+      {
+        "key": "ERPBACK-9774",
+        "summary": "CP [FRONT] Ошибки Яндекс и Google аналитики",
+        "issueType": "Баг",
+        "status": "В процессе"
+      },
+      {
+        "key": "ERPBACK-9773",
+        "summary": "ERP [BACK] php yii cron/context-cy-money-notify: Джоба не содержит сообщений для отправки КЛ об остатке рекламного бюджета",
+        "issueType": "Баг",
+        "status": "Отправлено в тестирование"
+      },
+      {
+        "key": "ERPBACK-9770",
+        "summary": "ERP |FRONT| CRM -> Клиент -> История сотрудничества: История -> Сотрудничества: добавить фильтр по нескольким параметрам <5>",
+        "issueType": "Задача",
+        "status": "В процессе"
+      },
+      {
+        "key": "ERPBACK-9768",
+        "summary": "ERP [FRONT] CRM - Клиенты - фильтры: При применении фильтра отправляется дополнительный запрос, который возвращает статус (canceled)",
+        "issueType": "Баг",
+        "status": "CODE REVIEW"
+      },
+      {
+        "key": "ERPBACK-9760",
+        "summary": "tERPi [BACK] Транзакции - Экспорт: У аккаунтов, по которым было обнуление лимитов, не определяется рекламный сервис",
+        "issueType": "Баг",
+        "status": "Отправлено в тестирование"
+      },
+      {
+        "key": "ERPBACK-9759",
+        "summary": "tERPi [BACK] Транзакции - Списание: Аккаунт, на котором обнулялись лимиты, отображается в колонке \"Аккаунт на\"",
+        "issueType": "Баг",
+        "status": "Отправлено в тестирование"
+      },
+      {
+        "key": "ERPBACK-9756",
+        "summary": "CLONE - ERP [FRONT] CRM - История - Сотрудничества: Рефакторинг - Вынести все инлайн стили из разметки и привести к единому формату",
+        "issueType": "Задача",
+        "status": "CODE REVIEW"
+      },
+      {
+        "key": "ERPBACK-9746",
+        "summary": "TERPI |BACK| Сделать выгрузку всех контактных лиц Партнеров",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9735",
+        "summary": "ERP [FRONT] Обработка УСЗ: Поля выбора клиента и эмоций некликабельны, после открытия модального окна в старой вкладки и кэшем",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9732",
+        "summary": "tERPi [FRONT] Сводный отчет - Шаблоны актов: Почтовый адрес не подтягивается в шаблонах для самозанятых",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9728",
+        "summary": "PCP|FRONT| Добавление скрипта  carrot quest в dev кабинет партера вебком",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9727",
+        "summary": "PCP |BACK| Сделать выборку по контактным лицам согласно условию",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9724",
+        "summary": "ERP [BACK] Переход на v3 gate - Получение откруток google: Выполнение работы потока завершается при наличии в нем аккаунта с ошибкой",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9723",
+        "summary": "ERP [BACK] Штатное расписание - Управление ТВ - Бонусы: У пользователя нет возможности вернуть дефолтную картинку бонуса",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9721",
+        "summary": "ERP [BACK] Штатное расписание - Управление ТВ - Бонусы: При удалении бонуса нет подтверждающего сообщения",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9719",
+        "summary": "ERP [BACK] Штатное расписание - Управление ТВ - Бонусы: Формат даты и времени изменяется после клика кнопки \"Сохранить\"",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9718",
+        "summary": "ERP [BACK] Штатное расписание - Управление ТВ - Бонусы: Нет возможности загрузить файл размером 1.7 МБ",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9714",
+        "summary": "ERP [BACK] php artisan app:sync-doc-postpaid: Для всех валют установлено допустимая разница между суммой счета и суммой оплаты в 3 у.е.",
+        "issueType": "Баг",
+        "status": "Тестирование в процессе"
+      },
+      {
+        "key": "ERPBACK-9713",
+        "summary": "ERP|BACK| Доработать таблицу для заполнения историчности оплат по актам и счетам",
+        "issueType": "Задача",
+        "status": "Тестирование в процессе"
+      },
+      {
+        "key": "ERPBACK-9712",
+        "summary": "GATE|ERP|BACK| Перевести метод Get campaigns на V3",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
       {
         "key": "ERPBACK-9711",
         "summary": "ERP [BACK] Шаблоны двухсторонних договор Webcom: Электронная почта Icontext указана в реквизитах компании",
@@ -327,10 +404,16 @@
         "status": "Закрыто"
       },
       {
+        "key": "ERPBACK-9693",
+        "summary": "ERP [BACK] SMS уведомления - уведомление об окончании средств: Не пришло уведомление клиенту Голд оптик",
+        "issueType": "Баг",
+        "status": "Отправлено в тестирование"
+      },
+      {
         "key": "ERPBACK-9692",
         "summary": "PCP|FRONT| Создание дизайн-системы",
         "issueType": "Задача",
-        "status": "В процессе"
+        "status": "Отложена"
       },
       {
         "key": "ERPBACK-9685",
@@ -348,6 +431,12 @@
         "key": "ERPBACK-9675",
         "summary": "CP|FRONT| Отобразить кнопку установки связи gADS с Google аналитикой в личном кабинете",
         "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9672",
+        "summary": "ERP|BACK| Причины расторжения и приостановки -> Не работает кнопка \"Изменить\"",
+        "issueType": "Баг",
         "status": "Закрыто"
       },
       {
@@ -411,10 +500,46 @@
         "status": "Закрыто"
       },
       {
+        "key": "ERPBACK-9653",
+        "summary": "tERPi|BACK| Скорректировать логику заполнения статуса транзакции",
+        "issueType": "Задача",
+        "status": "Тестирование в процессе"
+      },
+      {
+        "key": "ERPBACK-9652",
+        "summary": "tERPi|BACK| Скорректировать логику заполнения таблицы transaction_log",
+        "issueType": "Задача",
+        "status": "Тестирование в процессе"
+      },
+      {
+        "key": "ERPBACK-9651",
+        "summary": "ERP |FRONT| CRM - Проекты - Настройки - Добавление аккаунта [ЯБ]: сделать поле \"Название клиента\" НЕуникальным",
+        "issueType": "Баг",
+        "status": "Отложена"
+      },
+      {
+        "key": "ERPBACK-9650",
+        "summary": "ERP |BACK| CRM - Проекты - Настройки - Добавление аккаунта [ЯБ]: сделать поле \"Название клиента\" НЕуникальным",
+        "issueType": "Баг",
+        "status": "В процессе"
+      },
+      {
+        "key": "ERPBACK-9639",
+        "summary": "ERP [FRONT] CRM - История - Сотрудничества: При вводе большого кол-ва символов поле растягивается вместе с окном",
+        "issueType": "Баг",
+        "status": "Ожидает выгрузки"
+      },
+      {
         "key": "ERPBACK-9630",
         "summary": "PCP / tERPi [BACK] php artisan app:partners-sync-all: Записался provider_id = 1 для всех аккаунтов",
         "issueType": "Баг",
         "status": "Ожидает выгрузки"
+      },
+      {
+        "key": "ERPBACK-9622",
+        "summary": "ERP [BACK] Штатное расписание - Управление ТВ - Бонусы: Записи невозможно поменять местами",
+        "issueType": "Баг",
+        "status": "Закрыто"
       },
       {
         "key": "ERPBACK-9621",
@@ -453,6 +578,12 @@
         "status": "Тестирование заблокировано"
       },
       {
+        "key": "ERPBACK-9563",
+        "summary": "ERP [BACK] CRM - Проекты - Настройки - Настройка доступов а аккаунту: Нет возможности удалить ранее предоставленный доступ к аккаунту",
+        "issueType": "Баг",
+        "status": "В работу"
+      },
+      {
         "key": "ERPBACK-9554",
         "summary": "CP |FRONT| Финансы и документы -> История переводов: Выводить логин для аккаунтов",
         "issueType": "Задача",
@@ -477,8 +608,56 @@
         "status": "Закрыто"
       },
       {
+        "key": "ERPBACK-9447",
+        "summary": "CP |FRONT| <4.1> Вывести новый сервис Ozon на страницу Управления аккаунтами",
+        "issueType": "Задача",
+        "status": "Тестирование заблокировано"
+      },
+      {
+        "key": "ERPBACK-9445",
+        "summary": "ERP|FRONT| <1.1> Справочники -> Настройка стандартных условий & Комиссии -> Значение комиссий: добавить иконки сервиса Ozon",
+        "issueType": "Задача",
+        "status": "Ожидает выгрузки"
+      },
+      {
+        "key": "ERPBACK-9444",
+        "summary": "ERP |FRONT| <10.1> Продажи: вывести иконку нового сервиса Ozon",
+        "issueType": "Задача",
+        "status": "Ожидает выгрузки"
+      },
+      {
+        "key": "ERPBACK-9443",
+        "summary": "ERP |FRONT| <6.1> CRM ->Проект (+ Проект Партнеры): вывести иконки нового сервиса Ozon",
+        "issueType": "Задача",
+        "status": "Ожидает выгрузки"
+      },
+      {
+        "key": "ERPBACK-9442",
+        "summary": "ERP |FRONT| <5.1> CRM: вывести иконки нового сервиса Ozon",
+        "issueType": "Задача",
+        "status": "Ожидает выгрузки"
+      },
+      {
+        "key": "ERPBACK-9439",
+        "summary": "ERP |FRONT| <7.1>  CRM -> История (+ История Партнеры): вывести иконки нового сервиса Ozon",
+        "issueType": "Задача",
+        "status": "Тестирование заблокировано"
+      },
+      {
         "key": "ERPBACK-9438",
         "summary": "PCP|FRONT| Рефакторинг: Закрытие технического долга по фронтенд-части проекта",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9416",
+        "summary": "ERP |BACK| <1> КАК пользователь ERP, я должен иметь возможность выбрать новый тип договора Ozon вместо Snapchat",
+        "issueType": "История",
+        "status": "В процессе"
+      },
+      {
+        "key": "ERPBACK-9373",
+        "summary": "ERP |FRONT| Переделать выгрузку клиентов и контактов под новые требования о сезонности",
         "issueType": "Задача",
         "status": "Закрыто"
       },
@@ -489,8 +668,44 @@
         "status": "Закрыто"
       },
       {
+        "key": "ERPBACK-9369",
+        "summary": "ERP |FRONT| Добавить возможность фильтровать клиентов на нескольких дашбордов, исходя из новой сезонности по календарным месяцам",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9368",
+        "summary": "ERP |BACK| Добавить возможность фильтровать клиентов на нескольких дашбордов, исходя из новой сезонности по календарным месяцам",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9367",
+        "summary": "ERP |FRONT| КАК сотрудник ОП, я хочу указывать сезонность работы по месяцам в модуле Продажи, а не только просматривать информацию о сезонности",
+        "issueType": "История",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9366",
+        "summary": "ERP |BACK| КАК сотрудник ОП, я хочу указывать сезонность работы по месяцам в модуле Продажи, а не только просматривать информацию о сезонности",
+        "issueType": "История",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9363",
+        "summary": "ERP |FRONT| КАК сотрудник ОП или ФСРК, я хочу указывать сезонность работы по месяцам в модуле Клиенты, а не только просматривать информацию о сезонности",
+        "issueType": "История",
+        "status": "Закрыто"
+      },
+      {
         "key": "ERPBACK-9362",
         "summary": "ERP |BACK| КАК сотрудник ОП или ФСРК, я хочу указывать сезонность работы по месяцам в модуле Клиенты, а не только просматривать информацию о сезонности",
+        "issueType": "История",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9359",
+        "summary": "ERP |FRONT| КАК сотрудник ОРК, я хочу указывать сезонность работы клиента по месяцам в модуле CRM, а не порам года, так как сезонность может быть выражена в определенные месяцы любой поры года",
         "issueType": "История",
         "status": "Закрыто"
       },
@@ -499,6 +714,24 @@
         "summary": "TERPI |BACK| КАК сотрудник ОРК, я хочу указывать сезонность работы клиента по месяцам в модуле CRM, а не порам года, так как сезонность может быть выражена в определенные месяцы любой поры года",
         "issueType": "История",
         "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9348",
+        "summary": "TERPi [FRONT] Переговорки: Невозможно открыть переговорки на Маяковского из терпи",
+        "issueType": "Баг",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9325",
+        "summary": "ERP |BACK| Настроить отправку уведомлений \"Встречи\" в ERP",
+        "issueType": "Задача",
+        "status": "Закрыто"
+      },
+      {
+        "key": "ERPBACK-9210",
+        "summary": "ERP [BACK] CRM - Клиенты - Проекты - Настройки: Невозможно создать аккаунт с новым МСС",
+        "issueType": "Баг",
+        "status": "В работу"
       },
       {
         "key": "ERPBACK-9033",
@@ -519,20 +752,50 @@
         "status": "Тестирование заблокировано"
       },
       {
+        "key": "ERPBACK-8957",
+        "summary": "ERP |BACK| CRM -> Экспорт контактов и клиентов: добавить новые параметры в фильтры для выгрузки <6>",
+        "issueType": "Задача",
+        "status": "Тестирование в процессе"
+      },
+      {
+        "key": "ERPBACK-8956",
+        "summary": "ERP |BACK| CRM -> Клиент -> История сотрудничества: История -> Сотрудничества: добавить фильтр по нескольким параметрам <5>",
+        "issueType": "Задача",
+        "status": "CODE REVIEW"
+      },
+      {
         "key": "ERPBACK-8955",
         "summary": "ERP |BACK| CRM -> Все клиенты, Мои клиенты, Мои клиенты СУ: дать возможность фильтровать пользователю проекты, оставив только те, у которых выбрана тема Удержание или Сложная ситуация по проекту <4>",
         "issueType": "Задача",
-        "status": "Отложена"
+        "status": "Отправлено в тестирование"
       },
       {
         "key": "ERPBACK-8951",
         "summary": "ERP |BACK| Подсвечивать проекты, где была выбрана тема заметки Удержание и/или Сложная ситуация по проекту <3>",
         "issueType": "Задача",
-        "status": "Отложена"
+        "status": "Отправлено в тестирование"
+      },
+      {
+        "key": "ERPBACK-8917",
+        "summary": "ERP|BACK| Документирование модуля \"Настройки услуг\"",
+        "issueType": "Задача",
+        "status": "В работу"
+      },
+      {
+        "key": "ERPBACK-8521",
+        "summary": "ERP|tERPi|FRONT| Как пользователь я хочу иметь возможность подтвердить синхронизацию при необходимости обновление данных клиента и Партнера после подтверждения и видеть результат обновления",
+        "issueType": "История",
+        "status": "CODE REVIEW"
       },
       {
         "key": "ERPBACK-8485",
         "summary": "ERP|tERPi|BACK| Как пользователь я хочу синхронизировать при необходимости обновление данных клиента и Партнера после подтверждения, чтобы сократить время на обновление данных в разных приложениях и избежать некорректности данных ",
+        "issueType": "История",
+        "status": "CODE REVIEW"
+      },
+      {
+        "key": "ERPBACK-8423",
+        "summary": "ERP|tERPI|BACK| Как пользователь я хочу синхронизировать при необходимости обновление данных Партнера и Клиента после подтверждения, чтобы сократить время на обновление данных в разных приложениях и избежать некорректности данных",
         "issueType": "История",
         "status": "CODE REVIEW"
       },
@@ -593,7 +856,7 @@
     ]
   },
   "reopened": {
-    "total": 2,
+    "total": 3,
     "issues": [
       {
         "key": "ERPBACK-9639",
@@ -608,17 +871,24 @@
         "issueType": "Задача",
         "status": "Ожидает выгрузки",
         "priority": "Серьезный"
+      },
+      {
+        "key": "ERPBACK-9210",
+        "summary": "ERP [BACK] CRM - Клиенты - Проекты - Настройки: Невозможно создать аккаунт с новым МСС",
+        "issueType": "Баг",
+        "status": "В работу",
+        "priority": "Блокер"
       }
     ]
   },
   "links": {
     "tasks": {
       "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
-      "unresolved": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9738%2C%20ERPBACK-9693%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9563%2C%20ERPBACK-9446%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
-      "testing": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9447%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9439)%20ORDER%20BY%20key%20DESC",
-      "waitingRelease": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9639%2C%20ERPBACK-9445%2C%20ERPBACK-9442)%20ORDER%20BY%20key%20DESC",
+      "unresolved": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9774%2C%20ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9756%2C%20ERPBACK-9738%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9563%2C%20ERPBACK-9446%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
+      "testing": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9773%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9693%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-8957)%20ORDER%20BY%20key%20DESC",
+      "waitingRelease": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9639%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442)%20ORDER%20BY%20key%20DESC",
       "closed": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9712%2C%20ERPBACK-9672%2C%20ERPBACK-9622%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
-      "blocked": null
+      "blocked": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9447%2C%20ERPBACK-9439)%20ORDER%20BY%20key%20DESC"
     },
     "issueTypes": {
       "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9738%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9693%2C%20ERPBACK-9672%2C%20ERPBACK-9671%2C%20ERPBACK-9665%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9563%2C%20ERPBACK-9447%2C%20ERPBACK-9446%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9424%2C%20ERPBACK-9423%2C%20ERPBACK-9422%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9314%2C%20ERPBACK-9308%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8423)%20ORDER%20BY%20key%20DESC",
@@ -638,10 +908,10 @@
     },
     "defectsOutsideSprint": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9730)%20ORDER%20BY%20key%20DESC",
     "resolutions": {
-      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9712%2C%20ERPBACK-9672%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9445%2C%20ERPBACK-9442%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
-      "ready": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9746%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9712%2C%20ERPBACK-9445%2C%20ERPBACK-9442%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
+      "total": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9712%2C%20ERPBACK-9672%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9373%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9348%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
+      "ready": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9746%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9712%2C%20ERPBACK-9445%2C%20ERPBACK-9442%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9359%2C%20ERPBACK-9325)%20ORDER%20BY%20key%20DESC",
       "fixed": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9672%2C%20ERPBACK-9639%2C%20ERPBACK-9622%2C%20ERPBACK-9348)%20ORDER%20BY%20key%20DESC",
-      "resolvedInTask": null,
+      "resolvedInTask": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9444%2C%20ERPBACK-9443)%20ORDER%20BY%20key%20DESC",
       "notBug": null,
       "cannotReproduce": null,
       "duplicate": null,
@@ -689,14 +959,14 @@
         "url": null
       }
     ],
-    "carryOver": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9711%2C%20ERPBACK-9692%2C%20ERPBACK-9685%2C%20ERPBACK-9684%2C%20ERPBACK-9675%2C%20ERPBACK-9669%2C%20ERPBACK-9668%2C%20ERPBACK-9667%2C%20ERPBACK-9666%2C%20ERPBACK-9664%2C%20ERPBACK-9663%2C%20ERPBACK-9662%2C%20ERPBACK-9661%2C%20ERPBACK-9657%2C%20ERPBACK-9656%2C%20ERPBACK-9630%2C%20ERPBACK-9621%2C%20ERPBACK-9619%2C%20ERPBACK-9617%2C%20ERPBACK-9599%2C%20ERPBACK-9591%2C%20ERPBACK-9583%2C%20ERPBACK-9554%2C%20ERPBACK-9553%2C%20ERPBACK-9511%2C%20ERPBACK-9494%2C%20ERPBACK-9438%2C%20ERPBACK-9372%2C%20ERPBACK-9362%2C%20ERPBACK-9358%2C%20ERPBACK-9033%2C%20ERPBACK-9025%2C%20ERPBACK-9024%2C%20ERPBACK-8955%2C%20ERPBACK-8951%2C%20ERPBACK-8485%2C%20ERPBACK-8375%2C%20ERPBACK-8370%2C%20ERPBACK-8369%2C%20ERPBACK-8283%2C%20ERPBACK-8281%2C%20ERPBACK-7906%2C%20ERPBACK-7379%2C%20ERPBACK-6714%2C%20ERPBACK-6703)%20ORDER%20BY%20key%20DESC",
-    "reopened": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9639%2C%20ERPBACK-9445)%20ORDER%20BY%20key%20DESC"
+    "carryOver": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9775%2C%20ERPBACK-9774%2C%20ERPBACK-9773%2C%20ERPBACK-9770%2C%20ERPBACK-9768%2C%20ERPBACK-9760%2C%20ERPBACK-9759%2C%20ERPBACK-9756%2C%20ERPBACK-9746%2C%20ERPBACK-9735%2C%20ERPBACK-9732%2C%20ERPBACK-9728%2C%20ERPBACK-9727%2C%20ERPBACK-9724%2C%20ERPBACK-9723%2C%20ERPBACK-9721%2C%20ERPBACK-9719%2C%20ERPBACK-9718%2C%20ERPBACK-9714%2C%20ERPBACK-9713%2C%20ERPBACK-9712%2C%20ERPBACK-9711%2C%20ERPBACK-9693%2C%20ERPBACK-9692%2C%20ERPBACK-9685%2C%20ERPBACK-9684%2C%20ERPBACK-9675%2C%20ERPBACK-9672%2C%20ERPBACK-9669%2C%20ERPBACK-9668%2C%20ERPBACK-9667%2C%20ERPBACK-9666%2C%20ERPBACK-9664%2C%20ERPBACK-9663%2C%20ERPBACK-9662%2C%20ERPBACK-9661%2C%20ERPBACK-9657%2C%20ERPBACK-9656%2C%20ERPBACK-9653%2C%20ERPBACK-9652%2C%20ERPBACK-9651%2C%20ERPBACK-9650%2C%20ERPBACK-9639%2C%20ERPBACK-9630%2C%20ERPBACK-9622%2C%20ERPBACK-9621%2C%20ERPBACK-9619%2C%20ERPBACK-9617%2C%20ERPBACK-9599%2C%20ERPBACK-9591%2C%20ERPBACK-9583%2C%20ERPBACK-9563%2C%20ERPBACK-9554%2C%20ERPBACK-9553%2C%20ERPBACK-9511%2C%20ERPBACK-9494%2C%20ERPBACK-9447%2C%20ERPBACK-9445%2C%20ERPBACK-9444%2C%20ERPBACK-9443%2C%20ERPBACK-9442%2C%20ERPBACK-9439%2C%20ERPBACK-9438%2C%20ERPBACK-9416%2C%20ERPBACK-9373%2C%20ERPBACK-9372%2C%20ERPBACK-9369%2C%20ERPBACK-9368%2C%20ERPBACK-9367%2C%20ERPBACK-9366%2C%20ERPBACK-9363%2C%20ERPBACK-9362%2C%20ERPBACK-9359%2C%20ERPBACK-9358%2C%20ERPBACK-9348%2C%20ERPBACK-9325%2C%20ERPBACK-9210%2C%20ERPBACK-9033%2C%20ERPBACK-9025%2C%20ERPBACK-9024%2C%20ERPBACK-8957%2C%20ERPBACK-8956%2C%20ERPBACK-8955%2C%20ERPBACK-8951%2C%20ERPBACK-8917%2C%20ERPBACK-8521%2C%20ERPBACK-8485%2C%20ERPBACK-8423%2C%20ERPBACK-8375%2C%20ERPBACK-8370%2C%20ERPBACK-8369%2C%20ERPBACK-8283%2C%20ERPBACK-8281%2C%20ERPBACK-7906%2C%20ERPBACK-7379%2C%20ERPBACK-6714%2C%20ERPBACK-6703)%20ORDER%20BY%20key%20DESC",
+    "reopened": "https://icontext-dev.atlassian.net/issues/?jql=key%20in%20(ERPBACK-9639%2C%20ERPBACK-9445%2C%20ERPBACK-9210)%20ORDER%20BY%20key%20DESC"
   },
   "insights": {
     "dominantTaskStatus": {
-      "key": "unresolved",
-      "count": 28,
-      "percent": 46.7
+      "key": "closed",
+      "count": 22,
+      "percent": 36.7
     },
     "dominantDefectReason": {
       "key": "prodIssue",

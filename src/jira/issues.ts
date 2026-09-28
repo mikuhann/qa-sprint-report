@@ -154,19 +154,28 @@ export async function getSprintIssues(
   ]);
 }
 
+function shiftDate(date: string, days: number): string {
+  const value = new Date(`${date}T00:00:00Z`);
+  value.setUTCDate(value.getUTCDate() + days);
+
+  return value.toISOString().slice(0, 10);
+}
+
 export async function getCarryOverIssues(
   sprintId: number,
   previousSprintId: number,
   startDate: string,
   endDate: string,
 ): Promise<JiraIssue[]> {
+  const adjustedStartDate = shiftDate(startDate, -1);
+  const adjustedEndDate = shiftDate(endDate, 1);
+
   const jql =
     `project = ${env.jiraProjectKey}` +
     ` AND Sprint = ${sprintId}` +
-    ` AND Sprint = ${previousSprintId}` +
     ` AND issuetype in (История, Задача, Баг)` +
-    ` AND status CHANGED AFTER "${startDate}"` +
-    ` BEFORE "${endDate}"`;
+    ` AND status CHANGED AFTER "${adjustedStartDate}"` +
+    ` BEFORE "${adjustedEndDate}"`;
 
   return searchIssues(jql, [
     "summary",
@@ -184,14 +193,17 @@ export async function getReopenedAfterTestingIssues(
   startDate: string,
   endDate: string,
 ): Promise<JiraIssue[]> {
+  const adjustedStartDate = shiftDate(startDate, -1);
+  const adjustedEndDate = shiftDate(endDate, 1);
+
   const jql =
     `project = ${env.jiraProjectKey}` +
     ` AND Sprint = ${sprintId}` +
     ` AND status CHANGED` +
     ` FROM "Тестирование в процессе"` +
     ` TO "В работу"` +
-    ` AFTER "${startDate}"` +
-    ` BEFORE "${endDate}"`;
+    ` AFTER "${adjustedStartDate}"` +
+    ` BEFORE "${adjustedEndDate}"`;
 
   return searchIssues(jql, [
     "summary",
