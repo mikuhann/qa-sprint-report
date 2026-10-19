@@ -65,7 +65,7 @@ export async function getSprintReportMeta(
     ? await getSprintById(sprintId)
     : await getActiveSprint();
 
-  const previousSprints = await getPreviousSprintsFor(sprint, 2);
+  const previousSprints = await getPreviousSprintsFor(sprint, Infinity);
 
   if (!sprint.startDate || !sprint.endDate) {
     throw new Error(`Sprint ${sprint.id} has no startDate or endDate`);
