@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { ChevronDown, ExternalLink } from "lucide-react";
 
 import { PRIORITY_VALUES, getPriorityConfig } from "../constants/priorities";
+import { getStatusClassName } from "../constants/statuses";
 
 import type { SprintReport } from "../types/report";
 
@@ -133,7 +134,9 @@ export function UnresolvedIssues({ issues, href }: UnresolvedIssuesProps) {
               </div>
 
               <div>
-                <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">
+                <span
+                  className={`rounded-lg px-2.5 py-1 text-xs font-medium ${getStatusClassName(issue.status)}`}
+                >
                   {issue.status}
                 </span>
               </div>

@@ -144,6 +144,7 @@ export async function getSprintIssues(
 
   return searchIssues(jql, [
     "summary",
+    "priority",
     "status",
     "issuetype",
     "labels",
@@ -163,19 +164,23 @@ function shiftDate(date: string, days: number): string {
 
 export async function getCarryOverIssues(
   sprintId: number,
-  previousSprintId: number,
+  previousSprintIds: number[],
   startDate: string,
   endDate: string,
 ): Promise<JiraIssue[]> {
+  if (previousSprintIds.length === 0) {
+    return [];
+  }
+
   const adjustedStartDate = shiftDate(startDate, -1);
-  const adjustedEndDate = shiftDate(endDate, 1);
 
   const jql =
     `project = ${env.jiraProjectKey}` +
     ` AND Sprint = ${sprintId}` +
+    ` AND Sprint IN (${previousSprintIds.join(", ")})` +
     ` AND issuetype in (История, Задача, Баг)` +
     ` AND status CHANGED AFTER "${adjustedStartDate}"` +
-    ` BEFORE "${adjustedEndDate}"`;
+    ` BEFORE "${endDate}"`;
 
   return searchIssues(jql, [
     "summary",

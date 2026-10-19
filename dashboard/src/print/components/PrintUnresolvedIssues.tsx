@@ -1,4 +1,5 @@
 import { getPriorityConfig } from "../../constants/priorities";
+import { getStatusClassName } from "../../constants/statuses";
 import { ExternalLink } from "lucide-react";
 
 import type { SprintReport } from "../../types/report";
@@ -119,7 +120,9 @@ export function PrintUnresolvedIssues({
                 </td>
 
                 <td className="px-3 py-2.5 align-top">
-                  <span className="inline-flex rounded-lg bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
+                  <span
+                    className={`inline-flex rounded-lg px-2 py-1 text-xs font-medium ${getStatusClassName(issue.status)}`}
+                  >
                     {issue.status}
                   </span>
                 </td>

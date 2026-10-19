@@ -42,7 +42,7 @@ export function SprintSignals({
         />
 
         <StatCard
-          label="Перенесено из прошлого спринта"
+          label="Перенесено из прошлых спринтов"
           value={carryOver.total}
           description="Тикеты, перешедшие из предыдущего спринта"
           icon={<History size={20} />}

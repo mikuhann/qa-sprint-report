@@ -28,7 +28,7 @@ export function PrintSprintSignals({
       href: links.defectsOutsideSprint,
     },
     {
-      label: "Перенесено из прошлого",
+      label: "Перенесено из прошлых спринтов",
       value: carryOver.total,
       icon: History,
       href: links.carryOver,
