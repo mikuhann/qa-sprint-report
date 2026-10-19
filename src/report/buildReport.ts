@@ -43,15 +43,18 @@ export async function buildReport(sprintId?: number): Promise<SprintReport> {
     meta.queryEndDate,
   );
 
-  const issues = await getSprintIssues(meta.sprintId, meta.previousSprintIds);
+  const issues = await getSprintIssues(
+    meta.sprintId,
+    meta.previousSprintIds.slice(0, 2),
+  );
 
   const previousSprintId = meta.previousSprintIds[0];
 
-  const carryOverIssues = previousSprintId
+  const carryOverIssues = meta.previousSprintIds.length
     ? (
         await getCarryOverIssues(
           meta.sprintId,
-          previousSprintId,
+          meta.previousSprintIds,
           meta.queryStartDate,
           meta.queryEndDate,
         )
