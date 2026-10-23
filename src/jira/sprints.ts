@@ -20,28 +20,44 @@ interface JiraSprintsResponse {
   values: JiraSprint[];
 }
 
-export async function getActiveSprint(): Promise<JiraSprint> {
+export async function getActiveSprint(): Promise<JiraSprint | null> {
   const data = await jiraGet<JiraSprintsResponse>(
     `/rest/agile/1.0/board/${env.jiraBoardId}/sprint?state=active`,
   );
 
-  const sprint = data.values[0];
-
-  if (!sprint) {
-    throw new Error(`Active sprint not found for board ${env.jiraBoardId}`);
-  }
-
-  return sprint;
+  return data.values[0] ?? null;
 }
 
-export async function getPreviousSprintsFor(
-  sprint: JiraSprint,
-  count = 2,
-): Promise<JiraSprint[]> {
-  const closedSprints = await getClosedSprints();
+// Without sprintId: active sprint, or the latest closed one when there is no active sprint
+export async function getSprintWithPrevious(sprintId?: number): Promise<{
+  sprint: JiraSprint;
+  previousSprints: JiraSprint[];
+}> {
+  const [requestedSprint, closedSprints] = await Promise.all([
+    sprintId ? getSprintById(sprintId) : getActiveSprint(),
+    getClosedSprints(),
+  ]);
 
+  const sprint = requestedSprint ?? closedSprints[0];
+
+  if (!sprint) {
+    throw new Error(
+      `No active or closed sprints found for board ${env.jiraBoardId}`,
+    );
+  }
+
+  return {
+    sprint,
+    previousSprints: getPreviousSprints(sprint, closedSprints),
+  };
+}
+
+function getPreviousSprints(
+  sprint: JiraSprint,
+  closedSprints: JiraSprint[],
+): JiraSprint[] {
   if (sprint.state === "active") {
-    return closedSprints.slice(0, count);
+    return closedSprints;
   }
 
   const sprintIndex = closedSprints.findIndex((item) => item.id === sprint.id);
@@ -50,7 +66,7 @@ export async function getPreviousSprintsFor(
     throw new Error(`Sprint ${sprint.id} not found in closed sprints`);
   }
 
-  return closedSprints.slice(sprintIndex + 1, sprintIndex + 1 + count);
+  return closedSprints.slice(sprintIndex + 1);
 }
 
 export async function getSprintById(sprintId: number): Promise<JiraSprint> {
@@ -92,5 +108,5 @@ export async function getAvailableSprints(): Promise<JiraSprint[]> {
     getClosedSprints(),
   ]);
 
-  return [activeSprint, ...closedSprints];
+  return activeSprint ? [activeSprint, ...closedSprints] : closedSprints;
 }
